@@ -1,6 +1,4 @@
 import streamlit as st
-import anthropic
-import time
 
 # ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -427,8 +425,8 @@ st.markdown("""
     <div class="nav-links">
         <a href="#services">Services</a>
         <a href="#simulateur">ROI</a>
-        <a href="#demo">Démo IA</a>
-        <a href="#contact" class="nav-cta">Commencer →</a>
+        <a href="#temoignages">Avis</a>
+        <a href="https://www.instagram.com/floxia.pro/" target="_blank" class="nav-cta">Réserver une démo →</a>
     </div>
 </nav>
 """, unsafe_allow_html=True)
@@ -610,141 +608,6 @@ with col_r:
 
 st.markdown('<div class="divider" style="margin-top: 3rem;"></div>', unsafe_allow_html=True)
 
-# ── DEMO IA ───────────────────────────────────────────────────────────────────
-st.markdown("""
-<div id="demo-section" style="scroll-margin-top: 80px;">
-<div class="section">
-    <div class="section-label">Démo en direct</div>
-    <h2 class="section-title">Testez l'IA Floxia<br>maintenant.</h2>
-    <p class="section-sub">Dictez une note vocale ou décrivez un ticket de chantier. L'IA analyse et structure en temps réel.</p>
-</div>
-</div>
-""", unsafe_allow_html=True)
-
-demo_col_l, demo_col_r = st.columns([1, 1], gap="large")
-
-with demo_col_l:
-    st.markdown('<div class="demo-wrapper">', unsafe_allow_html=True)
-    st.markdown("""
-    <div class="demo-header">
-        <div class="demo-dot"></div>
-        <div>
-            <div class="demo-title">Analyse IA Floxia</div>
-            <div class="demo-subtitle">Powered by Claude (Anthropic)</div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    note_input = st.text_area(
-        "VOTRE NOTE OU TICKET",
-        placeholder="Ex: Chantier Dupont – pose de 12m² de carrelage salle de bain, joint époxy gris clair, dépose ancienne faïence incluse. Matériaux : 85€ de carrelage, 22€ de joint, 15€ de colle...",
-        height=160,
-        key="demo_note",
-        label_visibility="visible"
-    )
-
-    if st.button("⚡ Analyser avec l'IA Floxia", key="demo_btn"):
-        if note_input.strip():
-            with st.spinner(""):
-                try:
-                    client = anthropic.Anthropic()
-                    response = client.messages.create(
-                        model="claude-sonnet-4-20250514",
-                        max_tokens=600,
-                        messages=[{
-                            "role": "user",
-                            "content": f"""Tu es l'assistant IA de Floxia Service, spécialisé dans l'automatisation administrative pour les artisans.
-
-Analyse cette note de chantier ou ce ticket et produis :
-1. **Synthèse** : résumé en 1-2 phrases
-2. **Éléments détectés** : liste structurée (main d'œuvre, matériaux, montants)
-3. **Action recommandée** : devis, facture, rapport, ou autre
-4. **Estimation rapide** : fourchette de prix HT si applicable
-
-Note/ticket : {note_input}
-
-Réponds de façon concise et professionnelle, en français."""
-                        }]
-                    )
-                    ai_text = response.content[0].text
-                    st.session_state["demo_result"] = ai_text
-                except Exception as e:
-                    st.session_state["demo_result"] = f"Erreur de connexion : {e}"
-        else:
-            st.warning("Veuillez entrer une note ou un ticket.")
-
-    if "demo_result" in st.session_state and st.session_state["demo_result"]:
-        result_html = st.session_state["demo_result"].replace(
-            "**", "<strong>").replace("**", "</strong>")
-        # Simple bold replacement
-        import re
-        result_formatted = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>',
-                                   st.session_state["demo_result"])
-        st.markdown(f'<div class="ai-response">{result_formatted}</div>',
-                    unsafe_allow_html=True)
-
-    st.markdown('</div>', unsafe_allow_html=True)
-
-CARD_STYLE = (
-    "background:#fff;"
-    "border:1px solid rgba(30,30,30,0.08);"
-    "border-radius:16px;"
-    "padding:1.2rem 1.5rem;"
-    "transition:border-color .25s;"
-)
-TAG_STYLE = (
-    "font-size:0.72rem;"
-    "text-transform:uppercase;"
-    "letter-spacing:0.08em;"
-    "color:#B8960C;"
-    "margin-bottom:0.4rem;"
-    "font-weight:600;"
-)
-TEXT_STYLE = (
-    "font-size:0.85rem;"
-    "color:rgba(30,30,30,0.65);"
-    "line-height:1.6;"
-    "font-style:italic;"
-)
-
-with demo_col_r:
-    st.markdown(f"""
-    <div style="padding:1.5rem 0;">
-        <div style="font-size:0.75rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#B8960C;margin-bottom:0.5rem;">
-            Exemples à tester
-        </div>
-        <p style="font-size:0.88rem;color:rgba(30,30,30,0.5);line-height:1.6;margin-bottom:1.5rem;">
-            Copiez-collez l'un de ces exemples dans le champ pour tester l'IA.
-        </p>
-        <div style="display:flex;flex-direction:column;gap:1rem;">
-            <div style="{CARD_STYLE}">
-                <div style="{TAG_STYLE}">🎙️ Note vocale</div>
-                <div style="{TEXT_STYLE}">
-                    "Chantier Martin, peinture salon 28m², 2 couches, sous-couche comprise.
-                    J'ai utilisé 4 pots de 5L à 28€ chaque. Compter 6h de boulot."
-                </div>
-            </div>
-            <div style="{CARD_STYLE}">
-                <div style="{TAG_STYLE}">🧾 Ticket matériaux</div>
-                <div style="{TEXT_STYLE}">
-                    "Leroy Merlin – Vis 6x80 x200 = 4.90€, Chevilles diam8 x100 = 6.50€,
-                    Placo 120x250 x3 = 47€, Bande placo = 8.20€. Total 66.60€."
-                </div>
-            </div>
-            <div style="{CARD_STYLE}">
-                <div style="{TAG_STYLE}">🏗️ Fin de chantier</div>
-                <div style="{TEXT_STYLE}">
-                    "Chantier Leblanc terminé aujourd'hui. Électricité cuisine OK,
-                    tableau mis à jour, prises USB installées. Réserve : attente carreleur
-                    pour finition plinthe."
-                </div>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-st.markdown('<div class="divider" style="margin-top: 3rem;"></div>', unsafe_allow_html=True)
-
 # ── TESTIMONIALS ──────────────────────────────────────────────────────────────
 st.markdown("""
 <div class="section">
@@ -788,21 +651,44 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ── CTA BAND ─────────────────────────────────────────────────────────────────
+# ── CTA BAND + CONTACT ───────────────────────────────────────────────────────
 st.markdown("""
-<div id="contact" class="cta-band">
+<div id="contact" class="cta-band" style="padding-bottom: 5rem;">
     <h2>Prêt à récupérer<br><span>votre temps ?</span></h2>
     <p>Démarrage en 15 minutes. Sans engagement. Premier mois offert.</p>
+
+    <div style="display:flex; flex-direction:column; align-items:center; gap:1.5rem; margin-top:1rem;">
+
+        <!-- Bouton Instagram réserver une démo -->
+        <a href="https://www.instagram.com/floxia.pro/"
+           target="_blank"
+           style="
+               display:inline-flex; align-items:center; gap:0.75rem;
+               background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+               color:#fff; font-family:'DM Sans',sans-serif;
+               font-weight:600; font-size:1rem;
+               padding:0.95rem 2.4rem; border-radius:50px;
+               text-decoration:none;
+               box-shadow: 0 6px 28px rgba(220,39,67,0.35);
+               transition: transform 0.2s, box-shadow 0.2s;
+           "
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 36px rgba(220,39,67,0.5)'"
+           onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 6px 28px rgba(220,39,67,0.35)'"
+        >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="1.8"/>
+                <circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="1.8"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="white"/>
+            </svg>
+            Réserver une démo — m'envoyer un message
+        </a>
+
+        <div style="font-size:0.8rem; color:rgba(247,245,240,0.35); margin-top:0.2rem;">
+            Répondez via Instagram @floxia.pro · Réponse sous 24h
+        </div>
+    </div>
 </div>
 """, unsafe_allow_html=True)
-
-cta_col1, cta_col2, cta_col3 = st.columns([1, 2, 1])
-with cta_col2:
-    st.markdown('<div style="background: #1E1E1E; padding: 0 5vw 4rem; text-align: center;">', unsafe_allow_html=True)
-    if st.button("⚡ Démarrer gratuitement — 1 mois offert", key="main_cta"):
-        st.balloons()
-        st.success("🎉 Merci ! L'équipe Floxia vous contacte dans les 24h.")
-    st.markdown('</div>', unsafe_allow_html=True)
 
 # ── FOOTER ────────────────────────────────────────────────────────────────────
 st.markdown("""
@@ -819,7 +705,7 @@ st.markdown("""
     <div class="footer-links">
         <a href="#">Mentions légales</a>
         <a href="#">Confidentialité</a>
-        <a href="#">Contact</a>
+        <a href="https://www.instagram.com/floxia.pro/" target="_blank">📸 Instagram</a>
     </div>
     <div class="footer-badge">⚡ Propulsé par l'IA</div>
 </footer>
