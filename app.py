@@ -117,17 +117,6 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .flow-label{font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
     color:rgba(30,30,30,.35);margin-bottom:.35rem;}
 
-.testi-card{background:#fff;border:1px solid rgba(30,30,30,.07);
-    border-radius:20px;padding:1.8rem;}
-.testi-stars{color:#FFD700;font-size:.88rem;margin-bottom:.9rem;}
-.testi-text{font-size:.9rem;line-height:1.7;color:rgba(30,30,30,.68);
-    margin-bottom:1.2rem;font-style:italic;}
-.testi-avatar{width:40px;height:40px;border-radius:50%;background:#1E1E1E;color:#FFD700;
-    font-family:'Syne',sans-serif;font-weight:800;font-size:.82rem;
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.testi-name{font-weight:600;font-size:.86rem;}
-.testi-role{font-size:.73rem;color:rgba(30,30,30,.42);}
-
 .dark-band{background:#1E1E1E;padding:5.5rem 5vw;text-align:center;}
 .dark-band h2{font-family:'Syne',sans-serif;font-size:clamp(1.75rem,3.5vw,3rem);
     font-weight:800;letter-spacing:-.035em;color:#F7F5F0;margin-bottom:.9rem;}
@@ -150,6 +139,43 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .footer-badge{font-size:.72rem;background:rgba(255,215,0,.12);color:#9A7A00;
     padding:.28rem .75rem;border-radius:50px;font-weight:600;}
 .divider{height:1px;background:rgba(30,30,30,.07);max-width:1200px;margin:0 auto;}
+
+/* PRICING SECTION */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:1.4rem;margin-top:3rem;}
+.pricing-card{background:#fff;border:1px solid rgba(30,30,30,.07);border-radius:20px;
+    padding:2rem;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s;}
+.pricing-card.featured{background:#1E1E1E;color:#F7F5F0;border-color:#1E1E1E;}
+.pricing-card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(255,215,0,.12);}
+.pricing-badge{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.07em;
+    text-transform:uppercase;background:rgba(255,215,0,.15);color:#9A7A00;
+    padding:.25rem .7rem;border-radius:50px;margin-bottom:1rem;}
+.pricing-card.featured .pricing-badge{background:rgba(255,215,0,.2);color:#FFD700;}
+.pricing-plan{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;margin-bottom:.5rem;}
+.pricing-price{font-family:'Syne',sans-serif;font-size:2.8rem;font-weight:800;
+    letter-spacing:-.04em;line-height:1;color:#1E1E1E;margin:.7rem 0 .3rem;}
+.pricing-card.featured .pricing-price{color:#FFD700;}
+.pricing-per{font-size:.78rem;color:rgba(30,30,30,.42);margin-bottom:1.5rem;}
+.pricing-card.featured .pricing-per{color:rgba(247,245,240,.38);}
+.pricing-features{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.8rem;}
+.pricing-feature{display:flex;align-items:flex-start;gap:.6rem;font-size:.84rem;
+    color:rgba(30,30,30,.65);line-height:1.45;}
+.pricing-card.featured .pricing-feature{color:rgba(247,245,240,.65);}
+.pricing-feature-check{color:#FFD700;font-size:.9rem;flex-shrink:0;margin-top:.05rem;}
+.pricing-cta{display:block;text-align:center;padding:.75rem 1.5rem;border-radius:50px;
+    font-weight:700;font-size:.9rem;text-decoration:none;transition:all .2s;}
+.pricing-cta-outline{border:1.5px solid rgba(30,30,30,.2);color:#1E1E1E;}
+.pricing-cta-outline:hover{background:#1E1E1E;color:#FFD700;}
+.pricing-cta-solid{background:#FFD700;color:#1E1E1E;border:none;
+    box-shadow:0 4px 20px rgba(255,215,0,.3);}
+.pricing-cta-solid:hover{box-shadow:0 8px 28px rgba(255,215,0,.5);transform:translateY(-1px);}
+.pricing-note{font-size:.72rem;text-align:center;color:rgba(30,30,30,.35);margin-top:1rem;}
+.pricing-card.featured .pricing-note{color:rgba(247,245,240,.28);}
+.pricing-devis-highlight{background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.25);
+    border-radius:12px;padding:.9rem 1.1rem;margin-bottom:1.2rem;font-size:.82rem;
+    color:#7A5E00;line-height:1.5;}
+.pricing-card.featured .pricing-devis-highlight{background:rgba(255,215,0,.1);
+    border-color:rgba(255,215,0,.3);color:#FFD700;}
 
 div[data-testid="stSlider"] [data-baseweb="slider"] div[role="slider"]{
     background:#FFD700!important;border:none!important;
@@ -178,7 +204,7 @@ st.markdown("""
     <a href="#services">Services</a>
     <a href="#ecosystem">Écosystème</a>
     <a href="#simulateur">ROI</a>
-    <a href="#avis">Avis</a>
+    <a href="#tarifs">Tarifs</a>
     <a href="https://www.instagram.com/floxia.pro/" target="_blank" class="nav-cta">Réserver une démo →</a>
   </div>
 </nav>
@@ -216,7 +242,7 @@ st.markdown("""
     </div>
     <div>
       <div class="stat-num">3<span class="gold">min</span></div>
-      <div class="stat-label">pour générer un devis complet</div>
+      <div class="stat-label">du devis à la facture finale</div>
     </div>
     <div>
       <div class="stat-num">100<span class="gold">%</span></div>
@@ -234,14 +260,14 @@ st.markdown("""
 <div class="section">
   <div class="section-label">Ce que fait Floxia</div>
   <h2 class="section-title">Tout votre flux de travail,<br>automatisé de A à Z.</h2>
-  <p class="section-sub">Huit automatisations concrètes, opérationnelles dès aujourd'hui, sans installation ni compétence technique.</p>
+  <p class="section-sub">Des automatisations concrètes, opérationnelles dès aujourd'hui, sans installation ni compétence technique.</p>
   <div class="cards-grid">
 
     <div class="service-card">
       <div class="card-icon">💬</div>
-      <div class="card-title">Devis WhatsApp</div>
-      <div class="card-desc">Envoyez un message vocal depuis votre téléphone. Floxia transcrit, calcule et envoie un devis PDF professionnel au client en moins de 3 minutes. Zéro ordinateur, zéro Excel.</div>
-      <span class="card-tag">⚡ 45 min gagnées / devis</span>
+      <div class="card-title">Devis → Facture Finale</div>
+      <div class="card-desc">Envoyez un vocal depuis votre téléphone. Floxia génère le devis PDF, le client signe, et le cycle complet se clôture automatiquement en facture finale — sans jamais toucher un ordinateur.</div>
+      <span class="card-tag">⚡ Cycle complet géré</span>
     </div>
 
     <div class="service-card">
@@ -249,6 +275,13 @@ st.markdown("""
       <div class="card-title">Scan Tickets de Caisse</div>
       <div class="card-desc">Photographiez vos tickets directement sur WhatsApp. L'IA extrait fournisseur, articles, montants HT/TVA et les stocke automatiquement dans votre comptabilité. Plus jamais une boîte à chaussures.</div>
       <span class="card-tag">⚡ Zéro ressaisie</span>
+    </div>
+
+    <div class="service-card">
+      <div class="card-icon">⭐</div>
+      <div class="card-title">Avis Google Maps</div>
+      <div class="card-desc">À chaque chantier terminé, Floxia envoie automatiquement un message WhatsApp à votre client pour l'inviter à laisser un avis Google. Plus d'avis, meilleure réputation, plus de clients.</div>
+      <span class="card-tag">⚡ Réputation boostée</span>
     </div>
 
     <div class="service-card">
@@ -280,13 +313,6 @@ st.markdown("""
     </div>
 
     <div class="service-card">
-      <div class="card-icon">📅</div>
-      <div class="card-title">Planning &amp; Salariés</div>
-      <div class="card-desc">Vue semaine par salarié, gestion des horaires et jours travaillés, détection des surcharges et des disponibilités. Planifiez vos équipes depuis n'importe quel écran.</div>
-      <span class="card-tag">⚡ Planning en temps réel</span>
-    </div>
-
-    <div class="service-card">
       <div class="card-icon">💰</div>
       <div class="card-title">Suivi Dépenses &amp; TVA</div>
       <div class="card-desc">Chaque ticket scanné alimente votre tableau de bord financier : dépenses par catégorie, TVA récupérable, résultat net estimé et export comptable mensuel en un clic.</div>
@@ -314,16 +340,16 @@ with eco_l:
 
       <div style="margin-top:2.5rem;display:flex;flex-direction:column;gap:1rem;">
         <div style="display:flex;align-items:flex-start;gap:1rem;">
-          <div class="step-num" style="width:44px;height:44px;border-radius:50%;background:#1E1E1E;
+          <div style="width:44px;height:44px;border-radius:50%;background:#1E1E1E;
               color:#FFD700;font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;
               display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
           <div>
-            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:.3rem;">Connexion en 15 min</div>
-            <div style="font-size:.83rem;color:rgba(30,30,30,.5);line-height:1.6;">WhatsApp Business, Gmail, Google Drive. Sans technique.</div>
+            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:.3rem;">Une fois connecté</div>
+            <div style="font-size:.83rem;color:rgba(30,30,30,.5);line-height:1.6;">WhatsApp Business, Gmail, Google Drive — tout est prêt, on s'en occupe.</div>
           </div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:1rem;">
-          <div class="step-num" style="width:44px;height:44px;border-radius:50%;background:#1E1E1E;
+          <div style="width:44px;height:44px;border-radius:50%;background:#1E1E1E;
               color:#FFD700;font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;
               display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
           <div>
@@ -332,7 +358,7 @@ with eco_l:
           </div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:1rem;">
-          <div class="step-num" style="width:44px;height:44px;border-radius:50%;background:#1E1E1E;
+          <div style="width:44px;height:44px;border-radius:50%;background:#1E1E1E;
               color:#FFD700;font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;
               display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
           <div>
@@ -341,7 +367,7 @@ with eco_l:
           </div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:1rem;">
-          <div class="step-num" style="width:44px;height:44px;border-radius:50%;background:#1E1E1E;
+          <div style="width:44px;height:44px;border-radius:50%;background:#1E1E1E;
               color:#FFD700;font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;
               display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</div>
           <div>
@@ -357,7 +383,7 @@ with eco_r:
     st.markdown("""
     <div style="padding:4rem 1rem 4rem 2rem;">
 
-      <div class="flow-label">Flux 1 — Devis WhatsApp</div>
+      <div class="flow-label">Flux 1 — Cycle Devis complet</div>
       <div class="flow-wrapper">
         <div class="flow-row">
           <div class="flow-node">🎙️ Vocal WhatsApp</div>
@@ -366,11 +392,26 @@ with eco_r:
           <div class="flow-arrow">→</div>
           <div class="flow-node">📄 Devis PDF</div>
           <div class="flow-arrow">→</div>
-          <div class="flow-node dk">📨 Client</div>
+          <div class="flow-node">✍️ Signature</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node dk">🧾 Facture finale</div>
         </div>
       </div>
 
-      <div class="flow-label">Flux 2 — Ticket de caisse</div>
+      <div class="flow-label">Flux 2 — Avis Google Maps</div>
+      <div class="flow-wrapper">
+        <div class="flow-row">
+          <div class="flow-node">✅ Chantier terminé</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node gd">⚡ Floxia détecte</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">💬 Message WhatsApp</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node dk">⭐ Avis Google</div>
+        </div>
+      </div>
+
+      <div class="flow-label">Flux 3 — Ticket de caisse</div>
       <div class="flow-wrapper">
         <div class="flow-row">
           <div class="flow-node">📸 Photo WhatsApp</div>
@@ -383,7 +424,7 @@ with eco_r:
         </div>
       </div>
 
-      <div class="flow-label">Flux 3 — Problème chantier</div>
+      <div class="flow-label">Flux 4 — Problème chantier</div>
       <div class="flow-wrapper">
         <div class="flow-row">
           <div class="flow-node">🚨 Vocal WhatsApp</div>
@@ -391,17 +432,6 @@ with eco_r:
           <div class="flow-node gd">⚡ IA rédaction</div>
           <div class="flow-arrow">→</div>
           <div class="flow-node dk">📧 Email client</div>
-        </div>
-      </div>
-
-      <div class="flow-label">Flux 4 — Rapport chantier</div>
-      <div class="flow-wrapper">
-        <div class="flow-row">
-          <div class="flow-node">🎙️ Dictée vocale</div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-node gd">⚡ IA structuration</div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-node dk">📋 Rapport PDF</div>
         </div>
       </div>
 
@@ -439,7 +469,19 @@ with roi_l:
                          key="roi_slider", label_visibility="collapsed")
     heures_gagnees = round(((64 - 3) * nb_devis + nb_devis * 12) / 60, 1)
     gain_euros     = round(heures_gagnees * 55)
-    roi_pourcent   = round((gain_euros / 99) * 100)
+
+    # Pricing based on nb_devis
+    if nb_devis <= 10:
+        abonnement = 49
+        plan_label = "Starter"
+    elif nb_devis <= 30:
+        abonnement = 99
+        plan_label = "Pro"
+    else:
+        abonnement = 149
+        plan_label = "Expert"
+
+    roi_pourcent   = round((gain_euros / abonnement) * 100)
     st.markdown(f"""
     <div class="roi-result">
       <div style="font-size:.75rem;color:rgba(247,245,240,.42);text-transform:uppercase;
@@ -451,7 +493,7 @@ with roi_l:
       </div>
     </div>
     <div style="font-size:.72rem;color:rgba(247,245,240,.22);margin-top:1rem;">
-      *Basé sur 55€/h artisan et abonnement Floxia 99€/mois.
+      *Basé sur 55€/h artisan · Plan {plan_label} à {abonnement}€/mois pour {nb_devis} devis.
     </div></div>
     """, unsafe_allow_html=True)
 
@@ -464,7 +506,7 @@ with roi_r:
         ("Faire le planning à la main", "1h / semaine gagnée"),
         ("Exporter votre compta en fin de mois", "Export 1 clic"),
         ("Rédiger les rapports chantier", "2 min au lieu de 20"),
-        ("Gérer les retards et avenants", "Email automatique"),
+        ("Demander des avis Google manuellement", "Automatique à chaque chantier"),
     ]
     st.markdown('<div style="padding:1.5rem 0;"><div class="section-label" style="margin-bottom:1rem;">Ce que vous ne faites plus</div><div style="display:flex;flex-direction:column;gap:.75rem;">', unsafe_allow_html=True)
     for task, gain in ITEMS:
@@ -481,51 +523,86 @@ with roi_r:
 
 st.markdown('<div class="divider" style="margin-top:3rem;"></div>', unsafe_allow_html=True)
 
-# ── TÉMOIGNAGES ────────────────────────────────────────────────────────────────
-st.markdown('<div id="avis"></div>', unsafe_allow_html=True)
+# ── TARIFS ─────────────────────────────────────────────────────────────────────
+st.markdown('<div id="tarifs"></div>', unsafe_allow_html=True)
 st.markdown("""
 <div class="section">
-  <div class="section-label">Ils nous font confiance</div>
-  <h2 class="section-title">Ce que disent nos artisans.</h2>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-              gap:1.4rem;margin-top:3rem;">
+  <div class="section-label">Tarifs</div>
+  <h2 class="section-title">Un prix qui s'adapte<br>à votre activité.</h2>
+  <p class="section-sub">Payez selon le nombre de devis générés chaque mois. Plus vous travaillez, plus Floxia vous fait économiser.</p>
 
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"Avant Floxia, je passais mes soirées à taper des devis. Maintenant j'envoie un vocal et mon client reçoit un PDF pro en 3 minutes. Bluffant."</p>
-      <div style="display:flex;align-items:center;gap:.75rem;">
-        <div class="testi-avatar">TP</div>
-        <div><div class="testi-name">Thomas P.</div><div class="testi-role">Plombier – Caen</div></div>
+  <div class="pricing-grid">
+
+    <div class="pricing-card">
+      <div class="pricing-badge">Starter</div>
+      <div class="pricing-plan">Pour démarrer</div>
+      <div class="pricing-devis-highlight">
+        ⚡ Jusqu'à <strong>10 devis / mois</strong>
       </div>
+      <div class="pricing-price">49€</div>
+      <div class="pricing-per">par mois · sans engagement</div>
+      <div class="pricing-features">
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>Devis WhatsApp vocal</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>Cycle devis → facture finale</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>Scan tickets de caisse</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>Relances automatiques</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>Avis Google Maps auto</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>ERP mobile (Google Sheets)</div>
+      </div>
+      <a class="pricing-cta pricing-cta-outline" href="https://www.instagram.com/floxia.pro/" target="_blank">Démarrer →</a>
+      <div class="pricing-note">Idéal pour les artisans solo</div>
     </div>
 
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"Je prends une photo du ticket sur WhatsApp et tout est enregistré automatiquement. Plus de ressaisie, plus d'erreurs. Je gagne 8h par mois facilement."</p>
-      <div style="display:flex;align-items:center;gap:.75rem;">
-        <div class="testi-avatar">MR</div>
-        <div><div class="testi-name">Marie R.</div><div class="testi-role">Électricienne – Lyon</div></div>
+    <div class="pricing-card featured">
+      <div class="pricing-badge">⚡ Le plus populaire — Pro</div>
+      <div class="pricing-plan">Pour les actifs</div>
+      <div class="pricing-devis-highlight">
+        ⚡ Jusqu'à <strong>30 devis / mois</strong>
       </div>
+      <div class="pricing-price">99€</div>
+      <div class="pricing-per">par mois · sans engagement</div>
+      <div class="pricing-features">
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>Tout du plan Starter</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>Alertes problème chantier</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>Rapports vocaux PDF</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>Planning & salariés</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>Suivi dépenses & TVA</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>Support prioritaire WhatsApp</div>
+      </div>
+      <a class="pricing-cta pricing-cta-solid" href="https://www.instagram.com/floxia.pro/" target="_blank">Choisir Pro →</a>
+      <div class="pricing-note">Le meilleur rapport qualité / valeur</div>
     </div>
 
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"Quand il y a un retard chantier, j'envoie un vocal et Floxia rédige l'email au client tout seul. Mes clients sont toujours informés sans que je passe 30 min à écrire."</p>
-      <div style="display:flex;align-items:center;gap:.75rem;">
-        <div class="testi-avatar">KA</div>
-        <div><div class="testi-name">Karim A.</div><div class="testi-role">Menuisier – Bordeaux</div></div>
+    <div class="pricing-card">
+      <div class="pricing-badge">Expert</div>
+      <div class="pricing-plan">Pour les équipes</div>
+      <div class="pricing-devis-highlight">
+        ⚡ <strong>Devis illimités</strong>
       </div>
+      <div class="pricing-price">149€</div>
+      <div class="pricing-per">par mois · sans engagement</div>
+      <div class="pricing-features">
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>Tout du plan Pro</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>Devis illimités</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>Multi-utilisateurs (équipe)</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>Tableaux de bord avancés</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>Intégrations sur mesure</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✦</span>Accompagnement dédié</div>
+      </div>
+      <a class="pricing-cta pricing-cta-outline" href="https://www.instagram.com/floxia.pro/" target="_blank">Nous contacter →</a>
+      <div class="pricing-note">Pour les PME et équipes terrain</div>
     </div>
 
   </div>
 </div>
 """, unsafe_allow_html=True)
 
+st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
+
 # ── CTA FINAL ─────────────────────────────────────────────────────────────────
 st.markdown("""
 <div id="contact" class="dark-band">
   <h2>Prêt à récupérer<br><span class="gold">votre temps ?</span></h2>
-  <p>Premier mois offert · Sans engagement · Démarrage en 15 minutes</p>
   <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;">
     <a class="insta-btn" href="https://www.instagram.com/floxia.pro/" target="_blank">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
