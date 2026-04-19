@@ -685,33 +685,58 @@ Réponds de façon concise et professionnelle, en français."""
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-with demo_col_r:
-    st.markdown("""
-    <div style="padding: 1.5rem 0;">
-        <div style="margin-bottom: 2rem;">
-            <div class="section-label" style="margin-bottom: 0.5rem;">Exemples à tester</div>
-            <p style="font-size: 0.88rem; color: rgba(30,30,30,0.5); line-height: 1.6;">
-                Copiez-collez l'un de ces exemples dans le champ pour tester l'IA.
-            </p>
-        </div>
+CARD_STYLE = (
+    "background:#fff;"
+    "border:1px solid rgba(30,30,30,0.08);"
+    "border-radius:16px;"
+    "padding:1.2rem 1.5rem;"
+    "transition:border-color .25s;"
+)
+TAG_STYLE = (
+    "font-size:0.72rem;"
+    "text-transform:uppercase;"
+    "letter-spacing:0.08em;"
+    "color:#B8960C;"
+    "margin-bottom:0.4rem;"
+    "font-weight:600;"
+)
+TEXT_STYLE = (
+    "font-size:0.85rem;"
+    "color:rgba(30,30,30,0.65);"
+    "line-height:1.6;"
+    "font-style:italic;"
+)
 
-        <div style="display: flex; flex-direction: column; gap: 1rem;">
-            <div class="service-card" style="padding: 1.2rem 1.5rem; cursor: default;">
-                <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: #B8960C; margin-bottom: 0.4rem;">Note vocale</div>
-                <div style="font-size: 0.85rem; color: rgba(30,30,30,0.65); line-height: 1.6; font-style: italic;">
-                    "Chantier Martin, peinture salon 28m², 2 couches, sous-couche comprise. J'ai utilisé 4 pots de 5L à 28€ chaque. Compter 6h de boulot."
+with demo_col_r:
+    st.markdown(f"""
+    <div style="padding:1.5rem 0;">
+        <div style="font-size:0.75rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#B8960C;margin-bottom:0.5rem;">
+            Exemples à tester
+        </div>
+        <p style="font-size:0.88rem;color:rgba(30,30,30,0.5);line-height:1.6;margin-bottom:1.5rem;">
+            Copiez-collez l'un de ces exemples dans le champ pour tester l'IA.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+            <div style="{CARD_STYLE}">
+                <div style="{TAG_STYLE}">🎙️ Note vocale</div>
+                <div style="{TEXT_STYLE}">
+                    "Chantier Martin, peinture salon 28m², 2 couches, sous-couche comprise.
+                    J'ai utilisé 4 pots de 5L à 28€ chaque. Compter 6h de boulot."
                 </div>
             </div>
-            <div class="service-card" style="padding: 1.2rem 1.5rem; cursor: default;">
-                <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: #B8960C; margin-bottom: 0.4rem;">Ticket matériaux</div>
-                <div style="font-size: 0.85rem; color: rgba(30,30,30,0.65); line-height: 1.6; font-style: italic;">
-                    "Leroy Merlin – Vis 6x80 x200 = 4.90€, Chevilles diam8 x100 = 6.50€, Placo 120x250 x3 = 47€, Bande placo = 8.20€. Total 66.60€."
+            <div style="{CARD_STYLE}">
+                <div style="{TAG_STYLE}">🧾 Ticket matériaux</div>
+                <div style="{TEXT_STYLE}">
+                    "Leroy Merlin – Vis 6x80 x200 = 4.90€, Chevilles diam8 x100 = 6.50€,
+                    Placo 120x250 x3 = 47€, Bande placo = 8.20€. Total 66.60€."
                 </div>
             </div>
-            <div class="service-card" style="padding: 1.2rem 1.5rem; cursor: default;">
-                <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: #B8960C; margin-bottom: 0.4rem;">Fin de chantier</div>
-                <div style="font-size: 0.85rem; color: rgba(30,30,30,0.65); line-height: 1.6; font-style: italic;">
-                    "Chantier Leblanc terminé aujourd'hui. Électricité cuisine OK, tableau mis à jour, prises USB installées. Réserve : attente carreleur pour finition plinthe."
+            <div style="{CARD_STYLE}">
+                <div style="{TAG_STYLE}">🏗️ Fin de chantier</div>
+                <div style="{TEXT_STYLE}">
+                    "Chantier Leblanc terminé aujourd'hui. Électricité cuisine OK,
+                    tableau mis à jour, prises USB installées. Réserve : attente carreleur
+                    pour finition plinthe."
                 </div>
             </div>
         </div>
