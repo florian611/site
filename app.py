@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Floxia Service – Automatisation IA",
+    page_title="Floxia Service ERP – Automatisation IA",
     page_icon="⚡",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -198,7 +198,7 @@ div[data-testid="stButton"]>button:hover{
 st.markdown("""
 <nav class="nav">
   <a class="nav-logo" href="#">
-    <div class="nav-bolt"></div>Floxia Service
+    <div class="nav-bolt"></div>Floxia Service ERP
   </a>
   <div class="nav-links">
     <a href="#services">Services</a>
@@ -255,70 +255,54 @@ st.markdown("""
 st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
 # ── SERVICES ───────────────────────────────────────────────────────────────────
+# ── SERVICES ───────────────────────────────────────────────────────────────────
+SERVICES = [
+    ("&#x1F4AC;", "Devis &rarr; Facture Finale",
+     "Envoyez un vocal depuis votre t&eacute;l&eacute;phone. Floxia g&eacute;n&egrave;re le devis PDF, le client signe, et le cycle complet se cl&ocirc;ture automatiquement en facture finale &mdash; sans jamais toucher un ordinateur.",
+     "&#x26A1; Cycle complet g&eacute;r&eacute;"),
+    ("&#x1F4F8;", "Scan Tickets de Caisse",
+     "Photographiez vos tickets directement sur WhatsApp. L'IA extrait fournisseur, articles, montants HT/TVA et les stocke automatiquement dans votre comptabilit&eacute;. Plus jamais une bo&icirc;te &agrave; chaussures.",
+     "&#x26A1; Z&eacute;ro ressaisie"),
+    ("&#x2B50;", "Avis Google Maps",
+     "&Agrave; chaque chantier termin&eacute;, Floxia envoie automatiquement un message WhatsApp &agrave; votre client pour l'inviter &agrave; laisser un avis Google. Plus d'avis, meilleure r&eacute;putation, plus de clients.",
+     "&#x26A1; R&eacute;putation boost&eacute;e"),
+    ("&#x1F6A8;", "Alerte Probl&egrave;me Chantier",
+     "Un probl&egrave;me sur le chantier&nbsp;? Envoyez un vocal WhatsApp. Floxia r&eacute;dige automatiquement un e-mail professionnel au client expliquant la situation, les causes et le nouveau d&eacute;lai pr&eacute;vu.",
+     "&#x26A1; Email client en 30 sec"),
+    ("&#x1F514;", "Relances Automatiques",
+     "Floxia surveille vos devis non sign&eacute;s et relance automatiquement vos clients par SMS et e-mail au bon moment, avec le bon message. Plus jamais un devis oubli&eacute;.",
+     "&#x26A1; +30&nbsp;% de conversion"),
+    ("&#x1F4CB;", "ERP Mobile Complet",
+     "Devis, factures, chantiers, planning, salari&eacute;s, d&eacute;penses &mdash; tout dans une interface web accessible depuis votre t&eacute;l&eacute;phone, synchronis&eacute;e en temps r&eacute;el avec Google Sheets.",
+     "&#x26A1; Tout en un seul endroit"),
+    ("&#x1F399;", "Rapports Vocaux Chantier",
+     "Dictez votre rapport de fin de journ&eacute;e en 2 minutes. Floxia le structure, le met en page et l'envoie directement au client sous forme de compte-rendu professionnel.",
+     "&#x26A1; Rapport en 2 min"),
+    ("&#x1F4B0;", "Suivi D&eacute;penses &amp; TVA",
+     "Chaque ticket scann&eacute; alimente votre tableau de bord financier&nbsp;: d&eacute;penses par cat&eacute;gorie, TVA r&eacute;cup&eacute;rable, r&eacute;sultat net estim&eacute; et export comptable mensuel en un clic.",
+     "&#x26A1; Compta simplifi&eacute;e"),
+]
+
 st.markdown("""
 <div id="services">
 <div class="section">
-  <div class="section-label">Ce que fait Floxia</div>
-  <h2 class="section-title">Tout votre flux de travail,<br>automatisé de A à Z.</h2>
-  <p class="section-sub">Des automatisations concrètes, opérationnelles dès aujourd'hui, sans installation ni compétence technique.</p>
+  <div class="section-label">Ce que fait Floxia Service ERP</div>
+  <h2 class="section-title">Tout votre flux de travail,<br>automatis&eacute; de A &agrave; Z.</h2>
+  <p class="section-sub">Des automatisations concr&egrave;tes, op&eacute;rationnelles d&egrave;s aujourd'hui, sans installation ni comp&eacute;tence technique.</p>
   <div class="cards-grid">
+""", unsafe_allow_html=True)
 
+for icon, title, desc, tag in SERVICES:
+    st.markdown(f"""
     <div class="service-card">
-      <div class="card-icon">💬</div>
-      <div class="card-title">Devis → Facture Finale</div>
-      <div class="card-desc">Envoyez un vocal depuis votre téléphone. Floxia génère le devis PDF, le client signe, et le cycle complet se clôture automatiquement en facture finale — sans jamais toucher un ordinateur.</div>
-      <span class="card-tag">⚡ Cycle complet géré</span>
+      <div class="card-icon">{icon}</div>
+      <div class="card-title">{title}</div>
+      <div class="card-desc">{desc}</div>
+      <span class="card-tag">{tag}</span>
     </div>
+    """, unsafe_allow_html=True)
 
-    <div class="service-card">
-      <div class="card-icon">📸</div>
-      <div class="card-title">Scan Tickets de Caisse</div>
-      <div class="card-desc">Photographiez vos tickets directement sur WhatsApp. L'IA extrait fournisseur, articles, montants HT/TVA et les stocke automatiquement dans votre comptabilité. Plus jamais une boîte à chaussures.</div>
-      <span class="card-tag">⚡ Zéro ressaisie</span>
-    </div>
-
-    <div class="service-card">
-      <div class="card-icon">⭐</div>
-      <div class="card-title">Avis Google Maps</div>
-      <div class="card-desc">À chaque chantier terminé, Floxia envoie automatiquement un message WhatsApp à votre client pour l'inviter à laisser un avis Google. Plus d'avis, meilleure réputation, plus de clients.</div>
-      <span class="card-tag">⚡ Réputation boostée</span>
-    </div>
-
-    <div class="service-card">
-      <div class="card-icon">🚨</div>
-      <div class="card-title">Alerte Problème Chantier</div>
-      <div class="card-desc">Un problème sur le chantier ? Envoyez un vocal WhatsApp. Floxia rédige automatiquement un e-mail professionnel au client expliquant la situation, les causes et le nouveau délai prévu.</div>
-      <span class="card-tag">⚡ Email client en 30 sec</span>
-    </div>
-
-    <div class="service-card">
-      <div class="card-icon">🔔</div>
-      <div class="card-title">Relances Automatiques</div>
-      <div class="card-desc">Floxia surveille vos devis non signés et relance automatiquement vos clients par SMS et e-mail au bon moment, avec le bon message. Plus jamais un devis oublié.</div>
-      <span class="card-tag">⚡ +30 % de conversion</span>
-    </div>
-
-    <div class="service-card">
-      <div class="card-icon">📋</div>
-      <div class="card-title">ERP Mobile Complet</div>
-      <div class="card-desc">Devis, factures, chantiers, planning, salariés, dépenses — tout dans une interface web accessible depuis votre téléphone, synchronisée en temps réel avec Google Sheets.</div>
-      <span class="card-tag">⚡ Tout en un seul endroit</span>
-    </div>
-
-    <div class="service-card">
-      <div class="card-icon">🎙️</div>
-      <div class="card-title">Rapports Vocaux Chantier</div>
-      <div class="card-desc">Dictez votre rapport de fin de journée en 2 minutes. Floxia le structure, le met en page et l'envoie directement au client sous forme de compte-rendu professionnel.</div>
-      <span class="card-tag">⚡ Rapport en 2 min</span>
-    </div>
-
-    <div class="service-card">
-      <div class="card-icon">💰</div>
-      <div class="card-title">Suivi Dépenses &amp; TVA</div>
-      <div class="card-desc">Chaque ticket scanné alimente votre tableau de bord financier : dépenses par catégorie, TVA récupérable, résultat net estimé et export comptable mensuel en un clic.</div>
-      <span class="card-tag">⚡ Compta simplifiée</span>
-    </div>
-
+st.markdown("""
   </div>
 </div>
 </div>
@@ -623,7 +607,7 @@ st.markdown("""
   <div>
     <div class="footer-logo">
       <div class="nav-bolt" style="width:20px;height:20px;"></div>
-      Floxia Service
+      Floxia Service ERP
     </div>
     <div class="footer-tagline">Floxia répond à tous vos besoins.</div>
   </div>
