@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Floxia Service ERP – Automatisation IA",
-    page_icon="&#x26A1;",
+    page_icon="⚡",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
@@ -125,11 +125,15 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .sec-sub{font-size:.96rem;color:rgba(240,237,230,.38);max-width:450px;
   line-height:1.82;font-weight:300;}
 
-/* SERVICE CARDS GRID */
-.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+/* SERVICE CARDS GRID — centré */
+.services-outer{background:#080808;width:100%;}
+.services-inner{max-width:1280px;margin:0 auto;padding:7rem 5vw;}
+.cgrid{display:grid;grid-template-columns:repeat(4,1fr);
   gap:1px;margin-top:4rem;
   border:1px solid rgba(255,255,255,.05);border-radius:24px;overflow:hidden;
   background:rgba(255,255,255,.05);}
+@media(max-width:1100px){.cgrid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.cgrid{grid-template-columns:1fr;}}
 .scard{background:#080808;padding:2.2rem;transition:background .3s;
   position:relative;overflow:hidden;}
 .scard:hover{background:#0F0F0F;}
@@ -191,8 +195,9 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .roi-lbl{font-size:.7rem;color:rgba(240,237,230,.3);margin-top:.28rem;letter-spacing:.03em;}
 
 /* PRICING */
-.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);
   gap:1.1rem;margin-top:3.5rem;}
+@media(max-width:900px){.pgrid{grid-template-columns:1fr;}}
 .pcard{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);
   border-radius:20px;padding:2.1rem;position:relative;overflow:hidden;
   transition:transform .25s,border-color .25s;}
@@ -226,9 +231,6 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 
 /* CTA BAND */
 .cta-band{background:#FFD700;padding:6rem 5vw;text-align:center;position:relative;overflow:hidden;}
-.cta-band::before{content:'';position:absolute;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23080808' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/svg%3E");
-  pointer-events:none;}
 .cta-band h2{font-family:'Syne',sans-serif;
   font-size:clamp(2.2rem,4.5vw,3.8rem);
   font-weight:800;letter-spacing:-.04em;color:#080808;margin-bottom:2.8rem;line-height:1.08;}
@@ -372,26 +374,31 @@ SERVICES = [
      "&#x26A1; Compta simplifi&#233;e"),
 ]
 
-st.markdown("""
-<div id="services" style="background:#080808;">
-<div class="sec">
-  <div class="sec-lbl">Ce que fait Floxia Service ERP</div>
-  <h2 class="sec-title">Tout votre flux de travail,<br>automatis&#233; de A &#224; Z.</h2>
-  <p class="sec-sub">Des automatisations concr&#232;tes, op&#233;rationnelles d&#232;s aujourd'hui.</p>
-  <div class="cgrid">
-""", unsafe_allow_html=True)
-
+# Construire toutes les cartes en une seule chaîne HTML
+cards_html = ""
 for icon, title, desc, tag in SERVICES:
-    st.markdown(f"""
+    cards_html += f"""
     <div class="scard">
       <div class="cicon">{icon}</div>
       <div class="ctitle">{title}</div>
       <div class="cdesc">{desc}</div>
       <span class="ctag">{tag}</span>
     </div>
-    """, unsafe_allow_html=True)
+    """
 
-st.markdown("</div></div></div>", unsafe_allow_html=True)
+st.markdown(f"""
+<div id="services" class="services-outer">
+  <div class="services-inner">
+    <div class="sec-lbl">Ce que fait Floxia Service ERP</div>
+    <h2 class="sec-title">Tout votre flux de travail,<br>automatis&#233; de A &#224; Z.</h2>
+    <p class="sec-sub">Des automatisations concr&#232;tes, op&#233;rationnelles d&#232;s aujourd'hui.</p>
+    <div class="cgrid">
+      {cards_html}
+    </div>
+  </div>
+</div>
+""", unsafe_allow_html=True)
+
 st.markdown('<div class="div-line"></div>', unsafe_allow_html=True)
 
 # ── ÉCOSYSTÈME ───────────────────────────────────────────────────────────────────
@@ -531,13 +538,9 @@ with r2:
         ("Demander des avis Google", "Automatique &#224; chaque chantier"),
         ("G&#233;n&#233;rer un PV de r&#233;ception", "Auto apr&#232;s signature"),
     ]
-    st.markdown("""
-    <div style="padding:1.5rem 0;">
-      <div class="sec-lbl" style="margin-bottom:1.2rem;">Ce que vous ne faites plus</div>
-      <div style="display:flex;flex-direction:column;gap:.6rem;">
-    """, unsafe_allow_html=True)
+    items_html = ""
     for task, gain in ITEMS:
-        st.markdown(f"""
+        items_html += f"""
         <div style="display:flex;justify-content:space-between;align-items:center;
                     padding:.72rem .95rem;background:rgba(255,255,255,.025);
                     border:1px solid rgba(255,255,255,.055);border-radius:9px;">
@@ -546,8 +549,15 @@ with r2:
                       background:rgba(255,215,0,.06);border:1px solid rgba(255,215,0,.13);
                       padding:.16rem .58rem;border-radius:50px;white-space:nowrap;margin-left:.7rem;">{gain}</div>
         </div>
-        """, unsafe_allow_html=True)
-    st.markdown("</div></div>", unsafe_allow_html=True)
+        """
+    st.markdown(f"""
+    <div style="padding:1.5rem 0;">
+      <div class="sec-lbl" style="margin-bottom:1.2rem;">Ce que vous ne faites plus</div>
+      <div style="display:flex;flex-direction:column;gap:.6rem;">
+        {items_html}
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
 
 st.markdown('<div class="div-line" style="margin-top:2rem;"></div>', unsafe_allow_html=True)
 
