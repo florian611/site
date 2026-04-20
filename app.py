@@ -227,7 +227,7 @@ div[data-testid="stSlider"] label p{color:rgba(240,237,230,.25)!important;font-s
     <div class="hero-sep"></div>
     <div class="hero-info-item"><span class="hero-info-label">Saisie admin</span><span class="hero-info-val">&#8722;80%</span></div>
     <div class="hero-sep"></div>
-    <div class="hero-info-item"><span class="hero-info-label">Devis &#8594; Facture</span><span class="hero-info-val">3 minutes</span></div>
+    <div class="hero-info-item"><span class="hero-info-label">Devis &#8594; Facture Finale</span><span class="hero-info-val">3 minutes</span></div>
     <div class="hero-sep"></div>
     <div class="hero-info-item"><span class="hero-info-label">Interface</span><span class="hero-info-val">100% WhatsApp</span></div>
   </div>
