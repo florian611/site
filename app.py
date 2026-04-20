@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
 st.set_page_config(
     page_title="Floxia Service ERP – Automatisation IA",
@@ -7,7 +8,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-st.markdown("""
+CSS = """
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -69,9 +70,7 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .btn-y:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,215,0,.42);}
 .btn-g{color:rgba(240,237,230,.42);font-size:.82rem;text-decoration:none;
   display:inline-flex;align-items:center;gap:.4rem;transition:color .2s;letter-spacing:.02em;}
-.btn-g::after{content:'->'; display:inline-block;transition:transform .2s;}
 .btn-g:hover{color:#F0EDE6;}
-.btn-g:hover::after{transform:translateX(4px);}
 .scroll-hint{position:absolute;bottom:2.5rem;right:5vw;display:flex;flex-direction:column;
   align-items:center;gap:.45rem;animation:fadeIn 1s ease 1s both;}
 .scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(255,215,0,.35),transparent);}
@@ -200,7 +199,9 @@ div[data-testid="stSlider"] [data-baseweb="slider"]>div:first-child>div:nth-chil
 div[data-testid="stSlider"] [data-baseweb="slider"]>div:first-child>div:first-child{background:rgba(255,255,255,.07)!important;}
 div[data-testid="stSlider"] label p{color:rgba(240,237,230,.25)!important;font-size:.6rem!important;letter-spacing:.2em!important;text-transform:uppercase!important;}
 </style>
+"""
 
+HERO_AND_SERVICES = """
 <nav class="nav">
   <a class="nav-logo" href="#"><div class="bolt"></div>Floxia</a>
   <div class="nav-links">
@@ -231,7 +232,7 @@ div[data-testid="stSlider"] label p{color:rgba(240,237,230,.25)!important;font-s
     <div class="hero-sep"></div>
     <div class="hero-info-item"><span class="hero-info-label">Interface</span><span class="hero-info-val">100% WhatsApp/ERP</span></div>
   </div>
-  <div class="hero-cta-row"> 
+  <div class="hero-cta-row">
     <a class="btn-y" href="https://www.instagram.com/floxia.pro/" target="_blank">&#x26A1; R&#233;server une d&#233;mo</a>
     <a class="btn-g" href="#services">D&#233;couvrir</a>
   </div>
@@ -272,7 +273,7 @@ div[data-testid="stSlider"] label p{color:rgba(240,237,230,.25)!important;font-s
     <div class="scard"><div class="cicon">&#x1F514;</div><div class="ctitle">Relances Automatiques</div><div class="cdesc">Floxia surveille vos devis non sign&#233;s et relance automatiquement en 3 temps&#160;: J+3, J+7, J+14 apr&#232;s la date de cr&#233;ation du devis.</div><span class="ctag">&#x26A1; +30&#160;% de conversion</span></div>
     <div class="scard"><div class="cicon">&#x1F4CB;</div><div class="ctitle">ERP Mobile Complet</div><div class="cdesc">Devis, factures, PV, chantiers, planning, salari&#233;s, d&#233;penses &#8212; tout synchronis&#233; en temps r&#233;el via un site d&#233;di&#233; Streamlit, accessible depuis votre t&#233;l&#233;phone.</div><span class="ctag">&#x26A1; Tout en un seul endroit</span></div>
     <div class="scard"><div class="cicon">&#x1F399;</div><div class="ctitle">Rapports Vocaux Chantier</div><div class="cdesc">Dictez votre rapport en 2&#160;minutes. Floxia le structure et l'envoie au client sous forme de compte-rendu professionnel en PDF.</div><span class="ctag">&#x26A1; Rapport en 2&#160;min</span></div>
-    <div class="scard"><div class="cicon">&#x1F4B0;</div><div class="ctitle">Suivi D&#233;penses &amp; TVA</div><div class="cdesc">Chaque ticket scann&#233; alimente votre tableau de bord&#160;: d&#233;penses par cat&#233;gorie, TVA r&#233;cup&#233;rable, export comptable en 1&#160;clic. L'IA calcule la rentabilit&#233; r&#233;elle (CA &#8722; D&#233;penses).</div><span class="ctag">&#x26A1; Compta simplifi&#233;e</span></div>
+    <div class="scard"><div class="cicon">&#x1F4B0;</div><div class="ctitle">Suivi D&#233;penses &amp; TVA</div><div class="cdesc">Chaque ticket scann&#233; alimente votre tableau de bord&#160;: d&#233;penses par cat&#233;gorie, TVA r&#233;cup&#233;rable, export comptable en 1&#160;clic.</div><span class="ctag">&#x26A1; Compta simplifi&#233;e</span></div>
     <div class="scard"><div class="cicon">&#x1F465;</div><div class="ctitle">Gestion &#201;quipe &amp; Salari&#233;s</div><div class="cdesc">Suivez les heures de vos collaborateurs, assignez les chantiers, g&#233;rez le planning en temps r&#233;el. Tout synchronis&#233; avec votre Google Sheets.</div><span class="ctag">&#x26A1; &#201;quipe pilot&#233;e depuis WA</span></div>
   </div>
 </div>
@@ -312,57 +313,16 @@ div[data-testid="stSlider"] label p{color:rgba(240,237,230,.25)!important;font-s
   <p class="sec-sub">Bougez le curseur &#8212; voyez ce que Floxia vous rapporte chaque mois.</p>
 </div>
 </div>
-""", unsafe_allow_html=True)
+"""
 
-nb_devis = st.slider("Nombre de devis par mois", min_value=1, max_value=80, value=15, step=1)
-
-h = round(((64 - 3) * nb_devis + nb_devis * 12) / 60, 1)
-g = round(h * 55)
-if nb_devis <= 10:
-    abo = 49
-elif nb_devis <= 30:
-    abo = 99
-else:
-    abo = 149
-roi = round((g / abo) * 100)
-
-roi_html = (
-    '<div style="background:#080808;">'
-    '<div class="roi-grid-outer">'
-    '<div class="roi-box">'
-    '<div class="roi-slbl">R&#233;sultats pour ' + str(nb_devis) + ' devis / mois</div>'
-    '<div class="roi-res"><div class="roi-nums">'
-    '<div><div class="roi-val">' + str(h) + 'h</div><div class="roi-lbl">temps lib&#233;r&#233;</div></div>'
-    '<div><div class="roi-val">' + str(g) + '&#8364;</div><div class="roi-lbl">valeur r&#233;cup&#233;r&#233;e</div></div>'
-    '<div><div class="roi-val">' + str(roi) + '%</div><div class="roi-lbl">ROI estim&#233;</div></div>'
-    '</div></div>'
-    '<div class="roi-note">*55&#8364;/h artisan &#183; estimation mensuelle.</div>'
-    '</div>'
-    '<div>'
-    '<div class="sec-lbl" style="margin-bottom:1rem;">Ce que vous ne faites plus</div>'
-    '<div class="task-item"><div class="task-name">Taper des devis le soir</div><div class="task-gain">45&#160;min &#233;vit&#233;es / devis</div></div>'
-    '<div class="task-item"><div class="task-name">Ressaisir les tickets de caisse</div><div class="task-gain">2h / semaine r&#233;cup&#233;r&#233;es</div></div>'
-    '<div class="task-item"><div class="task-name">R&#233;diger des e-mails clients</div><div class="task-gain">30&#160;min / incident</div></div>'
-    '<div class="task-item"><div class="task-name">Relancer les devis manuellement</div><div class="task-gain">+30% de conversion</div></div>'
-    '<div class="task-item"><div class="task-name">Faire le planning &#224; la main</div><div class="task-gain">1h / semaine gagn&#233;e</div></div>'
-    '<div class="task-item"><div class="task-name">Exporter votre compta</div><div class="task-gain">Export 1&#160;clic</div></div>'
-    '<div class="task-item"><div class="task-name">R&#233;diger les rapports chantier</div><div class="task-gain">2&#160;min au lieu de 20</div></div>'
-    '<div class="task-item"><div class="task-name">Demander des avis Google</div><div class="task-gain">Automatique &#224; chaque chantier</div></div>'
-    '<div class="task-item"><div class="task-name">G&#233;n&#233;rer un PV de r&#233;ception</div><div class="task-gain">Auto apr&#232;s signature</div></div>'
-    '</div></div></div>'
-)
-st.markdown(roi_html, unsafe_allow_html=True)
-
-st.markdown("""
+TARIFS_AND_FOOTER = """
 <div class="div-line"></div>
-
 <div id="tarifs" style="background:#080808;">
 <div class="sec">
   <div class="sec-lbl">Tarifs</div>
   <h2 class="sec-title">Un prix adapt&#233;<br>&#224; votre activit&#233;.</h2>
   <p class="sec-sub">Chaque tarif est personnalis&#233; selon votre volume de devis et vos besoins. Contactez-nous pour une offre sur mesure.</p>
   <div class="pgrid">
-
     <div class="pcard">
       <div class="pbadge">Offre 1</div>
       <div class="pplan">Essentiel</div>
@@ -383,7 +343,6 @@ st.markdown("""
       <a class="pcta pcta-o" href="https://www.instagram.com/floxia.pro/" target="_blank">Obtenir mon tarif &#8594;</a>
       <div class="pnote">Pour se lancer sans risque</div>
     </div>
-
     <div class="pcard feat">
       <div class="pbadge">&#x26A1; Le plus populaire &#183; Offre 2</div>
       <div class="pplan">L'Artisan Autonome</div>
@@ -400,25 +359,18 @@ st.markdown("""
       <div class="onglets-wrap">
         <div class="onglets-lbl">Onglets disponibles</div>
         <div class="onglets-tag">
-          <span class="otag">Vue g&#233;n&#233;rale</span>
-          <span class="otag">Cr&#233;er un devis</span>
-          <span class="otag">Devis</span>
-          <span class="otag">Facture &amp; Paiements</span>
-          <span class="otag">Export compta 1 clic</span>
-          <span class="otag">Chantier</span>
-          <span class="otag">Planning</span>
-          <span class="otag">Notifications</span>
-          <span class="otag">Espace Clients</span>
-          <span class="otag">Tous les dossiers</span>
-          <span class="otag">Google Sheet</span>
-          <span class="otag">Retards &amp; Avenants</span>
+          <span class="otag">Vue g&#233;n&#233;rale</span><span class="otag">Cr&#233;er un devis</span>
+          <span class="otag">Devis</span><span class="otag">Facture &amp; Paiements</span>
+          <span class="otag">Export compta 1 clic</span><span class="otag">Chantier</span>
+          <span class="otag">Planning</span><span class="otag">Notifications</span>
+          <span class="otag">Espace Clients</span><span class="otag">Tous les dossiers</span>
+          <span class="otag">Google Sheet</span><span class="otag">Retards &amp; Avenants</span>
           <span class="otag">Coordonn&#233;es &amp; RGPD</span>
         </div>
       </div>
       <a class="pcta pcta-s" href="https://www.instagram.com/floxia.pro/" target="_blank">Obtenir mon tarif &#8594;</a>
       <div class="pnote">Le meilleur rapport qualit&#233; / valeur</div>
     </div>
-
     <div class="pcard">
       <div class="pbadge">Offre 3</div>
       <div class="pplan">Premium</div>
@@ -441,14 +393,12 @@ st.markdown("""
       <div class="onglets-wrap">
         <div class="onglets-lbl">Onglets suppl&#233;mentaires</div>
         <div class="onglets-tag">
-          <span class="otag">D&#233;penses</span>
-          <span class="otag">Salari&#233;s</span>
+          <span class="otag">D&#233;penses</span><span class="otag">Salari&#233;s</span>
         </div>
       </div>
       <a class="pcta pcta-o" href="https://www.instagram.com/floxia.pro/" target="_blank">Nous contacter &#8594;</a>
       <div class="pnote">Pour les &#233;quipes &amp; PME du b&#226;timent</div>
     </div>
-
   </div>
 </div>
 </div>
@@ -503,4 +453,54 @@ st.markdown("""
   document.addEventListener('mouseup',function(){cur.style.transform='translate(-50%,-50%) scale(1)';});
 })();
 </script>
-""", unsafe_allow_html=True)
+"""
+
+# ── Render CSS + Hero + Services + Ecosystem + ROI intro ──
+st.markdown(CSS + HERO_AND_SERVICES, unsafe_allow_html=True)
+
+# ── ROI Slider (Streamlit native) ──
+nb_devis = st.slider("Nombre de devis par mois", min_value=1, max_value=80, value=15, step=1)
+
+h = round(((64 - 3) * nb_devis + nb_devis * 12) / 60, 1)
+g = round(h * 55)
+if nb_devis <= 10:
+    abo = 49
+elif nb_devis <= 30:
+    abo = 99
+else:
+    abo = 149
+roi = round((g / abo) * 100)
+
+roi_html = f"""
+<div style="background:#080808;">
+<div class="roi-grid-outer">
+  <div class="roi-box">
+    <div class="roi-slbl">R&#233;sultats pour {nb_devis} devis / mois</div>
+    <div class="roi-res">
+      <div class="roi-nums">
+        <div><div class="roi-val">{h}h</div><div class="roi-lbl">temps lib&#233;r&#233;</div></div>
+        <div><div class="roi-val">{g}&#8364;</div><div class="roi-lbl">valeur r&#233;cup&#233;r&#233;e</div></div>
+        <div><div class="roi-val">{roi}%</div><div class="roi-lbl">ROI estim&#233;</div></div>
+      </div>
+    </div>
+    <div class="roi-note">*55&#8364;/h artisan &#183; estimation mensuelle.</div>
+  </div>
+  <div>
+    <div class="sec-lbl" style="margin-bottom:1rem;">Ce que vous ne faites plus</div>
+    <div class="task-item"><div class="task-name">Taper des devis le soir</div><div class="task-gain">45&#160;min &#233;vit&#233;es / devis</div></div>
+    <div class="task-item"><div class="task-name">Ressaisir les tickets de caisse</div><div class="task-gain">2h / semaine r&#233;cup&#233;r&#233;es</div></div>
+    <div class="task-item"><div class="task-name">R&#233;diger des e-mails clients</div><div class="task-gain">30&#160;min / incident</div></div>
+    <div class="task-item"><div class="task-name">Relancer les devis manuellement</div><div class="task-gain">+30% de conversion</div></div>
+    <div class="task-item"><div class="task-name">Faire le planning &#224; la main</div><div class="task-gain">1h / semaine gagn&#233;e</div></div>
+    <div class="task-item"><div class="task-name">Exporter votre compta</div><div class="task-gain">Export 1&#160;clic</div></div>
+    <div class="task-item"><div class="task-name">R&#233;diger les rapports chantier</div><div class="task-gain">2&#160;min au lieu de 20</div></div>
+    <div class="task-item"><div class="task-name">Demander des avis Google</div><div class="task-gain">Automatique &#224; chaque chantier</div></div>
+    <div class="task-item"><div class="task-name">G&#233;n&#233;rer un PV de r&#233;ception</div><div class="task-gain">Auto apr&#232;s signature</div></div>
+  </div>
+</div>
+</div>
+"""
+st.markdown(roi_html, unsafe_allow_html=True)
+
+# ── Tarifs + Footer ──
+st.markdown(TARIFS_AND_FOOTER, unsafe_allow_html=True)
