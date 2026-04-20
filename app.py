@@ -461,7 +461,24 @@ st.markdown(CSS + HERO_AND_SERVICES, unsafe_allow_html=True)
 # ── ROI Slider (Streamlit native) ──
 nb_devis = st.slider("Nombre de devis par mois", min_value=1, max_value=80, value=15, step=1)
 
-h = round(((64 - 3) * nb_devis + nb_devis * 12) / 60, 1)
+# Temps libéré :
+# - Cycle devis→PV→facture : 45 min économisées/devis (saisie manuelle évitée)
+# - Cycle complet devis→facture finale : 57 min/devis (vocal 3 min vs ~60 min manuel)
+# - Tickets de caisse : 2h/semaine = 8h/mois
+# - Planning : 1h/semaine = 4h/mois
+# - Rapports chantier : 18 min économisées × nb_devis (1 rapport/chantier estimé)
+h_devis = round((45 + 12) * nb_devis / 60, 1)   # devis + cycle complet
+h_tickets = 8                                       # tickets caisse fixe
+h_planning = 4                                      # planning fixe
+h_rapports = round(18 * nb_devis / 60, 1)          # rapports chantier
+h = round(h_devis + h_tickets + h_planning + h_rapports, 1)
+
+# Temps cycle devis→facture sans Floxia estimé à 60 min, avec Floxia 3 min
+cycle_sans = 60   # minutes
+cycle_avec = 3    # minutes
+cycle_gain_min = (cycle_sans - cycle_avec) * nb_devis
+cycle_gain_h = round(cycle_gain_min / 60, 1)
+
 g = round(h * 55)
 if nb_devis <= 10:
     abo = 49
@@ -483,17 +500,26 @@ roi_html = f"""
         <div><div class="roi-val">{roi}%</div><div class="roi-lbl">ROI estim&#233;</div></div>
       </div>
     </div>
-    <div class="roi-note">*55&#8364;/h artisan &#183; estimation mensuelle.</div>
+    <div style="margin-top:1rem;background:rgba(255,215,0,.04);border:1px solid rgba(255,215,0,.09);border-radius:9px;padding:.85rem 1rem;">
+      <div style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,215,0,.4);margin-bottom:.55rem;">&#x26A1; Cycle devis &#8594; facture finale</div>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+        <div><div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:#FFD700;">{cycle_gain_h}h</div><div style="font-size:.62rem;color:rgba(240,237,230,.25);">&#233;conomis&#233;es / mois</div></div>
+        <div><div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:#FFD700;">3&#160;min</div><div style="font-size:.62rem;color:rgba(240,237,230,.25);">au lieu de 60&#160;min</div></div>
+        <div><div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:#FFD700;">&#8722;{round((cycle_sans-cycle_avec)/cycle_sans*100)}%</div><div style="font-size:.62rem;color:rgba(240,237,230,.25);">de temps admin</div></div>
+      </div>
+    </div>
+    <div class="roi-note" style="margin-top:.6rem;">*55&#8364;/h artisan &#183; estimation mensuelle.</div>
   </div>
   <div>
     <div class="sec-lbl" style="margin-bottom:1rem;">Ce que vous ne faites plus</div>
+    <div class="task-item"><div class="task-name">Cycle devis &#8594; PV &#8594; facture finale</div><div class="task-gain">{cycle_gain_h}h &#233;conomis&#233;es / mois</div></div>
     <div class="task-item"><div class="task-name">Taper des devis le soir</div><div class="task-gain">45&#160;min &#233;vit&#233;es / devis</div></div>
     <div class="task-item"><div class="task-name">Ressaisir les tickets de caisse</div><div class="task-gain">2h / semaine r&#233;cup&#233;r&#233;es</div></div>
     <div class="task-item"><div class="task-name">R&#233;diger des e-mails clients</div><div class="task-gain">30&#160;min / incident</div></div>
     <div class="task-item"><div class="task-name">Relancer les devis manuellement</div><div class="task-gain">+30% de conversion</div></div>
     <div class="task-item"><div class="task-name">Faire le planning &#224; la main</div><div class="task-gain">1h / semaine gagn&#233;e</div></div>
     <div class="task-item"><div class="task-name">Exporter votre compta</div><div class="task-gain">Export 1&#160;clic</div></div>
-    <div class="task-item"><div class="task-name">R&#233;diger les rapports chantier</div><div class="task-gain">2&#160;min au lieu de 20</div></div>
+    <div class="task-item"><div class="task-name">R&#233;diger les rapports chantier</div><div class="task-gain">18&#160;min &#233;conomis&#233;es / chantier</div></div>
     <div class="task-item"><div class="task-name">Demander des avis Google</div><div class="task-gain">Automatique &#224; chaque chantier</div></div>
     <div class="task-item"><div class="task-name">G&#233;n&#233;rer un PV de r&#233;ception</div><div class="task-gain">Auto apr&#232;s signature</div></div>
   </div>
