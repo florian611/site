@@ -251,18 +251,18 @@ div[data-testid="stSlider"] label p{color:rgba(232,237,244,.4)!important;font-si
 .cmp-floxia-dot{width:8px;height:8px;background:#F5C842;border-radius:50%;}
 .cmp-note{margin-top:1.2rem;font-size:.62rem;color:rgba(232,237,244,.2);font-style:italic;text-align:center;}
 
-/* Cartes mobiles comparatif */
-.cmp-mobile-cards{display:none;flex-direction:column;gap:.55rem;margin-top:2rem;}
-.cmp-mcard{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);
-  border-radius:12px;padding:.9rem 1.1rem;display:flex;justify-content:space-between;align-items:center;gap:.8rem;}
-.cmp-mcard-feat{font-size:.78rem;color:rgba(232,237,244,.55);flex:1;line-height:1.4;}
-.cmp-mcard-yes{font-size:.72rem;font-weight:800;color:#F5C842;background:rgba(245,200,66,.07);
-  border:1px solid rgba(245,200,66,.18);padding:.22rem .65rem;border-radius:50px;white-space:nowrap;flex-shrink:0;}
-.cmp-mcard-partial{font-size:.7rem;font-weight:600;color:rgba(232,237,244,.4);background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);padding:.22rem .65rem;border-radius:50px;white-space:nowrap;flex-shrink:0;font-style:italic;}
-.cmp-mcard-no{font-size:1rem;color:rgba(232,237,244,.18);flex-shrink:0;}
-.cmp-mobile-note{display:none;margin-top:1rem;text-align:center;font-size:.65rem;
-  color:rgba(232,237,244,.25);font-style:italic;}
+/* Cartes mobiles comparatif — toutes colonnes */
+.cmp-mobile-cards{display:none;flex-direction:column;gap:.7rem;margin-top:2rem;}
+.cmp-mcard{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:1rem 1.1rem;}
+.cmp-mcard-feat{font-size:.78rem;color:#E8EDF4;font-weight:700;margin-bottom:.7rem;line-height:1.4;}
+.cmp-mcard-cols{display:grid;grid-template-columns:repeat(5,1fr);gap:.3rem;}
+.cmp-mcard-col{display:flex;flex-direction:column;align-items:center;gap:.25rem;}
+.cmp-mcard-col-lbl{font-size:.46rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(232,237,244,.25);text-align:center;line-height:1.3;}
+.cmp-mcard-col-lbl.floxia{color:rgba(245,200,66,.55);}
+.cmp-mcard-yes{font-size:.65rem;font-weight:800;color:#F5C842;}
+.cmp-mcard-partial{font-size:.65rem;font-weight:600;color:rgba(232,237,244,.4);font-style:italic;}
+.cmp-mcard-no{font-size:.75rem;color:rgba(232,237,244,.18);}
+.cmp-mobile-note{display:none;margin-top:1rem;text-align:center;font-size:.65rem;color:rgba(232,237,244,.25);font-style:italic;}
 
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:3.5rem;
   border:1px solid rgba(255,255,255,.06);border-radius:20px;overflow:hidden;background:rgba(255,255,255,.05);}
@@ -652,23 +652,37 @@ cmp_rows_html = "".join(
 )
 
 # Cartes mobiles : fonctionnalite + statut Floxia uniquement
-def cmp_mobile_card(feat, floxia_val):
-    if floxia_val.startswith("Oui"):
-        badge = '<span class="cmp-mcard-yes">&#10003; ' + floxia_val + '</span>'
-    elif floxia_val == "Non":
-        badge = '<span class="cmp-mcard-no">&#215;</span>'
-    else:
-        badge = '<span class="cmp-mcard-partial">' + floxia_val + '</span>'
+def cmp_mobile_card(row):
+    cols_data = [
+        ("Floxia", row[1], True),
+        ("Batiprix", row[2], False),
+        ("Onaya", row[3], False),
+        ("EBP", row[4], False),
+        ("Excel", row[5], False),
+    ]
+    cols_html = ""
+    for lbl, val, is_floxia in cols_data:
+        lbl_class = ' floxia' if is_floxia else ''
+        if val.startswith("Oui"):
+            badge = '<span class="cmp-mcard-yes">✓</span>'
+        elif val == "Non":
+            badge = '<span class="cmp-mcard-no">×</span>'
+        else:
+            badge = '<span class="cmp-mcard-partial">~</span>'
+        cols_html += (
+            '<div class="cmp-mcard-col">'
+            '<div class="cmp-mcard-col-lbl' + lbl_class + '">' + lbl + '</div>'
+            + badge +
+            '</div>'
+        )
     return (
         '<div class="cmp-mcard">'
-        '<div class="cmp-mcard-feat">' + feat + '</div>'
-        + badge +
+        '<div class="cmp-mcard-feat">' + row[0] + '</div>'
+        '<div class="cmp-mcard-cols">' + cols_html + '</div>'
         '</div>'
     )
 
-mobile_cards_html = "".join(
-    cmp_mobile_card(row[0], row[1]) for row in COMP_ROWS
-)
+mobile_cards_html = "".join(cmp_mobile_card(row) for row in COMP_ROWS)
 
 COMPARATIF_HTML = (
     '<div class="div-line"></div>'
@@ -705,8 +719,7 @@ COMPARATIF_HTML = (
     + mobile_cards_html +
     '</div>'
 
-    '<div class="cmp-mobile-note">Comparatif complet disponible sur desktop</div>'
-    '<div class="cmp-note">Comparatif etabli sur les fonctionnalites publiquement documentees — Floxia est en phase Beta 2026.</div>'
+    '<div class="cmp-mobile-note">Comparatif base sur les fonctionnalites publiquement documentees·</div>'
     '</div>'
     '<div class="div-line"></div>'
 )
