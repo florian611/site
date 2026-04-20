@@ -101,9 +101,6 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
   transform:translateX(0);
 }
 
-</style>
-"""
-
 /* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;align-items:center;
   justify-content:space-between;padding:1rem 5vw;background:rgba(8,8,8,.92);backdrop-filter:blur(20px);
@@ -333,9 +330,9 @@ div[data-testid=\"stSlider\"] label p{color:rgba(240,237,230,.4)!important;font-
   .cgrid,.pgrid,.proof-grid{grid-template-columns:repeat(2,1fr);}
 }
 </style>
-\"\"\"
+"""
 
-HTML_TOP = f\"\"\"
+HTML_TOP = f"""
 <nav class=\"nav\">
   <a class=\"nav-logo\" href=\"#\"><div class=\"bolt\"></div>Floxia</a>
   <div class=\"nav-links\">
@@ -367,10 +364,10 @@ HTML_TOP = f\"\"\"
 </section>
 
 <div class=\"mq-wrap\"><div class=\"mq-track\">
-\"\"\" + \"\".join([f'<div class=\"mq-item\"><div class=\"mq-dot\"></div>{t}</div>' for t in [
-    \"Devis vocal en 3 min\",\"PV de réception auto\",\"Facture finale automatisée\",\"Scan tickets de caisse\",
-    \"Avis Google Maps auto\",\"Relances intelligentes\",\"Planning salariés\",\"Rapports chantier PDF\",\"ERP 100% mobile\"
-]*2]) + \"\"\"
+""" + "".join([f'<div class="mq-item"><div class="mq-dot"></div>{t}</div>' for t in [
+    "Devis vocal en 3 min","PV de réception auto","Facture finale automatisée","Scan tickets de caisse",
+    "Avis Google Maps auto","Relances intelligentes","Planning salariés","Rapports chantier PDF","ERP 100% mobile"
+]*2]) + """
 </div></div>
 
 <div class=\"robot-section\">
@@ -399,21 +396,21 @@ HTML_TOP = f\"\"\"
   </div>
 </div>
 <div class=\"div-line\"></div>
-\"\"\"
+"""
 
 SERVICES_LIST = [
-    (\"💬\",\"Devis → PV → Facture\",\"Un vocal WhatsApp suffit. Floxia génère le devis PDF, le client signe, le PV est créé, la facture finale se génère automatiquement.\",\"⚡ Cycle complet géré\"),
-    (\"📸\",\"Scan Tickets de Caisse\",\"Photographiez vos tickets sur WhatsApp. L'IA extrait fournisseur, articles, HT/TVA et alimente votre compta.\",\"⚡ Zéro ressaisie\"),
-    (\"⭐\",\"Avis Google Maps\",\"À chaque chantier terminé, Floxia envoie un message WhatsApp au client pour inviter à laisser un avis Google.\",\"⚡ Réputation boostée\"),
-    (\"🚨\",\"Alerte Problème Chantier\",\"Un problème ? Envoyez un vocal. Floxia rédige l'e-mail pro au client : situation, causes, nouveau délai.\",\"⚡ Email en 30 sec\"),
-    (\"🔔\",\"Relances Automatiques\",\"Floxia surveille vos devis non signés et relance en 3 temps : J+3, J+7, J+14.\",\"⚡ +30% de conversion\"),
-    (\"📋\",\"ERP Mobile Complet\",\"Devis, factures, PV, chantiers, planning, salariés, dépenses — tout synchronisé en temps réel.\",\"⚡ Tout en un endroit\"),
-    (\"🎙\",\"Rapports Vocaux Chantier\",\"Dictez votre rapport en 2 min. Floxia le structure et l'envoie en PDF pro.\",\"⚡ Rapport en 2 min\"),
-    (\"💰\",\"Suivi Dépenses & TVA\",\"Chaque ticket scanné alimente votre dashboard : dépenses, TVA récupérable, export 1 clic.\",\"⚡ Compta simplifiée\"),
-    (\"👥\",\"Gestion Équipe & Salariés\",\"Heures, chantiers, planning temps réel. Synchronisé avec Google Sheets.\",\"⚡ Équipe pilotée WA\"),
+    ("💬", "Devis → PV → Facture", "Un vocal WhatsApp suffit. Floxia génère le devis PDF, le client signe, le PV est créé, la facture finale se génère automatiquement.", "⚡ Cycle complet géré"),
+    ("📸", "Scan Tickets de Caisse", "Photographiez vos tickets sur WhatsApp. L'IA extrait fournisseur, articles, HT/TVA et alimente votre compta.", "⚡ Zéro ressaisie"),
+    ("⭐", "Avis Google Maps", "À chaque chantier terminé, Floxia envoie un message WhatsApp au client pour inviter à laisser un avis Google.", "⚡ Réputation boostée"),
+    ("🚨", "Alerte Problème Chantier", "Un problème ? Envoyez un vocal. Floxia rédige l'e-mail pro au client : situation, causes, nouveau délai.", "⚡ Email en 30 sec"),
+    ("🔔", "Relances Automatiques", "Floxia surveille vos devis non signés et relance en 3 temps : J+3, J+7, J+14.", "⚡ +30% de conversion"),
+    ("📋", "ERP Mobile Complet", "Devis, factures, PV, chantiers, planning, salariés, dépenses — tout synchronisé en temps réel.", "⚡ Tout en un endroit"),
+    ("🎙", "Rapports Vocaux Chantier", "Dictez votre rapport en 2 min. Floxia le structure et l'envoie en PDF pro.", "⚡ Rapport en 2 min"),
+    ("💰", "Suivi Dépenses & TVA", "Chaque ticket scanné alimente votre dashboard : dépenses, TVA récupérable, export 1 clic.", "⚡ Compta simplifiée"),
+    ("👥", "Gestion Équipe & Salariés", "Heures, chantiers, planning temps réel. Synchronisé avec Google Sheets.", "⚡ Équipe pilotée WA"),
 ]
 
-SERVICES_HTML = f\"\"\"
+SERVICES_HTML = f"""
 <div id=\"services\"></div>
 <div class=\"sec\">
   <div class=\"reveal\">
@@ -422,68 +419,68 @@ SERVICES_HTML = f\"\"\"
     <p class=\"sec-sub\">Des automatisations concrètes, opérationnelles dès aujourd'hui.</p>
   </div>
   <div class=\"reveal-stagger cgrid\">
-\"\"\" + \"\".join([f'<div class=\"scard\"><div class=\"cicon\">{i}</div><div class=\"ctitle\">{t}</div><div class=\"cdesc\">{d}</div><span class=\"ctag\">{tg}</span></div>' for i,t,d,tg in SERVICES_LIST]) + \"\"\"
+""" + "".join([f'<div class="scard"><div class="cicon">{i}</div><div class="ctitle">{t}</div><div class="cdesc">{d}</div><span class="ctag">{tg}</span></div>' for i,t,d,tg in SERVICES_LIST]) + """
   </div>
 </div>
 <div class=\"div-line\"></div>
-\"\"\"
+"""
 
 ECO_FLUX = [
-    (\"Flux 1 — Cycle devis complet\",[(\"🎙 Vocal WA\",\"\"),(\"⚡ IA Floxia\",\"g\"),(\"📄 Devis PDF\",\"\"),(\"✍ Signature\",\"\"),(\"📋 PV\",\"\"),(\"🧾 Facture\",\"e\")]),
-    (\"Flux 2 — Avis Google Maps\",[(\"✅ Chantier terminé\",\"\"),(\"⚡ Floxia détecte\",\"g\"),(\"💬 Message WA\",\"\"),(\"⭐ Avis Google\",\"e\")]),
-    (\"Flux 3 — Ticket de caisse\",[(\"📸 Photo WA\",\"\"),(\"⚡ OCR IA\",\"g\"),(\"📊 Google Sheets\",\"\"),(\"✅ Compta\",\"e\")]),
-    (\"Flux 4 — Problème chantier\",[(\"🚨 Vocal WA\",\"\"),(\"⚡ IA rédaction\",\"g\"),(\"📧 Email client\",\"e\")]),
-    (\"Flux 5 — Relances devis\",[(\"⏰ Délai dépassé\",\"\"),(\"⚡ Floxia détecte\",\"g\"),(\"💬 SMS + Email\",\"e\")]),
+    ("Flux 1 — Cycle devis complet", [("🎙 Vocal WA", ""), ("⚡ IA Floxia", "g"), ("📄 Devis PDF", ""), ("✍ Signature", ""), ("📋 PV", ""), ("🧾 Facture", "e")]),
+    ("Flux 2 — Avis Google Maps", [("✅ Chantier terminé", ""), ("⚡ Floxia détecte", "g"), ("💬 Message WA", ""), ("⭐ Avis Google", "e")]),
+    ("Flux 3 — Ticket de caisse", [("📸 Photo WA", ""), ("⚡ OCR IA", "g"), ("📊 Google Sheets", ""), ("✅ Compta", "e")]),
+    ("Flux 4 — Problème chantier", [("🚨 Vocal WA", ""), ("⚡ IA rédaction", "g"), ("📧 Email client", "e")]),
+    ("Flux 5 — Relances devis", [("⏰ Délai dépassé", ""), ("⚡ Floxia détecte", "g"), ("💬 SMS + Email", "e")]),
 ]
 def flux_html(lbl, nodes):
-    inner = \"\"
+    inner = ""
     for i,(txt,kind) in enumerate(nodes):
         inner += f'<span class=\"fn {kind}\">{txt}</span>'
         if i < len(nodes)-1: inner += '<span class=\"fa\">→</span>'
     return f'<div class=\"fblock\"><div class=\"flbl\">{lbl}</div><div class=\"fwrap\"><div class=\"frow\">{inner}</div></div></div>'
 
-ECO_HTML = f\"\"\"
+ECO_HTML = f"""
 <div id=\"ecosystem\"></div>
 <div class=\"eco-grid\">
   <div class=\"reveal-left\">
     <div class=\"sec-lbl\">Comment ça marche</div>
     <h2 class=\"sec-title\">WhatsApp comme<br>centre de commandes.</h2>
     <p class=\"sec-sub\" style=\"margin-bottom:2.6rem;\">Tout part de votre téléphone. Aucun logiciel à apprendre.</p>
-\"\"\" + \"\".join([f'<div style=\"display:flex;gap:1rem;margin-bottom:1.3rem;\"><div class=\"stepn\">{n}</div><div><div class=\"steptitle\">{t}</div><div class=\"stepdesc\">{d}</div></div></div>' for n,t,d in [
-    (\"1\",\"Une fois connecté\",\"WhatsApp Business, Gmail, Google Drive — on s'occupe de tout.\"),
-    (\"2\",\"Parlez ou photographiez\",\"Vocal ou photo sur WhatsApp. Floxia agit instantanément.\"),
-    (\"3\",\"L'IA travaille pour vous\",\"Devis envoyé, PV généré, facture émise. Automatiquement.\"),
-    (\"4\",\"Pilotez depuis l'ERP\",\"Tableau de bord temps réel sur mobile.\"),
-]]) + \"\"\"
+""" + "".join([f'<div style="display:flex;gap:1rem;margin-bottom:1.3rem;"><div class="stepn">{n}</div><div><div class="steptitle">{t}</div><div class="stepdesc">{d}</div></div></div>' for n,t,d in [
+    ("1", "Une fois connecté", "WhatsApp Business, Gmail, Google Drive — on s'occupe de tout."),
+    ("2", "Parlez ou photographiez", "Vocal ou photo sur WhatsApp. Floxia agit instantanément."),
+    ("3", "L'IA travaille pour vous", "Devis envoyé, PV généré, facture émise. Automatiquement."),
+    ("4", "Pilotez depuis l'ERP", "Tableau de bord temps réel sur mobile."),
+]]) + """
   </div>
   <div class=\"reveal-right\">
-\"\"\" + \"\".join([flux_html(l,n) for l,n in ECO_FLUX]) + \"\"\"
+""" + "".join([flux_html(l,n) for l,n in ECO_FLUX]) + """
   </div>
 </div>
 <div class=\"div-line\"></div>
-\"\"\"
+"""
 
 PROFILES = [
-    (\"🔧\",\"Plombier-chauffagiste\",\"Ce que Floxia change pour un plombier\",
-     [\"Devis vocal depuis la camionnette, envoyé avant d'arriver chez le client suivant.\",
-      \"Factures d'acompte + PV + facture finale générés sans ouvrir un ordinateur.\",
-      \"Tickets fournisseur scannés direct depuis WhatsApp, compta à jour en temps réel.\"],
-     \"Temps libéré\",\"~14h / mois\"),
-    (\"⚡\",\"Électricien indépendant\",\"Ce que Floxia change pour un électricien\",
-     [\"Devis signé plus vite : PDF envoyé en 3 min, plus en 2 jours.\",
-      \"Relances automatiques J+3/J+7/J+14 sur les devis non signés.\",
-      \"Fini les e-mails le soir : Floxia rédige les imprévus chantier depuis un vocal.\"],
-     \"Taux de signature\",\"+30% devis signés\"),
-    (\"🎨\",\"Peintre / Carreleur\",\"Ce que Floxia change pour un peintre ou carreleur\",
-     [\"Rapport photo de fin de chantier en 2 clics, envoyé au client.\",
-      \"Demande d'avis Google auto à la clôture de facture → réputation boostée.\",
-      \"Planning équipe visible en temps réel, feuille de route sur WhatsApp.\"],
-     \"Admin supprimée\",\"−80% de saisie\"),
+    ("🔧", "Plombier-chauffagiste", "Ce que Floxia change pour un plombier",
+     ["Devis vocal depuis la camionnette, envoyé avant d'arriver chez le client suivant.",
+      "Factures d'acompte + PV + facture finale générés sans ouvrir un ordinateur.",
+      "Tickets fournisseur scannés direct depuis WhatsApp, compta à jour en temps réel."],
+     "Temps libéré", "~14h / mois"),
+    ("⚡", "Électricien indépendant", "Ce que Floxia change pour un électricien",
+     ["Devis signé plus vite : PDF envoyé en 3 min, plus en 2 jours.",
+      "Relances automatiques J+3/J+7/J+14 sur les devis non signés.",
+      "Fini les e-mails le soir : Floxia rédige les imprévus chantier depuis un vocal."],
+     "Taux de signature", "+30% devis signés"),
+    ("🎨", "Peintre / Carreleur", "Ce que Floxia change pour un peintre ou carreleur",
+     ["Rapport photo de fin de chantier en 2 clics, envoyé au client.",
+      "Demande d'avis Google auto à la clôture de facture → réputation boostée.",
+      "Planning équipe visible en temps réel, feuille de route sur WhatsApp."],
+     "Admin supprimée", "−80% de saisie"),
 ]
 
 def profile_card(av,metier,title,bullets,gl,gv):
-    bl = \"\".join([f'<li><span class=\"profile-check\">→</span><span>{b}</span></li>' for b in bullets])
-    return f\"\"\"<div class=\"profile-card\">
+    bl = "".join([f'<li><span class="profile-check">→</span><span>{b}</span></li>' for b in bullets])
+    return f"""<div class=\"profile-card\">
       <div class=\"profile-header\">
         <div class=\"profile-avatar\">{av}</div>
         <div><div class=\"profile-metier\">{metier}</div><div class=\"profile-tag\">Profil type</div></div>
@@ -491,9 +488,9 @@ def profile_card(av,metier,title,bullets,gl,gv):
       <div class=\"profile-title\">{title}</div>
       <ul class=\"profile-bullets\">{bl}</ul>
       <div class=\"profile-gain\"><span>{gl}</span><span class=\"profile-gain-val\">{gv}</span></div>
-    </div>\"\"\"
+    </div>"""
 
-PROFILES_HTML = f\"\"\"
+PROFILES_HTML = f"""
 <div class=\"proof-section\">
   <div class=\"reveal\">
     <div class=\"sec-lbl\">Profils types</div>
@@ -507,7 +504,7 @@ PROFILES_HTML = f\"\"\"
   </div>
   <div class=\"proof-disclaimer\">Objectifs mesurés sur les flux automatisés — Floxia est en phase Beta 2026.</div>
   <div class=\"reveal-stagger proof-grid\" style=\"margin-top:2.5rem;\">
-    {\"\".join([profile_card(*p) for p in PROFILES])}
+    {"".join([profile_card(*p) for p in PROFILES])}
   </div>
 </div>
 <div class=\"div-line\"></div>
@@ -520,9 +517,9 @@ PROFILES_HTML = f\"\"\"
     <p class=\"sec-sub\">Bougez le curseur — voyez ce que Floxia vous rapporte chaque mois.</p>
   </div>
 </div>
-\"\"\"
+"""
 
-PRICING_HTML = f\"\"\"
+PRICING_HTML = f"""
 <div class=\"div-line\"></div>
 <div id=\"tarifs\"></div>
 <div class=\"sec\">
@@ -540,12 +537,12 @@ PRICING_HTML = f\"\"\"
       <div class=\"pprice-custom\">Prix personnalisé</div>
       <div class=\"pprice-note\">Calculé selon votre volume de devis.<br>Sans engagement.</div>
       <div class=\"pfeats\">
-\"\"\" + \"\".join([f'<div class=\"pfeat\"><span class=\"pcheck bright\">✦</span>{f}</div>' for f in [
-    \"Base de données Google Sheets dédiée\",\"Création automatique de Devis PDF\",
-    \"Factures & Factures d'acompte auto\",\"PV de réception automatisé\",
-    \"Archivage structuré Google Drive\",\"Envoi via API WhatsApp Business\",
-    \"Signature électronique intégrée\",\"Conforme réforme facturation 2026\"
-]]) + f\"\"\"
+""" + "".join([f'<div class="pfeat"><span class="pcheck bright">✦</span>{f}</div>' for f in [
+    "Base de données Google Sheets dédiée", "Création automatique de Devis PDF",
+    "Factures & Factures d'acompte auto", "PV de réception automatisé",
+    "Archivage structuré Google Drive", "Envoi via API WhatsApp Business",
+    "Signature électronique intégrée", "Conforme réforme facturation 2026"
+]]) + f"""
       </div>
       <a class=\"pcta pcta-o\" href=\"{INSTA}\" target=\"_blank\">Obtenir mon tarif →</a>
       <div class=\"pnote\">Pour se lancer sans risque</div>
@@ -564,9 +561,9 @@ PRICING_HTML = f\"\"\"
         <div class=\"pfeat\"><span class=\"pcheck bright\">✦</span>Gestion des retards & avenants</div>
       </div>
       <div class=\"onglets-tag\">
-\"\"\" + \"\".join([f'<span class=\"otag\">{o}</span>' for o in [
-    \"Vue générale\",\"Créer un devis\",\"Devis\",\"Facture & Paiements\",\"Export compta\",\"Chantier\",\"Planning\",\"Notifications\",\"Espace Clients\",\"Tous les dossiers\",\"Google Sheet\",\"Retards & Avenants\",\"RGPD\"
-]]) + f\"\"\"
+""" + "".join([f'<span class="otag">{o}</span>' for o in [
+    "Vue générale", "Créer un devis", "Devis", "Facture & Paiements", "Export compta", "Chantier", "Planning", "Notifications", "Espace Clients", "Tous les dossiers", "Google Sheet", "Retards & Avenants", "RGPD"
+]]) + f"""
       </div>
       <a class=\"pcta pcta-s\" href=\"{INSTA}\" target=\"_blank\">Obtenir mon tarif →</a>
       <div class=\"pnote\">Le meilleur rapport qualité/valeur</div>
@@ -581,11 +578,11 @@ PRICING_HTML = f\"\"\"
       <div class=\"pprice-note\">Accompagnement dédié inclus.</div>
       <div class=\"pfeats\">
         <div class=\"pfeat incl\"><span class=\"pcheck\">⬆</span>Tout de l'Offre Artisan Autonome</div>
-\"\"\" + \"\".join([f'<div class=\"pfeat\"><span class=\"pcheck bright\">✦</span>{f}</div>' for f in [
-    \"Saisie vocale IA via WhatsApp\",\"Collecte photos fin de chantier\",\"Suivi heures collaborateurs\",
-    \"Rentabilité réelle IA\",\"Scan tickets caisse → compta auto\",\"Email pro depuis vocal\",
-    \"Relances J+3 / J+7 / J+14\",\"Demande d'avis Google auto\"
-]]) + f\"\"\"
+""" + "".join([f'<div class="pfeat"><span class="pcheck bright">✦</span>{f}</div>' for f in [
+    "Saisie vocale IA via WhatsApp", "Collecte photos fin de chantier", "Suivi heures collaborateurs",
+    "Rentabilité réelle IA", "Scan tickets caisse → compta auto", "Email pro depuis vocal",
+    "Relances J+3 / J+7 / J+14", "Demande d'avis Google auto"
+]]) + f"""
       </div>
       <a class=\"pcta pcta-o\" href=\"{INSTA}\" target=\"_blank\">Nous contacter →</a>
       <div class=\"pnote\">Pour les équipes & PME</div>
@@ -630,7 +627,7 @@ PRICING_HTML = f\"\"\"
   setTimeout(init, 500);
 }})();
 </script>
-\"\"\"
+"""
 
 # ═══ RENDER ═══
 st.markdown(CSS, unsafe_allow_html=True)
@@ -640,7 +637,7 @@ st.markdown(ECO_HTML, unsafe_allow_html=True)
 st.markdown(PROFILES_HTML, unsafe_allow_html=True)
 
 # ═══ ROI SLIDER (interactif Streamlit) ═══
-nb = st.slider(\"Nombre de devis par mois\", 1, 80, 15, 1)
+nb = st.slider("Nombre de devis par mois", 1, 80, 15, 1)
 
 h_devis = round((45+12)*nb/60, 1)
 h = round(h_devis + 8 + 4 + round(18*nb/60,1), 1)
@@ -649,7 +646,7 @@ gain = round(h * 55)
 abo = 49 if nb<=10 else (99 if nb<=30 else 149)
 roi = round((gain/abo)*100)
 
-st.markdown(f\"\"\"
+st.markdown(f"""
 <div class=\"roi-grid-outer\">
   <div class=\"roi-box\">
     <div class=\"roi-slbl\">Résultats pour {nb} devis / mois</div>
@@ -672,20 +669,20 @@ st.markdown(f\"\"\"
   </div>
   <div>
     <div class=\"sec-lbl\" style=\"margin-bottom:1rem;\">Ce que vous ne faites plus</div>
-\"\"\" + \"\".join([f'<div class=\"task-item\"><div class=\"task-name\">{n}</div><div class=\"task-gain\">{g}</div></div>' for n,g in [
-    (\"Cycle devis → PV → facture finale\", f\"{cycle_h}h économisées / mois\"),
-    (\"Taper des devis le soir\", \"45 min évitées / devis\"),
-    (\"Ressaisir les tickets de caisse\", \"2h / semaine récupérées\"),
-    (\"Rédiger des e-mails clients\", \"30 min / incident\"),
-    (\"Relancer les devis manuellement\", \"+30% de conversion\"),
-    (\"Faire le planning à la main\", \"1h / semaine gagnée\"),
-    (\"Exporter votre compta\", \"Export 1 clic\"),
-        (\"Rédiger les rapports chantier\", \"18 min / chantier\"),
-    (\"Demander des avis Google\", \"Automatique\"),
-    (\"Générer un PV de réception\", \"Auto après signature\"),
-]]) + \"\"\"
+""" + "".join([f'<div class="task-item"><div class="task-name">{n}</div><div class="task-gain">{g}</div></div>' for n,g in [
+    ("Cycle devis → PV → facture finale", f"{cycle_h}h économisées / mois"),
+    ("Taper des devis le soir", "45 min évitées / devis"),
+    ("Ressaisir les tickets de caisse", "2h / semaine récupérées"),
+    ("Rédiger des e-mails clients", "30 min / incident"),
+    ("Relancer les devis manuellement", "+30% de conversion"),
+    ("Faire le planning à la main", "1h / semaine gagnée"),
+    ("Exporter votre compta", "Export 1 clic"),
+    ("Rédiger les rapports chantier", "18 min / chantier"),
+    ("Demander des avis Google", "Automatique"),
+    ("Générer un PV de réception", "Auto après signature"),
+]]) + """
   </div>
 </div>
-\"\"\", unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 st.markdown(PRICING_HTML, unsafe_allow_html=True)
