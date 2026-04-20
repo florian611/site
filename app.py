@@ -229,9 +229,9 @@ div[data-testid="stSlider"] label p{color:rgba(240,237,230,.25)!important;font-s
     <div class="hero-sep"></div>
     <div class="hero-info-item"><span class="hero-info-label">Devis &#8594; Facture Finale</span><span class="hero-info-val">3 minutes</span></div>
     <div class="hero-sep"></div>
-    <div class="hero-info-item"><span class="hero-info-label">Interface</span><span class="hero-info-val">100% WhatsApp</span></div>
+    <div class="hero-info-item"><span class="hero-info-label">Interface</span><span class="hero-info-val">100% WhatsApp/ERP</span></div>
   </div>
-  <div class="hero-cta-row">
+  <div class="hero-cta-row"> 
     <a class="btn-y" href="https://www.instagram.com/floxia.pro/" target="_blank">&#x26A1; R&#233;server une d&#233;mo</a>
     <a class="btn-g" href="#services">D&#233;couvrir</a>
   </div>
