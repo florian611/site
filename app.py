@@ -1,13 +1,13 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title=\" Floxia – Devis & Factures depuis WhatsApp en 3 min\",
-    page_icon=\"⚡\",
-    layout=\"wide\",
-    initial_sidebar_state=\"collapsed\",
+    page_title="Floxia – Devis & Factures depuis WhatsApp en 3 min",
+    page_icon="⚡",
+    layout="wide",
+    initial_sidebar_state="collapsed",
 )
 
-INSTA = \"https://www.instagram.com/floxia.pro/\"
+INSTA = "https://www.instagram.com/floxia.pro/"
 
 CSS = \"\"\"
 <style>
