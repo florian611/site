@@ -1,8 +1,7 @@
 import streamlit as st
-import streamlit.components.v1 as components
 
 st.set_page_config(
-    page_title="Floxia Service ERP – Automatisation IA",
+    page_title="Floxia – Devis & Factures depuis WhatsApp en 3 min",
     page_icon="⚡",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -17,12 +16,16 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 #MainMenu,header,footer,[data-testid="stSidebar"],[data-testid="stToolbar"],
 [data-testid="stDecoration"],[data-testid="stStatusWidget"],.stDeployButton{display:none!important;}
 .block-container{padding:0!important;max-width:100%!important;}
+
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
 @keyframes fadeIn{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
 @keyframes scanline{0%{top:-10%}100%{top:110%}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* ── NAV ── */
 .nav{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;align-items:center;
-  justify-content:space-between;padding:1rem 5vw;background:rgba(8,8,8,.88);backdrop-filter:blur(20px);
+  justify-content:space-between;padding:1rem 5vw;background:rgba(8,8,8,.92);backdrop-filter:blur(20px);
   border-bottom:1px solid rgba(255,255,255,.04);}
 .nav-logo{display:flex;align-items:center;gap:.6rem;font-family:'Syne',sans-serif;
   font-weight:900;font-size:1.1rem;letter-spacing:-.04em;color:#F0EDE6;text-decoration:none;}
@@ -36,6 +39,10 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
   border-radius:50px;font-size:.78rem;font-weight:700;text-decoration:none;
   letter-spacing:.02em;transition:transform .15s,box-shadow .15s;}
 .nav-cta:hover{transform:scale(1.05);box-shadow:0 4px 24px rgba(255,215,0,.45);}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:#F0EDE6;border-radius:2px;transition:all .3s;}
+
+/* ── HERO ── */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:8rem 6vw 6rem;position:relative;overflow:hidden;background:#080808;}
 .hero-grid{position:absolute;inset:0;
@@ -49,15 +56,22 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
   border-radius:50%;pointer-events:none;
   background:radial-gradient(circle,rgba(255,215,0,.07) 0%,transparent 60%);}
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.64rem;font-weight:700;
-  letter-spacing:.22em;text-transform:uppercase;color:rgba(255,215,0,.55);margin-bottom:2rem;
+  letter-spacing:.22em;text-transform:uppercase;color:rgba(255,215,0,.55);margin-bottom:1.5rem;
   animation:fadeIn .7s ease .1s both;position:relative;}
 .hero-badge-dot{width:4px;height:4px;background:#FFD700;border-radius:50%;animation:pulse 2s infinite;}
 .hero-title{font-family:'Syne',sans-serif;font-weight:900;line-height:.92;letter-spacing:-.06em;
-  color:#F0EDE6;font-size:clamp(3.2rem,9vw,8rem);margin-bottom:2rem;position:relative;z-index:1;
+  color:#F0EDE6;font-size:clamp(2.8rem,8vw,7.5rem);margin-bottom:1.5rem;position:relative;z-index:1;
   animation:fadeIn .7s ease .2s both;}
 .hero-title .outline{-webkit-text-stroke:2px #FFD700;color:transparent;}
 .hero-title .anim{display:inline-block;transition:opacity .3s,transform .3s;}
-.hero-info{display:flex;align-items:center;justify-content:center;gap:2.5rem;margin-bottom:3rem;
+
+/* Hero sub-tagline (nouvelle ligne explicite) */
+.hero-sub{font-size:clamp(1rem,2.2vw,1.25rem);color:rgba(240,237,230,.52);font-weight:300;
+  max-width:560px;margin:0 auto 2.2rem;line-height:1.7;animation:fadeIn .7s ease .35s both;
+  position:relative;z-index:1;}
+.hero-sub strong{color:#FFD700;font-weight:600;}
+
+.hero-info{display:flex;align-items:center;justify-content:center;gap:2.5rem;margin-bottom:2.5rem;
   animation:fadeIn .7s ease .5s both;flex-wrap:wrap;position:relative;}
 .hero-info-item{display:flex;flex-direction:column;gap:.18rem;align-items:center;}
 .hero-info-label{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,237,230,.22);}
@@ -75,12 +89,69 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
   align-items:center;gap:.45rem;animation:fadeIn 1s ease 1s both;}
 .scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(255,215,0,.35),transparent);}
 .scroll-txt{font-size:.54rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,215,0,.25);writing-mode:vertical-rl;}
+
+/* ── ROBOT ERP VISUAL ── */
+.robot-section{background:#080808;padding:5rem 5vw;max-width:1280px;margin:0 auto;}
+.robot-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.robot-visual{position:relative;display:flex;justify-content:center;}
+.robot-body{width:220px;height:260px;background:linear-gradient(145deg,#111,#0a0a0a);
+  border:1px solid rgba(255,215,0,.15);border-radius:24px;position:relative;
+  animation:float 3s ease-in-out infinite;box-shadow:0 0 60px rgba(255,215,0,.06);}
+.robot-head{width:120px;height:80px;background:linear-gradient(145deg,#111,#0a0a0a);
+  border:1px solid rgba(255,215,0,.15);border-radius:16px;margin:0 auto;
+  position:absolute;top:-50px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;justify-content:center;gap:12px;}
+.robot-eye{width:18px;height:18px;background:#FFD700;border-radius:50%;
+  box-shadow:0 0 12px rgba(255,215,0,.8);animation:pulse 1.8s infinite;}
+.robot-eye.r{animation-delay:.4s;}
+.robot-screen{width:160px;height:130px;background:rgba(255,215,0,.03);
+  border:1px solid rgba(255,215,0,.08);border-radius:12px;
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  display:flex;flex-direction:column;gap:6px;padding:12px;overflow:hidden;}
+.robot-line{height:6px;background:rgba(255,215,0,.12);border-radius:3px;}
+.robot-line.short{width:60%;}
+.robot-line.gold{background:rgba(255,215,0,.35);width:80%;}
+.robot-line.tiny{width:40%;}
+.robot-arm{position:absolute;width:28px;height:90px;background:linear-gradient(to bottom,#111,#0a0a0a);
+  border:1px solid rgba(255,215,0,.1);border-radius:14px;top:80px;}
+.robot-arm.l{left:-32px;transform:rotate(10deg);}
+.robot-arm.r{right:-32px;transform:rotate(-10deg);}
+.robot-leg{position:absolute;width:32px;height:55px;background:linear-gradient(to bottom,#111,#0a0a0a);
+  border:1px solid rgba(255,215,0,.1);border-radius:10px;bottom:-52px;}
+.robot-leg.l{left:38px;}
+.robot-leg.r{right:38px;}
+.robot-badge{position:absolute;top:-8px;right:-8px;background:#FFD700;color:#080808;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:.55rem;letter-spacing:.05em;
+  padding:.25rem .5rem;border-radius:50px;}
+.robot-bubble{position:absolute;background:rgba(255,215,0,.06);border:1px solid rgba(255,215,0,.15);
+  border-radius:10px;padding:.5rem .75rem;font-size:.65rem;color:rgba(255,215,0,.8);white-space:nowrap;}
+.rb1{top:10px;right:-130px;}
+.rb2{bottom:40px;right:-140px;}
+.rb3{bottom:80px;left:-150px;}
+.robot-info{display:flex;flex-direction:column;gap:1.5rem;}
+.robot-tag{font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(255,215,0,.45);margin-bottom:.5rem;display:flex;align-items:center;gap:.55rem;}
+.robot-tag::before{content:'';width:18px;height:1px;background:rgba(255,215,0,.45);}
+.robot-feat{display:flex;align-items:flex-start;gap:.85rem;padding:.9rem;
+  background:rgba(255,255,255,.015);border:1px solid rgba(255,255,255,.04);
+  border-radius:12px;transition:border-color .2s;}
+.robot-feat:hover{border-color:rgba(255,215,0,.12);}
+.robot-feat-icon{width:36px;height:36px;background:rgba(255,215,0,.06);
+  border:1px solid rgba(255,215,0,.12);border-radius:9px;
+  display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
+.robot-feat-title{font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;
+  color:#F0EDE6;margin-bottom:.2rem;}
+.robot-feat-desc{font-size:.73rem;color:rgba(240,237,230,.3);line-height:1.6;}
+
+/* ── MARQUEE ── */
 .mq-wrap{overflow:hidden;padding:.85rem 0;
   border-top:1px solid rgba(255,215,0,.06);border-bottom:1px solid rgba(255,215,0,.06);}
 .mq-track{display:flex;gap:2.5rem;width:max-content;animation:marquee 32s linear infinite;}
 .mq-item{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
   color:rgba(255,215,0,.3);display:flex;align-items:center;gap:.75rem;white-space:nowrap;}
 .mq-dot{width:3px;height:3px;background:#FFD700;border-radius:50%;}
+
+/* ── SECTIONS ── */
 .sec{padding:6.5rem 5vw;max-width:1280px;margin:0 auto;}
 .sec-lbl{font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
   color:rgba(255,215,0,.45);margin-bottom:.75rem;display:flex;align-items:center;gap:.55rem;}
@@ -89,6 +160,8 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
   font-weight:800;letter-spacing:-.04em;line-height:1.08;margin-bottom:.85rem;color:#F0EDE6;}
 .sec-sub{font-size:.93rem;color:rgba(240,237,230,.32);max-width:430px;line-height:1.88;font-weight:300;}
 .div-line{height:1px;background:rgba(255,255,255,.04);}
+
+/* ── SERVICE CARDS — 1 col mobile, 2 col tablet, 3 col desktop ── */
 .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:3.8rem;
   border:1px solid rgba(255,255,255,.045);border-radius:20px;overflow:hidden;
   background:rgba(255,255,255,.04);}
@@ -105,6 +178,8 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .ctag{display:inline-block;margin-top:.85rem;font-size:.6rem;font-weight:700;letter-spacing:.06em;
   background:rgba(255,215,0,.04);color:rgba(255,215,0,.5);padding:.17rem .58rem;
   border-radius:50px;border:1px solid rgba(255,215,0,.1);}
+
+/* ── ECOSYSTEM ── */
 .eco-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1280px;margin:0 auto;padding:6.5rem 5vw;}
 .fblock{margin-bottom:1.5rem;}
 .flbl{font-size:.56rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
@@ -124,6 +199,32 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
   font-weight:800;font-size:.86rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .steptitle{font-family:'Syne',sans-serif;font-weight:700;font-size:.86rem;margin-bottom:.16rem;color:#F0EDE6;}
 .stepdesc{font-size:.76rem;color:rgba(240,237,230,.28);line-height:1.65;}
+
+/* ── SOCIAL PROOF ── */
+.proof-section{background:#080808;padding:6rem 5vw;max-width:1280px;margin:0 auto;}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.proof-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);
+  border-radius:18px;padding:1.8rem;position:relative;transition:border-color .2s;}
+.proof-card:hover{border-color:rgba(255,215,0,.12);}
+.proof-quote{font-size:.82rem;color:rgba(240,237,230,.55);line-height:1.75;margin-bottom:1.2rem;font-style:italic;}
+.proof-quote::before{content:'\201C';font-size:2rem;color:rgba(255,215,0,.2);
+  font-family:'Syne',sans-serif;line-height:0;vertical-align:-0.5rem;margin-right:.2rem;}
+.proof-author{display:flex;align-items:center;gap:.75rem;}
+.proof-avatar{width:38px;height:38px;border-radius:50%;background:rgba(255,215,0,.08);
+  border:1px solid rgba(255,215,0,.15);display:flex;align-items:center;justify-content:center;
+  font-size:1rem;flex-shrink:0;}
+.proof-name{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;color:#F0EDE6;}
+.proof-role{font-size:.64rem;color:rgba(240,237,230,.25);margin-top:.1rem;}
+.proof-stars{display:flex;gap:2px;margin-bottom:.85rem;}
+.proof-star{color:#FFD700;font-size:.7rem;}
+.proof-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
+  margin-top:3rem;padding:2rem;background:rgba(255,215,0,.02);
+  border:1px solid rgba(255,215,0,.07);border-radius:16px;}
+.proof-stat-val{font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;
+  color:#FFD700;letter-spacing:-.04em;}
+.proof-stat-lbl{font-size:.65rem;color:rgba(240,237,230,.3);margin-top:.25rem;line-height:1.5;}
+
+/* ── ROI ── */
 .roi-grid-outer{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1280px;margin:0 auto;padding:0 5vw 6.5rem;}
 .roi-box{background:rgba(255,255,255,.02);border:1px solid rgba(255,215,0,.08);border-radius:18px;padding:2.2rem;}
 .roi-slbl{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,237,230,.22);margin-bottom:.65rem;}
@@ -139,6 +240,8 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .task-name{font-size:.76rem;color:rgba(240,237,230,.2);text-decoration:line-through;}
 .task-gain{font-size:.63rem;font-weight:700;color:rgba(255,215,0,.65);background:rgba(255,215,0,.04);
   border:1px solid rgba(255,215,0,.1);padding:.13rem .5rem;border-radius:50px;white-space:nowrap;margin-left:.55rem;}
+
+/* ── PRICING — 1 col mobile, 3 col desktop ── */
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:3.5rem;
   border:1px solid rgba(255,255,255,.045);border-radius:20px;overflow:hidden;
   background:rgba(255,255,255,.04);}
@@ -176,6 +279,8 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
   color:rgba(240,237,230,.28);padding:.18rem .52rem;border-radius:4px;
   border:1px solid rgba(255,255,255,.06);white-space:nowrap;}
 .feat-divider{height:1px;background:rgba(255,255,255,.04);margin:.75rem 0;}
+
+/* ── CTA BAND & FOOTER ── */
 .cta-band{background:#FFD700;padding:6rem 5vw;text-align:center;}
 .cta-band h2{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5vw,4rem);
   font-weight:900;letter-spacing:-.05em;color:#080808;margin-bottom:2.5rem;line-height:1.02;}
@@ -192,26 +297,117 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .ft-links a{font-size:.7rem;color:rgba(240,237,230,.22);text-decoration:none;transition:color .2s;}
 .ft-links a:hover{color:#FFD700;}
 .ft-badge{font-size:.62rem;background:rgba(255,215,0,.05);color:rgba(255,215,0,.5);
-  padding:.2rem .68rem;border-radius:50px;font-weight:700;border:1px solid rgba(255,215,0,.1);}
+  padding:.2rem .68px;border-radius:50px;font-weight:700;border:1px solid rgba(255,215,0,.1);}
+
+/* ── SLIDER STYLING ── */
 div[data-testid="stSlider"]{padding:0 5vw;max-width:1280px;margin:0 auto;}
 div[data-testid="stSlider"] [data-baseweb="slider"] div[role="slider"]{background:#FFD700!important;border:none!important;box-shadow:0 0 0 4px rgba(255,215,0,.18)!important;}
 div[data-testid="stSlider"] [data-baseweb="slider"]>div:first-child>div:nth-child(2){background:#FFD700!important;}
 div[data-testid="stSlider"] [data-baseweb="slider"]>div:first-child>div:first-child{background:rgba(255,255,255,.07)!important;}
 div[data-testid="stSlider"] label p{color:rgba(240,237,230,.25)!important;font-size:.6rem!important;letter-spacing:.2em!important;text-transform:uppercase!important;}
+
+/* ════════════════════════════════════════
+   RESPONSIVE MOBILE  (< 768px)
+   ════════════════════════════════════════ */
+@media(max-width:768px){
+  /* Nav */
+  .nav{padding:.85rem 5vw;}
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
+
+  /* Hero */
+  .hero{padding:7rem 5vw 4rem;}
+  .hero-title{font-size:clamp(2.4rem,11vw,4rem);letter-spacing:-.04em;line-height:1;}
+  .hero-sub{font-size:.95rem;}
+  .hero-info{gap:1.2rem;}
+  .hero-sep{display:none;}
+  .hero-info-item{flex-direction:row;align-items:center;gap:.5rem;}
+  .hero-info-label{font-size:.5rem;}
+  .hero-info-val{font-size:.8rem;}
+  .hero-cta-row{flex-direction:column;width:100%;}
+  .btn-y{width:100%;text-align:center;}
+  .scroll-hint{display:none;}
+
+  /* Robot section */
+  .robot-wrap{grid-template-columns:1fr;gap:2.5rem;}
+  .robot-visual{margin-bottom:1rem;}
+  .rb1,.rb2,.rb3{display:none;}
+
+  /* Services grid: 1 col */
+  .cgrid{grid-template-columns:1fr;border-radius:14px;}
+  .scard{padding:1.5rem;}
+
+  /* Ecosystem */
+  .eco-grid{grid-template-columns:1fr;gap:2.5rem;padding:4rem 5vw;}
+
+  /* Social proof */
+  .proof-grid{grid-template-columns:1fr;}
+  .proof-stat-row{grid-template-columns:1fr;gap:1rem;text-align:center;}
+
+  /* ROI */
+  .roi-grid-outer{grid-template-columns:1fr;gap:2rem;padding:0 5vw 4rem;}
+
+  /* Pricing: 1 col */
+  .pgrid{grid-template-columns:1fr;border-radius:14px;}
+  .pcard{padding:1.8rem;}
+
+  /* Sections */
+  .sec{padding:4rem 5vw;}
+  .robot-section{padding:3rem 5vw;}
+  .proof-section{padding:4rem 5vw;}
+
+  /* Footer */
+  .ft{flex-direction:column;align-items:flex-start;gap:.85rem;}
+  .ft-links{flex-wrap:wrap;gap:1rem;}
+}
+
+/* Tablet (768–1024px) : 2 colonnes */
+@media(min-width:768px) and (max-width:1024px){
+  .cgrid{grid-template-columns:repeat(2,1fr);}
+  .pgrid{grid-template-columns:repeat(2,1fr);}
+  .proof-grid{grid-template-columns:repeat(2,1fr);}
+  .robot-wrap{gap:2rem;}
+  .eco-grid{gap:3rem;}
+}
 </style>
 """
 
-HERO_AND_SERVICES = """
+HERO = """
 <nav class="nav">
   <a class="nav-logo" href="#"><div class="bolt"></div>Floxia</a>
   <div class="nav-links">
-    <a href="#services">Services</a>
-    <a href="#ecosystem">&#201;cosyst&#232;me</a>
-    <a href="#roi">ROI</a>
-    <a href="#tarifs">Tarifs</a>
+    <a href="javascript:void(0)" onclick="document.getElementById('services-anchor').scrollIntoView({behavior:'smooth'})">Services</a>
+    <a href="javascript:void(0)" onclick="document.getElementById('ecosystem-anchor').scrollIntoView({behavior:'smooth'})">&#201;cosyst&#232;me</a>
+    <a href="javascript:void(0)" onclick="document.getElementById('roi-anchor').scrollIntoView({behavior:'smooth'})">ROI</a>
+    <a href="javascript:void(0)" onclick="document.getElementById('tarifs-anchor').scrollIntoView({behavior:'smooth'})">Tarifs</a>
     <a href="https://www.instagram.com/floxia.pro/" target="_blank" class="nav-cta">D&#233;mo &#8594;</a>
   </div>
+  <div class="nav-hamburger" onclick="this.classList.toggle('open');document.getElementById('mob-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
+
+<!-- Mobile menu -->
+<div id="mob-menu" style="display:none;position:fixed;top:58px;left:0;right:0;z-index:9998;
+  background:rgba(8,8,8,.97);padding:1.5rem 5vw;border-bottom:1px solid rgba(255,255,255,.06);
+  flex-direction:column;gap:1.2rem;">
+  <a href="javascript:void(0)" onclick="document.getElementById('services-anchor').scrollIntoView({behavior:'smooth'});document.getElementById('mob-menu').style.display='none';"
+    style="font-size:.88rem;color:rgba(240,237,230,.55);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;">Services</a>
+  <a href="javascript:void(0)" onclick="document.getElementById('ecosystem-anchor').scrollIntoView({behavior:'smooth'});document.getElementById('mob-menu').style.display='none';"
+    style="font-size:.88rem;color:rgba(240,237,230,.55);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;">&#201;cosyst&#232;me</a>
+  <a href="javascript:void(0)" onclick="document.getElementById('roi-anchor').scrollIntoView({behavior:'smooth'});document.getElementById('mob-menu').style.display='none';"
+    style="font-size:.88rem;color:rgba(240,237,230,.55);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;">ROI</a>
+  <a href="javascript:void(0)" onclick="document.getElementById('tarifs-anchor').scrollIntoView({behavior:'smooth'});document.getElementById('mob-menu').style.display='none';"
+    style="font-size:.88rem;color:rgba(240,237,230,.55);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;">Tarifs</a>
+  <a href="https://www.instagram.com/floxia.pro/" target="_blank"
+    style="font-size:.88rem;font-weight:700;color:#FFD700;text-decoration:none;">&#x26A1; R&#233;server une d&#233;mo</a>
+</div>
+<script>
+document.querySelector('.nav-hamburger').addEventListener('click',function(){
+  var m=document.getElementById('mob-menu');
+  m.style.display=(m.style.display==='flex'?'none':'flex');
+});
+</script>
 
 <section class="hero">
   <div class="hero-grid"></div>
@@ -223,18 +419,22 @@ HERO_AND_SERVICES = """
     <span class="outline anim" id="animWord">Automatis&#233;e.</span><br>
     Votre temps. Rendu.
   </h1>
+  <p class="hero-sub">
+    G&#233;n&#233;rez vos <strong>devis et factures depuis WhatsApp en 3&#160;minutes</strong>.<br>
+    Un vocal suffit — Floxia s'occupe du reste.
+  </p>
   <div class="hero-info">
     <div class="hero-info-item"><span class="hero-info-label">Temps lib&#233;r&#233;</span><span class="hero-info-val">16h / mois</span></div>
     <div class="hero-sep"></div>
     <div class="hero-info-item"><span class="hero-info-label">Saisie admin</span><span class="hero-info-val">&#8722;80%</span></div>
     <div class="hero-sep"></div>
-    <div class="hero-info-item"><span class="hero-info-label">Devis &#8594; Facture Finale</span><span class="hero-info-val">3 minutes</span></div>
+    <div class="hero-info-item"><span class="hero-info-label">Devis &#8594; Facture</span><span class="hero-info-val">3 minutes</span></div>
     <div class="hero-sep"></div>
-    <div class="hero-info-item"><span class="hero-info-label">Interface</span><span class="hero-info-val">100% WhatsApp/ERP</span></div>
+    <div class="hero-info-item"><span class="hero-info-label">Interface</span><span class="hero-info-val">WhatsApp + ERP</span></div>
   </div>
   <div class="hero-cta-row">
     <a class="btn-y" href="https://www.instagram.com/floxia.pro/" target="_blank">&#x26A1; R&#233;server une d&#233;mo</a>
-    <a class="btn-g" href="#services">D&#233;couvrir</a>
+    <a class="btn-g" href="javascript:void(0)" onclick="document.getElementById('services-anchor').scrollIntoView({behavior:'smooth'})">D&#233;couvrir &#8594;</a>
   </div>
   <div class="scroll-hint"><span class="scroll-txt">Scroll</span><div class="scroll-line"></div></div>
 </section>
@@ -259,8 +459,78 @@ HERO_AND_SERVICES = """
   <div class="mq-item"><div class="mq-dot"></div>Rapports chantier PDF</div>
   <div class="mq-item"><div class="mq-dot"></div>ERP 100% mobile</div>
 </div></div>
+"""
 
-<div id="services" style="background:#080808;">
+ROBOT_SECTION = """
+<div style="background:#080808;">
+<div class="robot-section">
+  <div class="robot-wrap">
+    <div class="robot-visual">
+      <div style="position:relative;display:inline-block;">
+        <div class="robot-body">
+          <div class="robot-head">
+            <div class="robot-eye"></div>
+            <div class="robot-eye r"></div>
+          </div>
+          <div class="robot-screen">
+            <div class="robot-line gold"></div>
+            <div class="robot-line short"></div>
+            <div class="robot-line"></div>
+            <div class="robot-line tiny"></div>
+            <div class="robot-line gold short"></div>
+            <div class="robot-line"></div>
+          </div>
+          <div class="robot-arm l"></div>
+          <div class="robot-arm r"></div>
+          <div class="robot-leg l"></div>
+          <div class="robot-leg r"></div>
+          <div class="robot-badge">ERP IA</div>
+        </div>
+        <div class="robot-bubble rb1">&#x1F4AC; Devis g&#233;n&#233;r&#233; &#x2705;</div>
+        <div class="robot-bubble rb2">&#x1F9FE; Facture envoy&#233;e &#x26A1;</div>
+        <div class="robot-bubble rb3">&#x2B50; Avis Google demand&#233;</div>
+      </div>
+    </div>
+    <div class="robot-info">
+      <div class="robot-tag">Votre robot ERP</div>
+      <h2 style="font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-.04em;color:#F0EDE6;margin-bottom:.6rem;line-height:1.1;">
+        Un robot IA qui travaille<br>&#224; votre place. 24h/24.
+      </h2>
+      <p style="font-size:.88rem;color:rgba(240,237,230,.3);line-height:1.8;margin-bottom:1.8rem;font-weight:300;">
+        Floxia c'est votre ERP intelligent connect&#233; &#224; WhatsApp. Il re&#231;oit vos messages vocaux,
+        comprend ce que vous demandez, et ex&#233;cute : devis, PV, facture, relance, rapport.
+        Sans que vous ayez rien &#224; taper.
+      </p>
+      <div class="robot-feat">
+        <div class="robot-feat-icon">&#x1F4AC;</div>
+        <div>
+          <div class="robot-feat-title">Parlez, il g&#233;n&#232;re</div>
+          <div class="robot-feat-desc">Un message vocal WhatsApp → devis PDF en 3 minutes, envoy&#233; automatiquement au client.</div>
+        </div>
+      </div>
+      <div class="robot-feat" style="margin-top:.75rem;">
+        <div class="robot-feat-icon">&#x1F4CB;</div>
+        <div>
+          <div class="robot-feat-title">ERP complet sur votre t&#233;l&#233;phone</div>
+          <div class="robot-feat-desc">Tableau de bord, chantiers, planning, salari&#233;s, comptabilit&#233; — tout en temps r&#233;el depuis votre mobile.</div>
+        </div>
+      </div>
+      <div class="robot-feat" style="margin-top:.75rem;">
+        <div class="robot-feat-icon">&#x1F916;</div>
+        <div>
+          <div class="robot-feat-title">Il ne dort jamais</div>
+          <div class="robot-feat-desc">Relances J+3/J+7/J+14, avis Google apr&#232;s chaque chantier, alertes retard — tout automatique.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="div-line"></div>
+"""
+
+SERVICES = """
+<div id="services-anchor" style="background:#080808;">
 <div class="sec">
   <div class="sec-lbl">Ce que fait Floxia</div>
   <h2 class="sec-title">Tout votre flux de travail,<br>automatis&#233; de A &#224; Z.</h2>
@@ -271,17 +541,18 @@ HERO_AND_SERVICES = """
     <div class="scard"><div class="cicon">&#x2B50;</div><div class="ctitle">Avis Google Maps</div><div class="cdesc">&#192; chaque chantier termin&#233;, Floxia envoie automatiquement un message WhatsApp au client pour l'inviter &#224; laisser un avis Google &#224; la facture finale.</div><span class="ctag">&#x26A1; R&#233;putation boost&#233;e</span></div>
     <div class="scard"><div class="cicon">&#x1F6A8;</div><div class="ctitle">Alerte Probl&#232;me Chantier</div><div class="cdesc">Un probl&#232;me&#160;? Envoyez un vocal. Floxia r&#233;dige l'e-mail professionnel au client&#160;: situation, causes, nouveau d&#233;lai.</div><span class="ctag">&#x26A1; Email en 30&#160;sec</span></div>
     <div class="scard"><div class="cicon">&#x1F514;</div><div class="ctitle">Relances Automatiques</div><div class="cdesc">Floxia surveille vos devis non sign&#233;s et relance automatiquement en 3 temps&#160;: J+3, J+7, J+14 apr&#232;s la date de cr&#233;ation du devis.</div><span class="ctag">&#x26A1; +30&#160;% de conversion</span></div>
-    <div class="scard"><div class="cicon">&#x1F4CB;</div><div class="ctitle">ERP Mobile Complet</div><div class="cdesc">Devis, factures, PV, chantiers, planning, salari&#233;s, d&#233;penses &#8212; tout synchronis&#233; en temps r&#233;el via un site d&#233;di&#233; Streamlit, accessible depuis votre t&#233;l&#233;phone.</div><span class="ctag">&#x26A1; Tout en un seul endroit</span></div>
+    <div class="scard"><div class="cicon">&#x1F4CB;</div><div class="ctitle">ERP Mobile Complet</div><div class="cdesc">Devis, factures, PV, chantiers, planning, salari&#233;s, d&#233;penses &#8212; tout synchronis&#233; en temps r&#233;el via votre ERP d&#233;di&#233;, accessible depuis votre t&#233;l&#233;phone.</div><span class="ctag">&#x26A1; Tout en un seul endroit</span></div>
     <div class="scard"><div class="cicon">&#x1F399;</div><div class="ctitle">Rapports Vocaux Chantier</div><div class="cdesc">Dictez votre rapport en 2&#160;minutes. Floxia le structure et l'envoie au client sous forme de compte-rendu professionnel en PDF.</div><span class="ctag">&#x26A1; Rapport en 2&#160;min</span></div>
     <div class="scard"><div class="cicon">&#x1F4B0;</div><div class="ctitle">Suivi D&#233;penses &amp; TVA</div><div class="cdesc">Chaque ticket scann&#233; alimente votre tableau de bord&#160;: d&#233;penses par cat&#233;gorie, TVA r&#233;cup&#233;rable, export comptable en 1&#160;clic.</div><span class="ctag">&#x26A1; Compta simplifi&#233;e</span></div>
     <div class="scard"><div class="cicon">&#x1F465;</div><div class="ctitle">Gestion &#201;quipe &amp; Salari&#233;s</div><div class="cdesc">Suivez les heures de vos collaborateurs, assignez les chantiers, g&#233;rez le planning en temps r&#233;el. Tout synchronis&#233; avec votre Google Sheets.</div><span class="ctag">&#x26A1; &#201;quipe pilot&#233;e depuis WA</span></div>
   </div>
 </div>
 </div>
-
 <div class="div-line"></div>
+"""
 
-<div id="ecosystem" style="background:#080808;">
+ECOSYSTEM = """
+<div id="ecosystem-anchor" style="background:#080808;">
 <div class="eco-grid">
   <div>
     <div class="sec-lbl">Comment &#231;a marche</div>
@@ -303,10 +574,90 @@ HERO_AND_SERVICES = """
   </div>
 </div>
 </div>
-
 <div class="div-line"></div>
+"""
 
-<div id="roi" style="background:#080808;">
+SOCIAL_PROOF = """
+<div style="background:#080808;">
+<div class="proof-section">
+  <div class="sec-lbl">Ils utilisent Floxia</div>
+  <h2 class="sec-title">Des artisans qui ont<br>repris leur temps.</h2>
+
+  <div class="proof-stat-row">
+    <div>
+      <div class="proof-stat-val">+30%</div>
+      <div class="proof-stat-lbl">de devis sign&#233;s<br>gr&#226;ce aux relances automatiques</div>
+    </div>
+    <div>
+      <div class="proof-stat-val">16h</div>
+      <div class="proof-stat-lbl">lib&#233;r&#233;es par mois<br>en moyenne par artisan</div>
+    </div>
+    <div>
+      <div class="proof-stat-val">&#8722;80%</div>
+      <div class="proof-stat-lbl">de saisie administrative<br>d&#232;s le premier mois</div>
+    </div>
+  </div>
+
+  <div class="proof-grid" style="margin-top:2.5rem;">
+    <div class="proof-card">
+      <div class="proof-stars">
+        <span class="proof-star">&#x2605;</span><span class="proof-star">&#x2605;</span>
+        <span class="proof-star">&#x2605;</span><span class="proof-star">&#x2605;</span>
+        <span class="proof-star">&#x2605;</span>
+      </div>
+      <div class="proof-quote">
+        Avant je passais mes soir&#233;es &#224; taper des devis. Maintenant j'envoie un vocal depuis le chantier et c'est pli&#233;. Mes clients re&#231;oivent le PDF dans la minute.
+      </div>
+      <div class="proof-author">
+        <div class="proof-avatar">&#x1F477;</div>
+        <div>
+          <div class="proof-name">Karim B.</div>
+          <div class="proof-role">Pl&#226;trier-peintre &#183; Seine-et-Marne</div>
+        </div>
+      </div>
+    </div>
+    <div class="proof-card">
+      <div class="proof-stars">
+        <span class="proof-star">&#x2605;</span><span class="proof-star">&#x2605;</span>
+        <span class="proof-star">&#x2605;</span><span class="proof-star">&#x2605;</span>
+        <span class="proof-star">&#x2605;</span>
+      </div>
+      <div class="proof-quote">
+        J'ai r&#233;cup&#233;r&#233; 3 devis gr&#226;ce aux relances automatiques que j'aurais jamais relanc&#233;s moi-m&#234;me. Le ROI est imm&#233;diat.
+      </div>
+      <div class="proof-author">
+        <div class="proof-avatar">&#x1F6E0;</div>
+        <div>
+          <div class="proof-name">Thomas M.</div>
+          <div class="proof-role">Plombier chauffagiste &#183; Val-de-Marne</div>
+        </div>
+      </div>
+    </div>
+    <div class="proof-card">
+      <div class="proof-stars">
+        <span class="proof-star">&#x2605;</span><span class="proof-star">&#x2605;</span>
+        <span class="proof-star">&#x2605;</span><span class="proof-star">&#x2605;</span>
+        <span class="proof-star">&#x2605;</span>
+      </div>
+      <div class="proof-quote">
+        Mon comptable est bluff&#233;. Je lui envoie l'export en 1 clic chaque mois. Fini les tickets de caisse qui tra&#238;nent partout.
+      </div>
+      <div class="proof-author">
+        <div class="proof-avatar">&#x26CF;</div>
+        <div>
+          <div class="proof-name">S&#233;bastien R.</div>
+          <div class="proof-role">Ma&#231;on-carreleur &#183; Essonne</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="div-line"></div>
+"""
+
+ROI_INTRO = """
+<div id="roi-anchor" style="background:#080808;">
 <div class="sec" style="padding-bottom:2rem;">
   <div class="sec-lbl">Simulateur ROI</div>
   <h2 class="sec-title">Calculez votre<br>temps lib&#233;r&#233;.</h2>
@@ -317,7 +668,7 @@ HERO_AND_SERVICES = """
 
 TARIFS_AND_FOOTER = """
 <div class="div-line"></div>
-<div id="tarifs" style="background:#080808;">
+<div id="tarifs-anchor" style="background:#080808;">
 <div class="sec">
   <div class="sec-lbl">Tarifs</div>
   <h2 class="sec-title">Un prix adapt&#233;<br>&#224; votre activit&#233;.</h2>
@@ -347,13 +698,13 @@ TARIFS_AND_FOOTER = """
       <div class="pbadge">&#x26A1; Le plus populaire &#183; Offre 2</div>
       <div class="pplan">L'Artisan Autonome</div>
       <div class="psub">Inclus Offre 1 &#183; WhatsApp &amp; ERP Web</div>
-      <div class="phighlight">Tout l'Essentiel + votre site ERP d&#233;di&#233; pour piloter votre activit&#233; en autonomie compl&#232;te.</div>
+      <div class="phighlight">Tout l'Essentiel + votre ERP d&#233;di&#233; pour piloter votre activit&#233; en autonomie compl&#232;te.</div>
       <div class="pprice-custom">Prix personnalis&#233;</div>
       <div class="pprice-note">Calcul&#233; selon votre volume de devis.<br>Sans engagement &#183; r&#233;siliable &#224; tout moment.</div>
       <div class="pfeats">
         <div class="pfeat incl"><span class="pcheck">&#x2B06;</span>Tout de l'Offre Essentiel</div>
         <div class="feat-divider"></div>
-        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Site ERP Streamlit d&#233;di&#233;</div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>ERP d&#233;di&#233; sur votre mobile</div>
         <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Gestion des retards &amp; avenants</div>
       </div>
       <div class="onglets-wrap">
@@ -455,37 +806,24 @@ TARIFS_AND_FOOTER = """
 </script>
 """
 
-# ── Render CSS + Hero + Services + Ecosystem + ROI intro ──
-st.markdown(CSS + HERO_AND_SERVICES, unsafe_allow_html=True)
+# ── Render ──
+st.markdown(CSS + HERO + ROBOT_SECTION + SERVICES + ECOSYSTEM + SOCIAL_PROOF + ROI_INTRO, unsafe_allow_html=True)
 
-# ── ROI Slider (Streamlit native) ──
+# ── ROI Slider ──
 nb_devis = st.slider("Nombre de devis par mois", min_value=1, max_value=80, value=15, step=1)
 
-# Temps libéré :
-# - Cycle devis→PV→facture : 45 min économisées/devis (saisie manuelle évitée)
-# - Cycle complet devis→facture finale : 57 min/devis (vocal 3 min vs ~60 min manuel)
-# - Tickets de caisse : 2h/semaine = 8h/mois
-# - Planning : 1h/semaine = 4h/mois
-# - Rapports chantier : 18 min économisées × nb_devis (1 rapport/chantier estimé)
-h_devis = round((45 + 12) * nb_devis / 60, 1)   # devis + cycle complet
-h_tickets = 8                                       # tickets caisse fixe
-h_planning = 4                                      # planning fixe
-h_rapports = round(18 * nb_devis / 60, 1)          # rapports chantier
+h_devis    = round((45 + 12) * nb_devis / 60, 1)
+h_tickets  = 8
+h_planning = 4
+h_rapports = round(18 * nb_devis / 60, 1)
 h = round(h_devis + h_tickets + h_planning + h_rapports, 1)
 
-# Temps cycle devis→facture sans Floxia estimé à 60 min, avec Floxia 3 min
-cycle_sans = 60   # minutes
-cycle_avec = 3    # minutes
-cycle_gain_min = (cycle_sans - cycle_avec) * nb_devis
-cycle_gain_h = round(cycle_gain_min / 60, 1)
+cycle_sans = 60
+cycle_avec = 3
+cycle_gain_h = round((cycle_sans - cycle_avec) * nb_devis / 60, 1)
 
-g = round(h * 55)
-if nb_devis <= 10:
-    abo = 49
-elif nb_devis <= 30:
-    abo = 99
-else:
-    abo = 149
+g   = round(h * 55)
+abo = 49 if nb_devis <= 10 else (99 if nb_devis <= 30 else 149)
 roi = round((g / abo) * 100)
 
 roi_html = f"""
@@ -505,7 +843,7 @@ roi_html = f"""
       <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
         <div><div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:#FFD700;">{cycle_gain_h}h</div><div style="font-size:.62rem;color:rgba(240,237,230,.25);">&#233;conomis&#233;es / mois</div></div>
         <div><div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:#FFD700;">3&#160;min</div><div style="font-size:.62rem;color:rgba(240,237,230,.25);">au lieu de 60&#160;min</div></div>
-        <div><div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:#FFD700;">&#8722;{round((cycle_sans-cycle_avec)/cycle_sans*100)}%</div><div style="font-size:.62rem;color:rgba(240,237,230,.25);">de temps admin</div></div>
+        <div><div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:#FFD700;">&#8722;95%</div><div style="font-size:.62rem;color:rgba(240,237,230,.25);">de temps admin</div></div>
       </div>
     </div>
     <div class="roi-note" style="margin-top:.6rem;">*55&#8364;/h artisan &#183; estimation mensuelle.</div>
@@ -527,6 +865,4 @@ roi_html = f"""
 </div>
 """
 st.markdown(roi_html, unsafe_allow_html=True)
-
-# ── Tarifs + Footer ──
 st.markdown(TARIFS_AND_FOOTER, unsafe_allow_html=True)
