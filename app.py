@@ -12,42 +12,97 @@ INSTA = "https://www.instagram.com/floxia.pro/"
 CSS = """
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
-...
-</style>
-"""
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html,body,[data-testid=\"stAppViewContainer\"],[data-testid=\"stMain\"],.main,.block-container{
-  background:#080808!important;font-family:'DM Sans',sans-serif!important;color:#F0EDE6!important;}
-#MainMenu,header,footer,[data-testid=\"stSidebar\"],[data-testid=\"stToolbar\"],
-[data-testid=\"stDecoration\"],[data-testid=\"stStatusWidget\"],.stDeployButton{display:none!important;}
-.block-container{padding:0!important;max-width:100%!important;}
 
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
-@keyframes fadeIn{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
-@keyframes scanline{0%{top:-10%}100%{top:110%}}
-@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+*,*::before,*::after{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block-container{
+  background:#080808!important;
+  font-family:'DM Sans',sans-serif!important;
+  color:#F0EDE6!important;
+}
+
+#MainMenu,header,footer,
+[data-testid="stSidebar"],
+[data-testid="stToolbar"],
+[data-testid="stDecoration"],
+[data-testid="stStatusWidget"],
+.stDeployButton{
+  display:none!important;
+}
+
+.block-container{
+  padding:0!important;
+  max-width:100%!important;
+}
+
+/* ANIMATIONS */
+
+@keyframes marquee{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+
+@keyframes pulseDot{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.4;transform:scale(1.5)}
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(32px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes scanline{
+  0%{top:-10%}
+  100%{top:110%}
+}
+
+@keyframes floatY{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
 
 /* SCROLL REVEAL */
-.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
-.reveal.in{opacity:1;transform:translateY(0);}
-.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
-.reveal-left.in{opacity:1;transform:translateX(0);}
-.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
-.reveal-right.in{opacity:1;transform:translateX(0);}
-.reveal-scale{opacity:0;transform:scale(.92);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
-.reveal-scale.in{opacity:1;transform:scale(1);}
-.reveal-stagger > *{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);}
-.reveal-stagger.in > *{opacity:1;transform:translateY(0);}
-.reveal-stagger.in > *:nth-child(1){transition-delay:.05s}
-.reveal-stagger.in > *:nth-child(2){transition-delay:.12s}
-.reveal-stagger.in > *:nth-child(3){transition-delay:.19s}
-.reveal-stagger.in > *:nth-child(4){transition-delay:.26s}
-.reveal-stagger.in > *:nth-child(5){transition-delay:.33s}
-.reveal-stagger.in > *:nth-child(6){transition-delay:.40s}
-.reveal-stagger.in > *:nth-child(7){transition-delay:.47s}
-.reveal-stagger.in > *:nth-child(8){transition-delay:.54s}
-.reveal-stagger.in > *:nth-child(9){transition-delay:.61s}
+
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);
+}
+
+.reveal.in{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.reveal-left{
+  opacity:0;
+  transform:translateX(-40px);
+  transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);
+}
+
+.reveal-left.in{
+  opacity:1;
+  transform:translateX(0);
+}
+
+.reveal-right{
+  opacity:0;
+  transform:translateX(40px);
+  transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);
+}
+
+.reveal-right.in{
+  opacity:1;
+  transform:translateX(0);
+}
+
+</style>
+"""
 
 /* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;align-items:center;
