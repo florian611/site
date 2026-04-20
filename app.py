@@ -591,11 +591,15 @@ COMP_ROWS = [
     ("Relances auto J+3 / J+7 / J+14",   "Oui",          "Non",      "Partiel",  "Non",      "Non"),
     ("Demande d'avis Google auto",        "Oui",          "Non",      "Non",      "Non",      "Non"),
     ("Email pro depuis message vocal",    "Oui",          "Non",      "Non",      "Non",      "Non"),
-    ("ERP mobile 100% WhatsApp",          "Oui",          "Non",      "Non",      "Non",      "Non"),
+    ("ERP tres flexible (WA + web + mobile)", "Oui",       "Non",      "Partiel",  "Partiel",  "Non"),
     ("Gestion equipe et planning",        "Oui",          "Non",      "Oui",      "Oui",      "Partiel"),
     ("Conformite facturation 2026",       "Oui",          "Oui",      "Oui",      "Oui",      "Non"),
     ("Sans abonnement logiciel lourd",    "Oui",          "Non",      "Non",      "Non",      "Oui"),
     ("Interface unique WA + ERP",         "Oui",          "Non",      "Non",      "Non",      "Non"),
+    ("App mobile chantier terrain",        "Oui",          "Non",      "Oui",      "Oui",      "Non"),
+    ("Suivi heures equipe smartphone",     "Oui",          "Non",      "Oui",      "Oui",      "Non"),
+    ("IA vocale / traitement NLP",         "Oui",          "Non",      "Non",      "Non",      "Non"),
+    ("Automatisations sans action manuelle","Oui",         "Non",      "Non",      "Non",      "Non"),
 ]
 
 def cmp_td(val, is_floxia=False):
