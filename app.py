@@ -622,10 +622,12 @@ st.markdown(f\"\"\"
     (\"Relancer les devis manuellement\", \"+30% de conversion\"),
     (\"Faire le planning à la main\", \"1h / semaine gagnée\"),
     (\"Exporter votre compta\", \"Export 1 clic\"),
-    (\"Rédiger les rapports chantier\", \"18 min / chantier\"),
+        (\"Rédiger les rapports chantier\", \"18 min / chantier\"),
     (\"Demander des avis Google\", \"Automatique\"),
     (\"Générer un PV de réception\", \"Auto après signature\"),
 ]]) + \"\"\"
   </div>
 </div>
 \"\"\", unsafe_allow_html=True)
+
+st.markdown(PRICING_HTML, unsafe_allow_html=True)
