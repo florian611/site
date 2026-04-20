@@ -8,7 +8,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-INSTA = "https://www.instagram.com/floxia.pro/"
+CALENDLY = "https://calendly.com/afele1845/30min"
 
 CSS = """
 <style>
@@ -246,6 +246,10 @@ div[data-testid="stSlider"] label p{color:rgba(232,237,244,.4)!important;font-si
 .cmp-floxia-dot{width:8px;height:8px;background:#F5C842;border-radius:50%;}
 .cmp-note{margin-top:1.2rem;font-size:.62rem;color:rgba(232,237,244,.2);font-style:italic;text-align:center;}
 
+/* Comparatif mobile : garde uniquement Fonctionnalite + Floxia */
+.cmp-mobile-note{display:none;margin-top:1rem;text-align:center;font-size:.65rem;
+  color:rgba(232,237,244,.25);font-style:italic;}
+
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:3.5rem;
   border:1px solid rgba(255,255,255,.06);border-radius:20px;overflow:hidden;background:rgba(255,255,255,.05);}
 .pcard{background:#0F1923;padding:2.2rem;display:flex;flex-direction:column;}
@@ -301,7 +305,14 @@ div[data-testid="stSlider"] label p{color:rgba(232,237,244,.4)!important;font-si
   .sec,.robot-section,.proof-section,.cmp-section{padding:4rem 5vw;}
   .ft{flex-direction:column;align-items:flex-start;}
   .roi-cta-box{flex-direction:column;align-items:flex-start;}
-  .cmp-table-wrap{overflow-x:auto;}
+
+  /* Comparatif mobile : scroll horizontal + masque colonnes concurrentes */
+  .cmp-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px;}
+  .cmp-table th,.cmp-table td{padding:.65rem .75rem;font-size:.7rem;}
+  .cmp-table th:not(:first-child):not(.floxia-col),
+  .cmp-table td:not(:first-child):not(.floxia-col){display:none;}
+  .cmp-table .floxia-col{display:table-cell!important;}
+  .cmp-mobile-note{display:block;}
 }
 @media(min-width:768px) and (max-width:1024px){
   .cgrid,.pgrid,.proof-grid{grid-template-columns:repeat(2,1fr);}
@@ -330,7 +341,7 @@ HTML_TOP = (
     '<a href="#comparatif">Comparatif</a>'
     '<a href="#roi">ROI</a>'
     '<a href="#tarifs">Tarifs</a>'
-    '<a href="' + INSTA + '" target="_blank" class="nav-cta">Demo</a>'
+    '<a href="' + CALENDLY + '" target="_blank" class="nav-cta">Reserver une demo</a>'
     '</div>'
     '</nav>'
 
@@ -351,7 +362,7 @@ HTML_TOP = (
     '<div class="hero-info-item"><span class="hero-info-label">Interface</span><span class="hero-info-val">WhatsApp + ERP</span></div>'
     '</div>'
     '<div class="hero-cta-row">'
-    '<a class="btn-y" href="' + INSTA + '" target="_blank">Reserver une demo</a>'
+    '<a class="btn-y" href="' + CALENDLY + '" target="_blank">Reserver une demo — 30 min</a>'
     '</div>'
     '</section>'
 
@@ -581,25 +592,25 @@ PROFILES_HTML = (
     '</div>'
 )
 
-# Comparatif — ajout EBP et Sage
+# Comparatif
 COMP_ROWS = [
-    ("Devis depuis WhatsApp vocal",       "Oui — natif",  "Non",      "Non",      "Non",      "Non"),
-    ("Cycle devis complet en 3 min",      "Oui",          "Partiel",  "Partiel",  "Partiel",  "Non"),
-    ("PV de reception automatique",       "Oui",          "Non",      "Oui",      "Non",      "Non"),
-    ("Facture finale auto apres PV",      "Oui",          "Oui",      "Oui",      "Oui",      "Non"),
-    ("Scan tickets de caisse via WA",     "Oui",          "Non",      "Non",      "Non",      "Non"),
-    ("Relances auto J+3 / J+7 / J+14",   "Oui",          "Non",      "Partiel",  "Non",      "Non"),
-    ("Demande d'avis Google auto",        "Oui",          "Non",      "Non",      "Non",      "Non"),
-    ("Email pro depuis message vocal",    "Oui",          "Non",      "Non",      "Non",      "Non"),
-    ("ERP tres flexible (WA + web + mobile)", "Oui",       "Non",      "Partiel",  "Partiel",  "Non"),
-    ("Gestion equipe et planning",        "Oui",          "Non",      "Oui",      "Oui",      "Partiel"),
-    ("Conformite facturation 2026",       "Oui",          "Oui",      "Oui",      "Oui",      "Non"),
-    ("Sans abonnement logiciel lourd",    "Oui",          "Non",      "Non",      "Non",      "Oui"),
-    ("Interface unique WA + ERP",         "Oui",          "Non",      "Non",      "Non",      "Non"),
-    ("App mobile chantier terrain",        "Oui",          "Non",      "Oui",      "Oui",      "Non"),
-    ("Suivi heures equipe smartphone",     "Oui",          "Non",      "Oui",      "Oui",      "Non"),
-    ("IA vocale / traitement NLP",         "Oui",          "Non",      "Non",      "Non",      "Non"),
-    ("Automatisations sans action manuelle","Oui",         "Non",      "Non",      "Non",      "Non"),
+    ("Devis depuis WhatsApp vocal",           "Oui — natif",  "Non",      "Non",      "Non",      "Non"),
+    ("Cycle devis complet en 3 min",           "Oui",          "Partiel",  "Partiel",  "Partiel",  "Non"),
+    ("PV de reception automatique",            "Oui",          "Non",      "Oui",      "Non",      "Non"),
+    ("Facture finale auto apres PV",           "Oui",          "Oui",      "Oui",      "Oui",      "Non"),
+    ("Scan tickets de caisse via WA",          "Oui",          "Non",      "Non",      "Non",      "Non"),
+    ("Relances auto J+3 / J+7 / J+14",        "Oui",          "Non",      "Partiel",  "Non",      "Non"),
+    ("Demande d'avis Google auto",             "Oui",          "Non",      "Non",      "Non",      "Non"),
+    ("Email pro depuis message vocal",         "Oui",          "Non",      "Non",      "Non",      "Non"),
+    ("ERP tres flexible (WA + web + mobile)",  "Oui",          "Non",      "Partiel",  "Partiel",  "Non"),
+    ("Gestion equipe et planning",             "Oui",          "Non",      "Oui",      "Oui",      "Partiel"),
+    ("App mobile chantier terrain",            "Oui",          "Non",      "Oui",      "Oui",      "Non"),
+    ("Suivi heures equipe smartphone",         "Oui",          "Non",      "Oui",      "Oui",      "Non"),
+    ("IA vocale / traitement NLP",             "Oui",          "Non",      "Non",      "Non",      "Non"),
+    ("Automatisations sans action manuelle",   "Oui",          "Non",      "Non",      "Non",      "Non"),
+    ("Conformite facturation 2026",            "Oui",          "Oui",      "Oui",      "Oui",      "Non"),
+    ("Sans abonnement logiciel lourd",         "Oui",          "Non",      "Non",      "Non",      "Oui"),
+    ("Interface unique WA + ERP",              "Oui",          "Non",      "Non",      "Non",      "Non"),
 ]
 
 def cmp_td(val, is_floxia=False):
@@ -646,6 +657,7 @@ COMPARATIF_HTML = (
     '<tbody>' + cmp_rows_html + '</tbody>'
     '</table>'
     '</div>'
+    '<div class="cmp-mobile-note">&#128196; Comparatif complet visible sur desktop</div>'
     '<div class="cmp-note">Comparatif etabli sur les fonctionnalites publiquement documentees — Floxia est en phase Beta 2026.</div>'
     '</div>'
     '<div class="div-line"></div>'
@@ -729,7 +741,7 @@ PRICING_HTML = (
     '<div class="pprice-custom">Prix personnalise</div>'
     '<div class="pprice-note">Calcule selon votre volume de devis.<br>Sans engagement.</div>'
     '<div class="pfeats">' + feats_offre1 + '</div>'
-    '<a class="pcta pcta-o" href="' + INSTA + '" target="_blank">Obtenir mon tarif</a>'
+    '<a class="pcta pcta-o" href="' + CALENDLY + '" target="_blank">Obtenir mon tarif</a>'
     '<div class="pnote">Pour se lancer sans risque</div>'
     '</div>'
 
@@ -746,7 +758,7 @@ PRICING_HTML = (
     '<div class="pfeat"><span class="pcheck bright">&#10022;</span>Gestion des retards et avenants</div>'
     '</div>'
     '<div class="onglets-tag">' + onglets + '</div>'
-    '<a class="pcta pcta-s" href="' + INSTA + '" target="_blank">Obtenir mon tarif</a>'
+    '<a class="pcta pcta-s" href="' + CALENDLY + '" target="_blank">Obtenir mon tarif</a>'
     '<div class="pnote">Le meilleur rapport qualite/valeur</div>'
     '</div>'
 
@@ -761,7 +773,7 @@ PRICING_HTML = (
     '<div class="pfeat incl"><span class="pcheck">&#11014;</span>Tout de l\'Offre Artisan Autonome</div>'
     + feats_offre3 +
     '</div>'
-    '<a class="pcta pcta-o" href="' + INSTA + '" target="_blank">Nous contacter</a>'
+    '<a class="pcta pcta-o" href="' + CALENDLY + '" target="_blank">Nous contacter</a>'
     '<div class="pnote">Pour les equipes et PME</div>'
     '</div>'
 
@@ -771,8 +783,8 @@ PRICING_HTML = (
     '<div class="cta-band">'
     '<div class="reveal-scale">'
     '<h2>Pret a recuperer<br>votre temps ?</h2>'
-    '<a class="ibtn" href="' + INSTA + '" target="_blank">Reserver une demo — Instagram</a>'
-    '<div style="margin-top:1rem;font-size:.7rem;color:rgba(30,43,69,.55);">@floxia.pro · Reponse sous 24h</div>'
+    '<a class="ibtn" href="' + CALENDLY + '" target="_blank">Reserver une demo — 30 min</a>'
+    '<div style="margin-top:1rem;font-size:.7rem;color:rgba(30,43,69,.55);">Reponse sous 24h · Sans engagement</div>'
     '</div>'
     '</div>'
 
@@ -784,7 +796,7 @@ PRICING_HTML = (
     '<div class="ft-links">'
     '<a href="#">Mentions legales</a>'
     '<a href="#">Confidentialite</a>'
-    '<a href="' + INSTA + '" target="_blank">Instagram</a>'
+    '<a href="' + CALENDLY + '" target="_blank">Reserver une demo</a>'
     '</div>'
     '<div class="ft-badge">Propulse par l\'IA</div>'
     '</footer>'
@@ -870,7 +882,7 @@ roi_cta_html = (
     '</div>'
     '<div class="roi-cta-sub">Tarif personnalise selon votre volume · sans engagement · reponse sous 24h</div>'
     '</div>'
-    '<a class="roi-cta-btn" href="' + INSTA + '" target="_blank">Reserver ma demo &#8594;</a>'
+    '<a class="roi-cta-btn" href="' + CALENDLY + '" target="_blank">Reserver ma demo 30 min &#8594;</a>'
     '</div>'
     '</div>'
 )
