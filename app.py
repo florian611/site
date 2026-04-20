@@ -424,7 +424,9 @@ st.markdown(f"""
 </div>
 
 <div class="div-line"></div>
+""", unsafe_allow_html=True)
 
+st.markdown("""
 <!-- TARIFS — 3 OFFRES RESTRUCTURÉES -->
 <div id="tarifs" style="background:#080808;">
 <div class="sec">
