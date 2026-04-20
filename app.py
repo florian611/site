@@ -657,7 +657,7 @@ def cmp_mobile_card(row):
         ("Floxia", row[1], True),
         ("Batiprix", row[2], False),
         ("Onaya", row[3], False),
-        ("EBP", row[4], False),
+        ("EBP/sage", row[4], False),
         ("Excel", row[5], False),
     ]
     cols_html = ""
