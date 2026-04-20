@@ -39,9 +39,9 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
   letter-spacing:.02em;transition:transform .15s,box-shadow .15s;}
 .nav-cta:hover{transform:scale(1.05);box-shadow:0 4px 24px rgba(255,215,0,.45);}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;
-  padding:0 6vw 6rem;position:relative;overflow:hidden;background:#080808;}
+/* HERO — centré */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:8rem 6vw 6rem;position:relative;overflow:hidden;background:#080808;}
 .hero-grid{position:absolute;inset:0;
   background-image:linear-gradient(rgba(255,215,0,.025) 1px,transparent 1px),
                    linear-gradient(90deg,rgba(255,215,0,.025) 1px,transparent 1px);
@@ -49,25 +49,26 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .hero-scan{position:absolute;left:0;right:0;height:1px;
   background:linear-gradient(90deg,transparent,rgba(255,215,0,.12),transparent);
   animation:scanline 5s linear infinite;pointer-events:none;}
-.hero-orb{position:absolute;top:5%;right:-8%;width:700px;height:700px;
+.hero-orb{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;
   border-radius:50%;pointer-events:none;
   background:radial-gradient(circle,rgba(255,215,0,.07) 0%,transparent 60%);}
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.64rem;font-weight:700;
   letter-spacing:.22em;text-transform:uppercase;color:rgba(255,215,0,.55);margin-bottom:2rem;
-  animation:fadeIn .7s ease .1s both;}
+  animation:fadeIn .7s ease .1s both;position:relative;}
 .hero-badge-dot{width:4px;height:4px;background:#FFD700;border-radius:50%;animation:pulse 2s infinite;}
-.hero-title{font-family:'Syne',sans-serif;font-weight:900;line-height:.9;letter-spacing:-.06em;
-  color:#F0EDE6;font-size:clamp(3.5rem,10vw,9.5rem);margin-bottom:2rem;position:relative;z-index:1;
+.hero-title{font-family:'Syne',sans-serif;font-weight:900;line-height:.92;letter-spacing:-.06em;
+  color:#F0EDE6;font-size:clamp(3.2rem,9vw,8rem);margin-bottom:2rem;position:relative;z-index:1;
   animation:fadeIn .7s ease .2s both;}
 .hero-title .outline{-webkit-text-stroke:2px #FFD700;color:transparent;}
 .hero-title .anim{display:inline-block;transition:opacity .3s,transform .3s;}
-.hero-info{display:flex;align-items:center;gap:2.5rem;margin-bottom:3rem;
-  animation:fadeIn .7s ease .5s both;flex-wrap:wrap;}
-.hero-info-item{display:flex;flex-direction:column;gap:.18rem;}
+.hero-info{display:flex;align-items:center;justify-content:center;gap:2.5rem;margin-bottom:3rem;
+  animation:fadeIn .7s ease .5s both;flex-wrap:wrap;position:relative;}
+.hero-info-item{display:flex;flex-direction:column;gap:.18rem;align-items:center;}
 .hero-info-label{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,237,230,.22);}
 .hero-info-val{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700;color:#F0EDE6;}
 .hero-sep{width:1px;height:36px;background:rgba(255,255,255,.08);}
-.hero-cta-row{display:flex;gap:1rem;align-items:center;animation:fadeIn .7s ease .7s both;}
+.hero-cta-row{display:flex;gap:1rem;align-items:center;justify-content:center;
+  animation:fadeIn .7s ease .7s both;flex-wrap:wrap;position:relative;}
 .btn-y{background:#FFD700;color:#080808;padding:.82rem 2rem;border-radius:50px;font-weight:700;
   font-size:.88rem;text-decoration:none;display:inline-block;transition:transform .2s,box-shadow .2s;}
 .btn-y:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,215,0,.42);}
@@ -97,7 +98,8 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .sec-sub{font-size:.93rem;color:rgba(240,237,230,.32);max-width:430px;line-height:1.88;font-weight:300;}
 .div-line{height:1px;background:rgba(255,255,255,.04);}
 
-.cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:3.8rem;
+/* SERVICES GRID — 3 colonnes pour 9 cartes */
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:3.8rem;
   border:1px solid rgba(255,255,255,.045);border-radius:20px;overflow:hidden;
   background:rgba(255,255,255,.04);}
 .scard{background:#080808;padding:2rem;transition:background .22s;position:relative;overflow:hidden;}
@@ -151,7 +153,7 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .task-gain{font-size:.63rem;font-weight:700;color:rgba(255,215,0,.65);background:rgba(255,215,0,.04);
   border:1px solid rgba(255,215,0,.1);padding:.13rem .5rem;border-radius:50px;white-space:nowrap;margin-left:.55rem;}
 
-/* TARIFS SANS PRIX — grille unifiée */
+/* TARIFS — 3 offres */
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:3.5rem;
   border:1px solid rgba(255,255,255,.045);border-radius:20px;overflow:hidden;
   background:rgba(255,255,255,.04);}
@@ -172,7 +174,9 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .pprice-note{font-size:.7rem;color:rgba(240,237,230,.2);margin-bottom:1.5rem;line-height:1.55;}
 .pfeats{display:flex;flex-direction:column;gap:.52rem;margin-bottom:1.7rem;}
 .pfeat{display:flex;align-items:flex-start;gap:.52rem;font-size:.78rem;color:rgba(240,237,230,.4);line-height:1.52;}
+.pfeat.incl{color:rgba(240,237,230,.22);font-style:italic;}
 .pcheck{color:rgba(255,215,0,.55);font-size:.7rem;flex-shrink:0;margin-top:.1rem;}
+.pcheck.bright{color:#FFD700;}
 .pcta{display:block;text-align:center;padding:.72rem 1.2rem;border-radius:50px;
   font-weight:700;font-size:.82rem;text-decoration:none;transition:all .2s;letter-spacing:.02em;}
 .pcta-o{border:1px solid rgba(255,255,255,.09);color:rgba(240,237,230,.6);}
@@ -180,6 +184,11 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .pcta-s{background:#FFD700;color:#080808;border:none;font-weight:800;}
 .pcta-s:hover{box-shadow:0 8px 26px rgba(255,215,0,.38);transform:translateY(-1px);}
 .pnote{font-size:.62rem;text-align:center;color:rgba(240,237,230,.13);margin-top:.75rem;}
+.onglets-tag{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.65rem;}
+.otag{font-size:.58rem;font-weight:600;letter-spacing:.03em;background:rgba(255,255,255,.03);
+  color:rgba(240,237,230,.28);padding:.18rem .52rem;border-radius:4px;
+  border:1px solid rgba(255,255,255,.06);white-space:nowrap;}
+.feat-divider{height:1px;background:rgba(255,255,255,.04);margin:.75rem 0;}
 
 .cta-band{background:#FFD700;padding:6rem 5vw;text-align:center;}
 .cta-band h2{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5vw,4rem);
@@ -217,6 +226,7 @@ div[data-testid="stSlider"] label p{color:rgba(240,237,230,.25)!important;font-s
   </div>
 </nav>
 
+<!-- HERO CENTRÉ -->
 <section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-scan"></div>
@@ -264,20 +274,77 @@ div[data-testid="stSlider"] label p{color:rgba(240,237,230,.25)!important;font-s
   <div class="mq-item"><div class="mq-dot"></div>ERP 100% mobile</div>
 </div></div>
 
+<!-- SERVICES — 9 cartes en 3 colonnes -->
 <div id="services" style="background:#080808;">
 <div class="sec">
   <div class="sec-lbl">Ce que fait Floxia</div>
   <h2 class="sec-title">Tout votre flux de travail,<br>automatis&#233; de A &#224; Z.</h2>
   <p class="sec-sub">Des automatisations concr&#232;tes, op&#233;rationnelles d&#232;s aujourd'hui.</p>
   <div class="cgrid">
-    <div class="scard"><div class="cicon">&#x1F4AC;</div><div class="ctitle">Devis &#8594; PV &#8594; Facture</div><div class="cdesc">Un vocal WhatsApp suffit. Floxia g&#233;n&#232;re le devis PDF, le client signe, le PV de r&#233;ception est cr&#233;&#233;, et la facture finale se g&#233;n&#232;re automatiquement.</div><span class="ctag">&#x26A1; Cycle complet g&#233;r&#233;</span></div>
-    <div class="scard"><div class="cicon">&#x1F4F8;</div><div class="ctitle">Scan Tickets de Caisse</div><div class="cdesc">Photographiez vos tickets sur WhatsApp. L'IA extrait fournisseur, articles, montants HT/TVA et alimente votre comptabilit&#233; instantan&#233;ment.</div><span class="ctag">&#x26A1; Z&#233;ro ressaisie</span></div>
-    <div class="scard"><div class="cicon">&#x2B50;</div><div class="ctitle">Avis Google Maps</div><div class="cdesc">&#192; chaque chantier termin&#233;, Floxia envoie un message WhatsApp au client pour l'inviter &#224; laisser un avis Google.</div><span class="ctag">&#x26A1; R&#233;putation boost&#233;e</span></div>
-    <div class="scard"><div class="cicon">&#x1F6A8;</div><div class="ctitle">Alerte Probl&#232;me Chantier</div><div class="cdesc">Un probl&#232;me&#160;? Envoyez un vocal. Floxia r&#233;dige l'e-mail professionnel au client&#160;: situation, causes, nouveau d&#233;lai.</div><span class="ctag">&#x26A1; Email en 30&#160;sec</span></div>
-    <div class="scard"><div class="cicon">&#x1F514;</div><div class="ctitle">Relances Automatiques</div><div class="cdesc">Floxia surveille vos devis non sign&#233;s et relance automatiquement par SMS et e-mail au bon moment.</div><span class="ctag">&#x26A1; +30&#160;% de conversion</span></div>
-    <div class="scard"><div class="cicon">&#x1F4CB;</div><div class="ctitle">ERP Mobile Complet</div><div class="cdesc">Devis, factures, PV, chantiers, planning, salari&#233;s, d&#233;penses &#8212; tout synchronis&#233; en temps r&#233;el avec Google Sheets.</div><span class="ctag">&#x26A1; Tout en un seul endroit</span></div>
-    <div class="scard"><div class="cicon">&#x1F399;</div><div class="ctitle">Rapports Vocaux Chantier</div><div class="cdesc">Dictez votre rapport en 2&#160;minutes. Floxia le structure et l'envoie au client sous forme de compte-rendu professionnel.</div><span class="ctag">&#x26A1; Rapport en 2&#160;min</span></div>
-    <div class="scard"><div class="cicon">&#x1F4B0;</div><div class="ctitle">Suivi D&#233;penses &amp; TVA</div><div class="cdesc">Chaque ticket scann&#233; alimente votre tableau de bord&#160;: d&#233;penses par cat&#233;gorie, TVA r&#233;cup&#233;rable, export comptable en 1&#160;clic.</div><span class="ctag">&#x26A1; Compta simplifi&#233;e</span></div>
+
+    <div class="scard">
+      <div class="cicon">&#x1F4AC;</div>
+      <div class="ctitle">Devis &#8594; PV &#8594; Facture</div>
+      <div class="cdesc">Un vocal WhatsApp suffit. Floxia g&#233;n&#232;re le devis PDF, le client signe, le PV de r&#233;ception est cr&#233;&#233;, et la facture finale se g&#233;n&#232;re automatiquement.</div>
+      <span class="ctag">&#x26A1; Cycle complet g&#233;r&#233;</span>
+    </div>
+
+    <div class="scard">
+      <div class="cicon">&#x1F4F8;</div>
+      <div class="ctitle">Scan Tickets de Caisse</div>
+      <div class="cdesc">Photographiez vos tickets sur WhatsApp. L'IA extrait fournisseur, articles, montants HT/TVA et alimente votre comptabilit&#233; instantan&#233;ment.</div>
+      <span class="ctag">&#x26A1; Z&#233;ro ressaisie</span>
+    </div>
+
+    <div class="scard">
+      <div class="cicon">&#x2B50;</div>
+      <div class="ctitle">Avis Google Maps</div>
+      <div class="cdesc">&#192; chaque chantier termin&#233;, Floxia envoie automatiquement un message WhatsApp au client pour l'inviter &#224; laisser un avis Google &#224; la facture finale.</div>
+      <span class="ctag">&#x26A1; R&#233;putation boost&#233;e</span>
+    </div>
+
+    <div class="scard">
+      <div class="cicon">&#x1F6A8;</div>
+      <div class="ctitle">Alerte Probl&#232;me Chantier</div>
+      <div class="cdesc">Un probl&#232;me&#160;? Envoyez un vocal. Floxia r&#233;dige l'e-mail professionnel au client&#160;: situation, causes, nouveau d&#233;lai.</div>
+      <span class="ctag">&#x26A1; Email en 30&#160;sec</span>
+    </div>
+
+    <div class="scard">
+      <div class="cicon">&#x1F514;</div>
+      <div class="ctitle">Relances Automatiques</div>
+      <div class="cdesc">Floxia surveille vos devis non sign&#233;s et relance automatiquement en 3 temps&#160;: J+3, J+7, J+14 apr&#232;s la date de cr&#233;ation du devis.</div>
+      <span class="ctag">&#x26A1; +30&#160;% de conversion</span>
+    </div>
+
+    <div class="scard">
+      <div class="cicon">&#x1F4CB;</div>
+      <div class="ctitle">ERP Mobile Complet</div>
+      <div class="cdesc">Devis, factures, PV, chantiers, planning, salari&#233;s, d&#233;penses &#8212; tout synchronis&#233; en temps r&#233;el via un site d&#233;di&#233; Streamlit, accessible depuis votre t&#233;l&#233;phone.</div>
+      <span class="ctag">&#x26A1; Tout en un seul endroit</span>
+    </div>
+
+    <div class="scard">
+      <div class="cicon">&#x1F399;</div>
+      <div class="ctitle">Rapports Vocaux Chantier</div>
+      <div class="cdesc">Dictez votre rapport en 2&#160;minutes. Floxia le structure et l'envoie au client sous forme de compte-rendu professionnel en PDF.</div>
+      <span class="ctag">&#x26A1; Rapport en 2&#160;min</span>
+    </div>
+
+    <div class="scard">
+      <div class="cicon">&#x1F4B0;</div>
+      <div class="ctitle">Suivi D&#233;penses &amp; TVA</div>
+      <div class="cdesc">Chaque ticket scann&#233; alimente votre tableau de bord&#160;: d&#233;penses par cat&#233;gorie, TVA r&#233;cup&#233;rable, export comptable en 1&#160;clic. L'IA calcule la rentabilit&#233; r&#233;elle (CA &#8722; D&#233;penses).</div>
+      <span class="ctag">&#x26A1; Compta simplifi&#233;e</span>
+    </div>
+
+    <div class="scard">
+      <div class="cicon">&#x1F465;</div>
+      <div class="ctitle">Gestion &#201;quipe &amp; Salari&#233;s</div>
+      <div class="cdesc">Suivez les heures de vos collaborateurs, assignez les chantiers, g&#233;rez le planning en temps r&#233;el. Tout synchronis&#233; avec votre Google Sheets.</div>
+      <span class="ctag">&#x26A1; &#201;quipe pilot&#233;e depuis WA</span>
+    </div>
+
   </div>
 </div>
 </div>
@@ -302,7 +369,7 @@ div[data-testid="stSlider"] label p{color:rgba(240,237,230,.25)!important;font-s
     <div class="fblock"><div class="flbl">Flux 2 &#8212; Avis Google Maps</div><div class="fwrap"><div class="frow"><div class="fn">&#x2705; Chantier termin&#233;</div><div class="fa">&#8594;</div><div class="fn g">&#x26A1; Floxia d&#233;tecte</div><div class="fa">&#8594;</div><div class="fn">&#x1F4AC; Message WA</div><div class="fa">&#8594;</div><div class="fn e">&#x2B50; Avis Google</div></div></div></div>
     <div class="fblock"><div class="flbl">Flux 3 &#8212; Ticket de caisse</div><div class="fwrap"><div class="frow"><div class="fn">&#x1F4F8; Photo WA</div><div class="fa">&#8594;</div><div class="fn g">&#x26A1; OCR IA</div><div class="fa">&#8594;</div><div class="fn">&#x1F4CA; Google Sheets</div><div class="fa">&#8594;</div><div class="fn e">&#x2705; Compta</div></div></div></div>
     <div class="fblock"><div class="flbl">Flux 4 &#8212; Probl&#232;me chantier</div><div class="fwrap"><div class="frow"><div class="fn">&#x1F6A8; Vocal WA</div><div class="fa">&#8594;</div><div class="fn g">&#x26A1; IA r&#233;daction</div><div class="fa">&#8594;</div><div class="fn e">&#x1F4E7; Email client</div></div></div></div>
-    <div class="fblock"><div class="flbl">Flux 5 &#8212; Relances devis</div><div class="fwrap"><div class="frow"><div class="fn">&#x23F0; D&#233;lai d&#233;pass&#233;</div><div class="fa">&#8594;</div><div class="fn g">&#x26A1; Floxia d&#233;tecte</div><div class="fa">&#8594;</div><div class="fn e">&#x1F4AC; SMS + Email</div></div></div></div>
+    <div class="fblock"><div class="flbl">Flux 5 &#8212; Relances devis (J+3 / J+7 / J+14)</div><div class="fwrap"><div class="frow"><div class="fn">&#x23F0; D&#233;lai d&#233;pass&#233;</div><div class="fa">&#8594;</div><div class="fn g">&#x26A1; Floxia d&#233;tecte</div><div class="fa">&#8594;</div><div class="fn e">&#x1F4AC; SMS + Email</div></div></div></div>
   </div>
 </div>
 </div>
@@ -358,66 +425,104 @@ st.markdown(f"""
 
 <div class="div-line"></div>
 
+<!-- TARIFS — 3 OFFRES RESTRUCTURÉES -->
 <div id="tarifs" style="background:#080808;">
 <div class="sec">
   <div class="sec-lbl">Tarifs</div>
   <h2 class="sec-title">Un prix adapt&#233;<br>&#224; votre activit&#233;.</h2>
   <p class="sec-sub">Chaque tarif est personnalis&#233; selon votre volume de devis et vos besoins. Contactez-nous pour une offre sur mesure.</p>
+
   <div class="pgrid">
+
+    <!-- OFFRE 1 — ESSENTIEL -->
     <div class="pcard">
-      <div class="pbadge">Starter</div>
-      <div class="pplan">Pour d&#233;marrer</div>
-      <div class="psub">Artisans solo &#183; petits volumes</div>
-      <div class="phighlight">Id&#233;al jusqu'&#224; 10 devis par mois. Pour se lancer sans risque.</div>
+      <div class="pbadge">Offre 1</div>
+      <div class="pplan">Essentiel</div>
+      <div class="psub">Num&#233;risation administrative &#183; WhatsApp</div>
+      <div class="phighlight">Id&#233;al pour d&#233;marrer&#160;: base de donn&#233;es, documents automatiques et conformit&#233; 2026.</div>
       <div class="pprice-custom">Prix personnalis&#233;</div>
       <div class="pprice-note">Calcul&#233; selon votre volume de devis.<br>Sans engagement &#183; r&#233;siliable &#224; tout moment.</div>
       <div class="pfeats">
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>Devis WhatsApp vocal</div>
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>Cycle devis &#8594; PV &#8594; facture</div>
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>Scan tickets de caisse</div>
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>Relances automatiques</div>
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>Avis Google Maps auto</div>
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>ERP mobile (Google Sheets)</div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Base de donn&#233;es Google Sheets d&#233;di&#233;e</div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Cr&#233;ation automatique de Devis PDF</div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Factures &amp; Factures d'acompte auto</div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>PV de r&#233;ception automatis&#233;</div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Archivage structur&#233; Google Drive</div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Envoi via API WhatsApp Business</div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Signature &#233;lectronique int&#233;gr&#233;e</div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Conforme r&#233;forme facturation 2026</div>
       </div>
       <a class="pcta pcta-o" href="https://www.instagram.com/floxia.pro/" target="_blank">Obtenir mon tarif &#8594;</a>
-      <div class="pnote">Id&#233;al pour les artisans solo</div>
+      <div class="pnote">Pour se lancer sans risque</div>
     </div>
+
+    <!-- OFFRE 2 — STANDARD -->
     <div class="pcard feat">
-      <div class="pbadge">&#x26A1; Le plus populaire</div>
-      <div class="pplan">Pro</div>
-      <div class="psub">Artisans actifs &#183; 10&#8211;30 devis/mois</div>
-      <div class="phighlight">Le meilleur rapport valeur / fonctionnalit&#233;s pour un artisan actif.</div>
+      <div class="pbadge">&#x26A1; Le plus populaire &#183; Offre 2</div>
+      <div class="pplan">L'Artisan Autonome</div>
+      <div class="psub">Inclus Offre 1 &#183; WhatsApp &amp; ERP Web</div>
+      <div class="phighlight">Tout l'Essentiel + votre site ERP d&#233;di&#233; pour piloter votre activit&#233; en autonomie compl&#232;te.</div>
       <div class="pprice-custom">Prix personnalis&#233;</div>
       <div class="pprice-note">Calcul&#233; selon votre volume de devis.<br>Sans engagement &#183; r&#233;siliable &#224; tout moment.</div>
       <div class="pfeats">
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>Tout du plan Starter</div>
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>Alertes probl&#232;me chantier</div>
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>Rapports vocaux PDF</div>
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>Planning &amp; salari&#233;s</div>
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>Suivi d&#233;penses &amp; TVA</div>
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>Support prioritaire WhatsApp</div>
+        <div class="pfeat incl"><span class="pcheck">&#x2B06;</span>Tout de l'Offre Essentiel</div>
+        <div class="feat-divider"></div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Site ERP Streamlit d&#233;di&#233;</div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Gestion des retards &amp; avenants</div>
+      </div>
+      <div style="margin-bottom:1.2rem;">
+        <div style="font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,215,0,.35);margin-bottom:.55rem;">Onglets disponibles</div>
+        <div class="onglets-tag">
+          <span class="otag">Vue g&#233;n&#233;rale</span>
+          <span class="otag">Cr&#233;er un devis</span>
+          <span class="otag">Devis</span>
+          <span class="otag">Facture &amp; Paiements</span>
+          <span class="otag">Export compta 1 clic</span>
+          <span class="otag">Chantier</span>
+          <span class="otag">Planning</span>
+          <span class="otag">Notifications</span>
+          <span class="otag">Espace Clients</span>
+          <span class="otag">Tous les dossiers</span>
+          <span class="otag">Google Sheet</span>
+          <span class="otag">Retards &amp; Avenants</span>
+          <span class="otag">Coordonn&#233;es &amp; RGPD</span>
+        </div>
       </div>
       <a class="pcta pcta-s" href="https://www.instagram.com/floxia.pro/" target="_blank">Obtenir mon tarif &#8594;</a>
       <div class="pnote">Le meilleur rapport qualit&#233; / valeur</div>
     </div>
+
+    <!-- OFFRE 3 — PREMIUM -->
     <div class="pcard">
-      <div class="pbadge">Expert</div>
-      <div class="pplan">Pour les &#233;quipes</div>
-      <div class="psub">PME &#183; &#233;quipes terrain &#183; volume illimit&#233;</div>
-      <div class="phighlight">Devis illimit&#233;s, multi-utilisateurs et int&#233;grations sur mesure.</div>
+      <div class="pbadge">Offre 3</div>
+      <div class="pplan">Premium</div>
+      <div class="psub">Inclus Offre 1 + 2 &#183; &#201;quipe &amp; IA avanc&#233;e</div>
+      <div class="phighlight">Gestion d'&#233;quipe, IA vocale, rentabilit&#233; r&#233;elle et relances intelligentes — la puissance compl&#232;te.</div>
       <div class="pprice-custom">Prix personnalis&#233;</div>
       <div class="pprice-note">Calcul&#233; selon votre &#233;quipe et vos besoins.<br>Accompagnement d&#233;di&#233; inclus.</div>
       <div class="pfeats">
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>Tout du plan Pro</div>
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>Devis illimit&#233;s</div>
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>Multi-utilisateurs (&#233;quipe)</div>
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>Tableaux de bord avanc&#233;s</div>
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>Int&#233;grations sur mesure</div>
-        <div class="pfeat"><span class="pcheck">&#x2736;</span>Accompagnement d&#233;di&#233;</div>
+        <div class="pfeat incl"><span class="pcheck">&#x2B06;</span>Tout de l'Offre Artisan Autonome</div>
+        <div class="feat-divider"></div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Saisie vocale IA via WhatsApp (devis)</div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Collecte &amp; classement photos fin de chantier</div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Suivi heures collaborateurs</div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Rentabilit&#233; r&#233;elle IA (CA &#8722; D&#233;penses)</div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Scan tickets caisse &#8594; compta auto</div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Email professionnel depuis vocal (impr&#233;vus)</div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Relances devis J+3 / J+7 / J+14</div>
+        <div class="pfeat"><span class="pcheck bright">&#x2736;</span>Demande d'avis Google &#224; la facture finale</div>
+      </div>
+      <div style="margin-bottom:1.2rem;">
+        <div style="font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,215,0,.35);margin-bottom:.55rem;">Onglets suppl&#233;mentaires</div>
+        <div class="onglets-tag">
+          <span class="otag">D&#233;penses</span>
+          <span class="otag">Salari&#233;s</span>
+        </div>
       </div>
       <a class="pcta pcta-o" href="https://www.instagram.com/floxia.pro/" target="_blank">Nous contacter &#8594;</a>
-      <div class="pnote">Pour les PME et &#233;quipes terrain</div>
+      <div class="pnote">Pour les &#233;quipes &amp; PME du b&#226;timent</div>
     </div>
+
   </div>
 </div>
 </div>
