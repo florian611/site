@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title=\"Floxia – Devis & Factures depuis WhatsApp en 3 min\",
+    page_title=\" Floxia – Devis & Factures depuis WhatsApp en 3 min\",
     page_icon=\"⚡\",
     layout=\"wide\",
     initial_sidebar_state=\"collapsed\",
