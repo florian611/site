@@ -1,13 +1,3 @@
-"\"\"\"
-Floxia - Landing Page Streamlit
-Design: Dark Mode + accents dorés (#FFD700)
-Sections: Hero, Robot ERP, Services, Ecosystem, Profils types, Simulateur ROI, Tarifs, Footer
-Animations: scroll-reveal via IntersectionObserver
-
-Deploy: push ce fichier sur GitHub puis connecte-le à https://streamlit.io/cloud
-Requirements: streamlit (ajoute \"streamlit\" dans requirements.txt)
-\"\"\"
-
 import streamlit as st
 
 st.set_page_config(
