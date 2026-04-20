@@ -1,4 +1,5 @@
 import streamlit as st
+import textwrap
 
 st.set_page_config(
     page_title="Floxia – Devis & Factures depuis WhatsApp en 3 min",
@@ -647,11 +648,11 @@ PRICING_HTML = f"""
 """
 
 # ═══ RENDER ═══
-st.markdown(CSS, unsafe_allow_html=True)
-st.markdown(HTML_TOP, unsafe_allow_html=True)
-st.markdown(SERVICES_HTML, unsafe_allow_html=True)
-st.markdown(ECO_HTML, unsafe_allow_html=True)
-st.markdown(PROFILES_HTML, unsafe_allow_html=True)
+st.markdown(textwrap.dedent(CSS), unsafe_allow_html=True)
+st.markdown(textwrap.dedent(HTML_TOP), unsafe_allow_html=True)
+st.markdown(textwrap.dedent(SERVICES_HTML), unsafe_allow_html=True)
+st.markdown(textwrap.dedent(ECO_HTML), unsafe_allow_html=True)
+st.markdown(textwrap.dedent(PROFILES_HTML), unsafe_allow_html=True)
 
 # ═══ ROI SLIDER (interactif Streamlit) ═══
 nb = st.slider("Nombre de devis par mois", 1, 80, 15, 1)
@@ -702,4 +703,4 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown(PRICING_HTML, unsafe_allow_html=True)
+st.markdown(textwrap.dedent(PRICING_HTML), unsafe_allow_html=True)
