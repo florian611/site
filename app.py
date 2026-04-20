@@ -9,9 +9,12 @@ st.set_page_config(
 
 INSTA = "https://www.instagram.com/floxia.pro/"
 
-CSS = \"\"\"
+CSS = """
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+...
+</style>
+"""
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body,[data-testid=\"stAppViewContainer\"],[data-testid=\"stMain\"],.main,.block-container{
   background:#080808!important;font-family:'DM Sans',sans-serif!important;color:#F0EDE6!important;}
