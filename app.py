@@ -14,11 +14,7 @@ CSS = """
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
-*,*::before,*::after{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
 html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block-container{
   background:#080808!important;
@@ -31,95 +27,30 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 [data-testid="stToolbar"],
 [data-testid="stDecoration"],
 [data-testid="stStatusWidget"],
-.stDeployButton{
-  display:none!important;
-}
+.stDeployButton{display:none!important;}
 
-.block-container{
-  padding:0!important;
-  max-width:100%!important;
-}
+.block-container{padding:0!important;max-width:100%!important;}
 
-/* ANIMATIONS */
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scanline{0%{top:-10%}100%{top:110%}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
-@keyframes marquee{
-  0%{transform:translateX(0)}
-  100%{transform:translateX(-50%)}
-}
-
-@keyframes pulseDot{
-  0%,100%{opacity:1;transform:scale(1)}
-  50%{opacity:.4;transform:scale(1.5)}
-}
-
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(32px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-@keyframes scanline{
-  0%{top:-10%}
-  100%{top:110%}
-}
-
-@keyframes floatY{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-8px)}
-}
-
-/* SCROLL REVEAL */
-
-.reveal{
-  opacity:1;
-  transform:none;
-  animation:fadeIn .65s cubic-bezier(.22,1,.36,1) both;
-}
-
-.reveal.in{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.reveal-left{
-  opacity:1;
-  transform:none;
-  animation:fadeIn .7s cubic-bezier(.22,1,.36,1) both;
-}
-
-.reveal-left.in{
-  opacity:1;
-  transform:translateX(0);
-}
-
-.reveal-right{
-  opacity:1;
-  transform:none;
-  animation:fadeIn .7s cubic-bezier(.22,1,.36,1) both;
-}
-
-.reveal-right.in{
-  opacity:1;
-  transform:translateX(0);
-}
-
-.reveal-scale{
-  opacity:1;
-  transform:none;
-  animation:fadeIn .75s cubic-bezier(.22,1,.36,1) both;
-}
-
-.reveal-stagger > *{
-  opacity:1;
-  transform:none;
-  animation:fadeIn .65s cubic-bezier(.22,1,.36,1) both;
-}
+.reveal{opacity:1;transform:none;animation:fadeIn .65s cubic-bezier(.22,1,.36,1) both;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:1;transform:none;animation:fadeIn .7s cubic-bezier(.22,1,.36,1) both;}
+.reveal-left.in{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:1;transform:none;animation:fadeIn .7s cubic-bezier(.22,1,.36,1) both;}
+.reveal-right.in{opacity:1;transform:translateX(0);}
+.reveal-scale{opacity:1;transform:none;animation:fadeIn .75s cubic-bezier(.22,1,.36,1) both;}
+.reveal-stagger > *{opacity:1;transform:none;animation:fadeIn .65s cubic-bezier(.22,1,.36,1) both;}
 .reveal-stagger > *:nth-child(2){animation-delay:.05s;}
 .reveal-stagger > *:nth-child(3){animation-delay:.10s;}
 .reveal-stagger > *:nth-child(4){animation-delay:.15s;}
 .reveal-stagger > *:nth-child(5){animation-delay:.20s;}
 .reveal-stagger > *:nth-child(6){animation-delay:.25s;}
 
-/* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;align-items:center;
   justify-content:space-between;padding:1rem 5vw;background:rgba(8,8,8,.92);backdrop-filter:blur(20px);
   border-bottom:1px solid rgba(255,255,255,.04);}
@@ -135,7 +66,6 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
   border-radius:50px;font-size:.78rem;font-weight:700;text-decoration:none;transition:transform .15s,box-shadow .15s;}
 .nav-cta:hover{transform:scale(1.05);box-shadow:0 4px 24px rgba(255,215,0,.45);}
 
-/* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:8rem 6vw 6rem;position:relative;overflow:hidden;background:#080808;}
 .hero-grid{position:absolute;inset:0;
@@ -166,14 +96,12 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
   font-size:.88rem;text-decoration:none;display:inline-block;transition:transform .2s,box-shadow .2s;}
 .btn-y:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,215,0,.42);}
 
-/* MARQUEE */
 .mq-wrap{overflow:hidden;padding:.85rem 0;border-top:1px solid rgba(255,215,0,.06);border-bottom:1px solid rgba(255,215,0,.06);}
 .mq-track{display:flex;gap:2.5rem;width:max-content;animation:marquee 32s linear infinite;}
 .mq-item{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
   color:rgba(255,215,0,.3);display:flex;align-items:center;gap:.75rem;white-space:nowrap;}
 .mq-dot{width:3px;height:3px;background:#FFD700;border-radius:50%;}
 
-/* ROBOT */
 .robot-section{background:#080808;padding:5rem 5vw;max-width:1280px;margin:0 auto;}
 .robot-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
 .robot-visual{position:relative;display:flex;justify-content:center;}
@@ -189,7 +117,9 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
   border-radius:12px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   display:flex;flex-direction:column;gap:6px;padding:12px;}
 .robot-line{height:6px;background:rgba(255,215,0,.12);border-radius:3px;}
-.robot-line.short{width:60%;}.robot-line.gold{background:rgba(255,215,0,.35);width:80%;}.robot-line.tiny{width:40%;}
+.robot-line.short{width:60%;}
+.robot-line.gold{background:rgba(255,215,0,.35);width:80%;}
+.robot-line.tiny{width:40%;}
 .robot-badge{position:absolute;top:-8px;right:-8px;background:#FFD700;color:#080808;
   font-family:'Syne',sans-serif;font-weight:800;font-size:.55rem;letter-spacing:.05em;padding:.25rem .5rem;border-radius:50px;}
 .robot-tag{font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
@@ -202,7 +132,6 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .robot-feat-title{font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:#F0EDE6;margin-bottom:.2rem;}
 .robot-feat-desc{font-size:.73rem;color:rgba(240,237,230,.3);line-height:1.6;}
 
-/* SECTIONS */
 .sec{padding:6.5rem 5vw;max-width:1280px;margin:0 auto;}
 .sec-lbl{font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
   color:rgba(255,215,0,.45);margin-bottom:.75rem;display:flex;align-items:center;gap:.55rem;}
@@ -212,7 +141,6 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .sec-sub{font-size:.93rem;color:rgba(240,237,230,.32);max-width:430px;line-height:1.88;font-weight:300;}
 .div-line{height:1px;background:rgba(255,255,255,.04);}
 
-/* SERVICES */
 .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:3.8rem;
   border:1px solid rgba(255,255,255,.045);border-radius:20px;overflow:hidden;background:rgba(255,255,255,.04);}
 .scard{background:#080808;padding:2rem;transition:background .22s;}
@@ -225,7 +153,6 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
   background:rgba(255,215,0,.04);color:rgba(255,215,0,.5);padding:.17rem .58rem;
   border-radius:50px;border:1px solid rgba(255,215,0,.1);}
 
-/* ECOSYSTEM */
 .eco-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1280px;margin:0 auto;padding:6.5rem 5vw;}
 .fblock{margin-bottom:1.5rem;}
 .flbl{font-size:.56rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,237,230,.15);margin-bottom:.45rem;}
@@ -243,7 +170,6 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .steptitle{font-family:'Syne',sans-serif;font-weight:700;font-size:.86rem;margin-bottom:.16rem;color:#F0EDE6;}
 .stepdesc{font-size:.76rem;color:rgba(240,237,230,.28);line-height:1.65;}
 
-/* PROFILS TYPES */
 .proof-section{background:#080808;padding:6rem 5vw;max-width:1280px;margin:0 auto;}
 .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
 .profile-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);
@@ -267,7 +193,6 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .proof-stat-lbl{font-size:.65rem;color:rgba(240,237,230,.3);margin-top:.25rem;line-height:1.5;}
 .proof-disclaimer{margin-top:1.2rem;text-align:center;font-size:.64rem;color:rgba(240,237,230,.18);font-style:italic;}
 
-/* ROI */
 .roi-grid-outer{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1280px;margin:0 auto;padding:0 5vw 6.5rem;}
 .roi-box{background:rgba(255,255,255,.02);border:1px solid rgba(255,215,0,.08);border-radius:18px;padding:2.2rem;}
 .roi-slbl{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,237,230,.4);margin-bottom:.65rem;font-weight:700;}
@@ -281,14 +206,12 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.main,.block
 .task-gain{font-size:.63rem;font-weight:700;color:rgba(255,215,0,.75);background:rgba(255,215,0,.04);
   border:1px solid rgba(255,215,0,.1);padding:.13rem .5rem;border-radius:50px;white-space:nowrap;}
 
-/* Streamlit slider customisation */
-div[data-testid=\"stSlider\"]{padding:0 5vw;max-width:1280px;margin:0 auto;}
-div[data-testid=\"stSlider\"] [data-baseweb=\"slider\"] div[role=\"slider\"]{background:#FFD700!important;border:none!important;box-shadow:0 0 0 4px rgba(255,215,0,.18)!important;}
-div[data-testid=\"stSlider\"] [data-baseweb=\"slider\"]>div:first-child>div:nth-child(2){background:#FFD700!important;}
-div[data-testid=\"stSlider\"] [data-baseweb=\"slider\"]>div:first-child>div:first-child{background:rgba(255,255,255,.07)!important;}
-div[data-testid=\"stSlider\"] label p{color:rgba(240,237,230,.4)!important;font-size:.6rem!important;letter-spacing:.2em!important;text-transform:uppercase!important;}
+div[data-testid="stSlider"]{padding:0 5vw;max-width:1280px;margin:0 auto;}
+div[data-testid="stSlider"] [data-baseweb="slider"] div[role="slider"]{background:#FFD700!important;border:none!important;box-shadow:0 0 0 4px rgba(255,215,0,.18)!important;}
+div[data-testid="stSlider"] [data-baseweb="slider"]>div:first-child>div:nth-child(2){background:#FFD700!important;}
+div[data-testid="stSlider"] [data-baseweb="slider"]>div:first-child>div:first-child{background:rgba(255,255,255,.07)!important;}
+div[data-testid="stSlider"] label p{color:rgba(240,237,230,.4)!important;font-size:.6rem!important;letter-spacing:.2em!important;text-transform:uppercase!important;}
 
-/* PRICING */
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:3.5rem;
   border:1px solid rgba(255,255,255,.045);border-radius:20px;overflow:hidden;background:rgba(255,255,255,.04);}
 .pcard{background:#080808;padding:2.2rem;display:flex;flex-direction:column;}
@@ -305,7 +228,8 @@ div[data-testid=\"stSlider\"] label p{color:rgba(240,237,230,.4)!important;font-
 .pfeats{display:flex;flex-direction:column;gap:.52rem;margin-bottom:1.7rem;flex-grow:1;}
 .pfeat{display:flex;align-items:flex-start;gap:.52rem;font-size:.78rem;color:rgba(240,237,230,.55);}
 .pfeat.incl{color:rgba(240,237,230,.3);font-style:italic;}
-.pcheck{color:rgba(255,215,0,.65);}.pcheck.bright{color:#FFD700;}
+.pcheck{color:rgba(255,215,0,.65);}
+.pcheck.bright{color:#FFD700;}
 .pcta{display:block;text-align:center;padding:.72rem 1.2rem;border-radius:50px;font-weight:700;font-size:.82rem;text-decoration:none;transition:all .2s;}
 .pcta-o{border:1px solid rgba(255,255,255,.12);color:rgba(240,237,230,.7);}
 .pcta-o:hover{border-color:rgba(255,215,0,.5);color:#FFD700;}
@@ -316,7 +240,6 @@ div[data-testid=\"stSlider\"] label p{color:rgba(240,237,230,.4)!important;font-
 .otag{font-size:.58rem;font-weight:600;background:rgba(255,255,255,.03);color:rgba(240,237,230,.4);
   padding:.18rem .52rem;border-radius:4px;border:1px solid rgba(255,255,255,.06);}
 
-/* CTA + FOOTER */
 .cta-band{background:#FFD700;padding:6rem 5vw;text-align:center;}
 .cta-band h2{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:900;color:#080808;margin-bottom:2.5rem;}
 .ibtn{display:inline-flex;align-items:center;gap:.7rem;background:#080808;color:#FFD700;font-weight:700;
@@ -331,12 +254,12 @@ div[data-testid=\"stSlider\"] label p{color:rgba(240,237,230,.4)!important;font-
 .ft-badge{font-size:.62rem;background:rgba(255,215,0,.05);color:rgba(255,215,0,.65);
   padding:.35rem .75rem;border-radius:50px;font-weight:700;border:1px solid rgba(255,215,0,.12);}
 
-/* MOBILE */
 @media(max-width:768px){
   .nav-links{display:none;}
   .hero{padding:7rem 5vw 4rem;}
   .hero-title{font-size:clamp(2.4rem,11vw,4rem);}
-  .hero-info{gap:1.2rem;}.hero-sep{display:none;}
+  .hero-info{gap:1.2rem;}
+  .hero-sep{display:none;}
   .robot-wrap{grid-template-columns:1fr;gap:2.5rem;}
   .cgrid,.pgrid,.proof-grid{grid-template-columns:1fr;border-radius:14px;}
   .eco-grid,.roi-grid-outer{grid-template-columns:1fr;gap:2rem;padding:4rem 5vw;}
@@ -350,357 +273,507 @@ div[data-testid=\"stSlider\"] label p{color:rgba(240,237,230,.4)!important;font-
 </style>
 """
 
-HTML_TOP = f"""
-<nav class=\"nav\">
-  <a class=\"nav-logo\" href=\"#\"><div class=\"bolt\"></div>Floxia</a>
-  <div class=\"nav-links\">
-    <a href=\"#services\">Services</a>
-    <a href=\"#ecosystem\">Écosystème</a>
-    <a href=\"#roi\">ROI</a>
-    <a href=\"#tarifs\">Tarifs</a>
-    <a href=\"{INSTA}\" target=\"_blank\" class=\"nav-cta\">Démo →</a>
-  </div>
-</nav>
+# ─── MARQUEE ITEMS ───────────────────────────────────────────────────────────
+MARQUEE_ITEMS = [
+    "Devis vocal en 3 min", "PV de reception auto", "Facture finale automatisee",
+    "Scan tickets de caisse", "Avis Google Maps auto", "Relances intelligentes",
+    "Planning salaries", "Rapports chantier PDF", "ERP 100% mobile",
+] * 2
 
-<section class=\"hero\">
-  <div class=\"hero-grid\"></div><div class=\"hero-scan\"></div><div class=\"hero-orb\"></div>
-  <div class=\"hero-badge\"><div class=\"hero-badge-dot\"></div>IA pour artisans & PME du bâtiment</div>
-  <h1 class=\"hero-title\">Votre admin.<br><span class=\"outline\">Automatisée.</span><br>Votre temps. Rendu.</h1>
-  <p class=\"hero-sub\">Générez vos <strong>devis et factures depuis WhatsApp en 3 minutes</strong>.<br>Un vocal suffit — Floxia s'occupe du reste.</p>
-  <div class=\"hero-info\">
-    <div class=\"hero-info-item\"><span class=\"hero-info-label\">Temps libéré</span><span class=\"hero-info-val\">16h / mois</span></div>
-    <div class=\"hero-sep\"></div>
-    <div class=\"hero-info-item\"><span class=\"hero-info-label\">Saisie admin</span><span class=\"hero-info-val\">−80%</span></div>
-    <div class=\"hero-sep\"></div>
-    <div class=\"hero-info-item\"><span class=\"hero-info-label\">Devis → Facture</span><span class=\"hero-info-val\">3 minutes</span></div>
-    <div class=\"hero-sep\"></div>
-    <div class=\"hero-info-item\"><span class=\"hero-info-label\">Interface</span><span class=\"hero-info-val\">WhatsApp + ERP</span></div>
-  </div>
-  <div class=\"hero-cta-row\">
-    <a class=\"btn-y\" href=\"{INSTA}\" target=\"_blank\">⚡ Réserver une démo</a>
-  </div>
-</section>
+marquee_html = "".join(
+    f'<div class="mq-item"><div class="mq-dot"></div>{t}</div>'
+    for t in MARQUEE_ITEMS
+)
 
-<div class=\"mq-wrap\"><div class=\"mq-track\">
-""" + "".join([f'<div class="mq-item"><div class="mq-dot"></div>{t}</div>' for t in [
-    "Devis vocal en 3 min","PV de réception auto","Facture finale automatisée","Scan tickets de caisse",
-    "Avis Google Maps auto","Relances intelligentes","Planning salariés","Rapports chantier PDF","ERP 100% mobile"
-]*2]) + """
-</div></div>
+# ─── HTML TOP ─────────────────────────────────────────────────────────────────
+HTML_TOP = (
+    '<nav class="nav">'
+    '  <a class="nav-logo" href="#"><div class="bolt"></div>Floxia</a>'
+    '  <div class="nav-links">'
+    '    <a href="#services">Services</a>'
+    '    <a href="#ecosystem">Ecosysteme</a>'
+    '    <a href="#roi">ROI</a>'
+    '    <a href="#tarifs">Tarifs</a>'
+    '    <a href="' + INSTA + '" target="_blank" class="nav-cta">Demo</a>'
+    '  </div>'
+    '</nav>'
 
-<div class=\"robot-section\">
-  <div class=\"robot-wrap\">
-    <div class=\"reveal-left robot-visual\">
-      <div style=\"position:relative;\">
-        <div class=\"robot-body\">
-          <div class=\"robot-head\"><div class=\"robot-eye\"></div><div class=\"robot-eye r\"></div></div>
-          <div class=\"robot-screen\">
-            <div class=\"robot-line gold\"></div><div class=\"robot-line short\"></div>
-            <div class=\"robot-line\"></div><div class=\"robot-line tiny\"></div>
-            <div class=\"robot-line gold short\"></div><div class=\"robot-line\"></div>
-          </div>
-          <div class=\"robot-badge\">ERP IA</div>
-        </div>
-      </div>
-    </div>
-    <div class=\"reveal-right\">
-      <div class=\"robot-tag\">Votre robot ERP</div>
-      <h2 style=\"font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:#F0EDE6;margin-bottom:.6rem;\">Un robot IA qui travaille<br>à votre place. 24h/24.</h2>
-      <p style=\"font-size:.88rem;color:rgba(240,237,230,.4);line-height:1.8;margin-bottom:1.8rem;\">Floxia c'est votre ERP intelligent connecté à WhatsApp. Il reçoit vos messages vocaux, comprend ce que vous demandez, et exécute : devis, PV, facture, relance, rapport. Sans que vous ayez rien à taper.</p>
-      <div class=\"robot-feat\"><div class=\"robot-feat-icon\">💬</div><div><div class=\"robot-feat-title\">Parlez, il génère</div><div class=\"robot-feat-desc\">Un message vocal WhatsApp → devis PDF en 3 minutes, envoyé automatiquement.</div></div></div>
-      <div class=\"robot-feat\" style=\"margin-top:.75rem;\"><div class=\"robot-feat-icon\">📋</div><div><div class=\"robot-feat-title\">ERP complet sur votre téléphone</div><div class=\"robot-feat-desc\">Tableau de bord, chantiers, planning, salariés — tout en temps réel depuis votre mobile.</div></div></div>
-      <div class=\"robot-feat\" style=\"margin-top:.75rem;\"><div class=\"robot-feat-icon\">🤖</div><div><div class=\"robot-feat-title\">Il ne dort jamais</div><div class=\"robot-feat-desc\">Relances J+3/J+7/J+14, avis Google, alertes retard — tout automatique.</div></div></div>
-    </div>
-  </div>
-</div>
-<div class=\"div-line\"></div>
-"""
+    '<section class="hero">'
+    '  <div class="hero-grid"></div>'
+    '  <div class="hero-scan"></div>'
+    '  <div class="hero-orb"></div>'
+    '  <div class="hero-badge"><div class="hero-badge-dot"></div>IA pour artisans et PME du batiment</div>'
+    '  <h1 class="hero-title">Votre admin.<br><span class="outline">Automatisee.</span><br>Votre temps. Rendu.</h1>'
+    '  <p class="hero-sub">Generez vos <strong>devis et factures depuis WhatsApp en 3 minutes</strong>.<br>Un vocal suffit — Floxia s\'occupe du reste.</p>'
+    '  <div class="hero-info">'
+    '    <div class="hero-info-item"><span class="hero-info-label">Temps libere</span><span class="hero-info-val">16h / mois</span></div>'
+    '    <div class="hero-sep"></div>'
+    '    <div class="hero-info-item"><span class="hero-info-label">Saisie admin</span><span class="hero-info-val">-80%</span></div>'
+    '    <div class="hero-sep"></div>'
+    '    <div class="hero-info-item"><span class="hero-info-label">Devis Facture</span><span class="hero-info-val">3 minutes</span></div>'
+    '    <div class="hero-sep"></div>'
+    '    <div class="hero-info-item"><span class="hero-info-label">Interface</span><span class="hero-info-val">WhatsApp + ERP</span></div>'
+    '  </div>'
+    '  <div class="hero-cta-row">'
+    '    <a class="btn-y" href="' + INSTA + '" target="_blank">Reserver une demo</a>'
+    '  </div>'
+    '</section>'
 
+    '<div class="mq-wrap"><div class="mq-track">'
+    + marquee_html +
+    '</div></div>'
+
+    '<div class="robot-section">'
+    '  <div class="robot-wrap">'
+    '    <div class="reveal-left robot-visual">'
+    '      <div style="position:relative;">'
+    '        <div class="robot-body">'
+    '          <div class="robot-head"><div class="robot-eye"></div><div class="robot-eye r"></div></div>'
+    '          <div class="robot-screen">'
+    '            <div class="robot-line gold"></div>'
+    '            <div class="robot-line short"></div>'
+    '            <div class="robot-line"></div>'
+    '            <div class="robot-line tiny"></div>'
+    '            <div class="robot-line gold short"></div>'
+    '            <div class="robot-line"></div>'
+    '          </div>'
+    '          <div class="robot-badge">ERP IA</div>'
+    '        </div>'
+    '      </div>'
+    '    </div>'
+    '    <div class="reveal-right">'
+    '      <div class="robot-tag">Votre robot ERP</div>'
+    '      <h2 style="font-family:\'Syne\',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:#F0EDE6;margin-bottom:.6rem;">Un robot IA qui travaille<br>a votre place. 24h/24.</h2>'
+    '      <p style="font-size:.88rem;color:rgba(240,237,230,.4);line-height:1.8;margin-bottom:1.8rem;">Floxia c\'est votre ERP intelligent connecte a WhatsApp. Il recoit vos messages vocaux, comprend ce que vous demandez, et execute : devis, PV, facture, relance, rapport. Sans que vous ayez rien a taper.</p>'
+    '      <div class="robot-feat"><div class="robot-feat-icon">&#128172;</div><div><div class="robot-feat-title">Parlez, il genere</div><div class="robot-feat-desc">Un message vocal WhatsApp : devis PDF en 3 minutes, envoye automatiquement.</div></div></div>'
+    '      <div class="robot-feat" style="margin-top:.75rem;"><div class="robot-feat-icon">&#128203;</div><div><div class="robot-feat-title">ERP complet sur votre telephone</div><div class="robot-feat-desc">Tableau de bord, chantiers, planning, salaries — tout en temps reel depuis votre mobile.</div></div></div>'
+    '      <div class="robot-feat" style="margin-top:.75rem;"><div class="robot-feat-icon">&#129302;</div><div><div class="robot-feat-title">Il ne dort jamais</div><div class="robot-feat-desc">Relances J+3/J+7/J+14, avis Google, alertes retard — tout automatique.</div></div></div>'
+    '    </div>'
+    '  </div>'
+    '</div>'
+    '<div class="div-line"></div>'
+)
+
+# ─── SERVICES ────────────────────────────────────────────────────────────────
 SERVICES_LIST = [
-    ("💬", "Devis → PV → Facture", "Un vocal WhatsApp suffit. Floxia génère le devis PDF, le client signe, le PV est créé, la facture finale se génère automatiquement.", "⚡ Cycle complet géré"),
-    ("📸", "Scan Tickets de Caisse", "Photographiez vos tickets sur WhatsApp. L'IA extrait fournisseur, articles, HT/TVA et alimente votre compta.", "⚡ Zéro ressaisie"),
-    ("⭐", "Avis Google Maps", "À chaque chantier terminé, Floxia envoie un message WhatsApp au client pour inviter à laisser un avis Google.", "⚡ Réputation boostée"),
-    ("🚨", "Alerte Problème Chantier", "Un problème ? Envoyez un vocal. Floxia rédige l'e-mail pro au client : situation, causes, nouveau délai.", "⚡ Email en 30 sec"),
-    ("🔔", "Relances Automatiques", "Floxia surveille vos devis non signés et relance en 3 temps : J+3, J+7, J+14.", "⚡ +30% de conversion"),
-    ("📋", "ERP Mobile Complet", "Devis, factures, PV, chantiers, planning, salariés, dépenses — tout synchronisé en temps réel.", "⚡ Tout en un endroit"),
-    ("🎙", "Rapports Vocaux Chantier", "Dictez votre rapport en 2 min. Floxia le structure et l'envoie en PDF pro.", "⚡ Rapport en 2 min"),
-    ("💰", "Suivi Dépenses & TVA", "Chaque ticket scanné alimente votre dashboard : dépenses, TVA récupérable, export 1 clic.", "⚡ Compta simplifiée"),
-    ("👥", "Gestion Équipe & Salariés", "Heures, chantiers, planning temps réel. Synchronisé avec Google Sheets.", "⚡ Équipe pilotée WA"),
+    ("&#128172;", "Devis - PV - Facture",
+     "Un vocal WhatsApp suffit. Floxia genere le devis PDF, le client signe, le PV est cree, la facture finale se genere automatiquement.",
+     "Cycle complet gere"),
+    ("&#128248;", "Scan Tickets de Caisse",
+     "Photographiez vos tickets sur WhatsApp. L'IA extrait fournisseur, articles, HT/TVA et alimente votre compta.",
+     "Zero ressaisie"),
+    ("&#11088;", "Avis Google Maps",
+     "A chaque chantier termine, Floxia envoie un message WhatsApp au client pour inviter a laisser un avis Google.",
+     "Reputation boostee"),
+    ("&#128680;", "Alerte Probleme Chantier",
+     "Un probleme ? Envoyez un vocal. Floxia redige l'e-mail pro au client : situation, causes, nouveau delai.",
+     "Email en 30 sec"),
+    ("&#128276;", "Relances Automatiques",
+     "Floxia surveille vos devis non signes et relance en 3 temps : J+3, J+7, J+14.",
+     "+30% de conversion"),
+    ("&#128203;", "ERP Mobile Complet",
+     "Devis, factures, PV, chantiers, planning, salaries, depenses — tout synchronise en temps reel.",
+     "Tout en un endroit"),
+    ("&#127897;", "Rapports Vocaux Chantier",
+     "Dictez votre rapport en 2 min. Floxia le structure et l'envoie en PDF pro.",
+     "Rapport en 2 min"),
+    ("&#128176;", "Suivi Depenses et TVA",
+     "Chaque ticket scanne alimente votre dashboard : depenses, TVA recuperable, export 1 clic.",
+     "Compta simplifiee"),
+    ("&#128101;", "Gestion Equipe et Salaries",
+     "Heures, chantiers, planning temps reel. Synchronise avec Google Sheets.",
+     "Equipe pilotee WA"),
 ]
 
-SERVICES_HTML = f"""
-<div id=\"services\"></div>
-<div class=\"sec\">
-  <div class=\"reveal\">
-    <div class=\"sec-lbl\">Ce que fait Floxia</div>
-    <h2 class=\"sec-title\">Tout votre flux de travail,<br>automatisé de A à Z.</h2>
-    <p class=\"sec-sub\">Des automatisations concrètes, opérationnelles dès aujourd'hui.</p>
-  </div>
-  <div class=\"reveal-stagger cgrid\">
-""" + "".join([f'<div class="scard"><div class="cicon">{i}</div><div class="ctitle">{t}</div><div class="cdesc">{d}</div><span class="ctag">{tg}</span></div>' for i,t,d,tg in SERVICES_LIST]) + """
-  </div>
-</div>
-<div class=\"div-line\"></div>
-"""
+services_cards = "".join(
+    '<div class="scard">'
+    f'<div class="cicon">{icon}</div>'
+    f'<div class="ctitle">{title}</div>'
+    f'<div class="cdesc">{desc}</div>'
+    f'<span class="ctag">{tag}</span>'
+    '</div>'
+    for icon, title, desc, tag in SERVICES_LIST
+)
 
+SERVICES_HTML = (
+    '<div id="services"></div>'
+    '<div class="sec">'
+    '  <div class="reveal">'
+    '    <div class="sec-lbl">Ce que fait Floxia</div>'
+    '    <h2 class="sec-title">Tout votre flux de travail,<br>automatise de A a Z.</h2>'
+    '    <p class="sec-sub">Des automatisations concretes, operationnelles des aujourd\'hui.</p>'
+    '  </div>'
+    '  <div class="reveal-stagger cgrid">'
+    + services_cards +
+    '  </div>'
+    '</div>'
+    '<div class="div-line"></div>'
+)
+
+# ─── ECOSYSTEM ───────────────────────────────────────────────────────────────
 ECO_FLUX = [
-    ("Flux 1 — Cycle devis complet", [("🎙 Vocal WA", ""), ("⚡ IA Floxia", "g"), ("📄 Devis PDF", ""), ("✍ Signature", ""), ("📋 PV", ""), ("🧾 Facture", "e")]),
-    ("Flux 2 — Avis Google Maps", [("✅ Chantier terminé", ""), ("⚡ Floxia détecte", "g"), ("💬 Message WA", ""), ("⭐ Avis Google", "e")]),
-    ("Flux 3 — Ticket de caisse", [("📸 Photo WA", ""), ("⚡ OCR IA", "g"), ("📊 Google Sheets", ""), ("✅ Compta", "e")]),
-    ("Flux 4 — Problème chantier", [("🚨 Vocal WA", ""), ("⚡ IA rédaction", "g"), ("📧 Email client", "e")]),
-    ("Flux 5 — Relances devis", [("⏰ Délai dépassé", ""), ("⚡ Floxia détecte", "g"), ("💬 SMS + Email", "e")]),
+    ("Flux 1 - Cycle devis complet", [
+        ("Vocal WA", ""), ("IA Floxia", "g"), ("Devis PDF", ""),
+        ("Signature", ""), ("PV", ""), ("Facture", "e"),
+    ]),
+    ("Flux 2 - Avis Google Maps", [
+        ("Chantier termine", ""), ("Floxia detecte", "g"),
+        ("Message WA", ""), ("Avis Google", "e"),
+    ]),
+    ("Flux 3 - Ticket de caisse", [
+        ("Photo WA", ""), ("OCR IA", "g"),
+        ("Google Sheets", ""), ("Compta", "e"),
+    ]),
+    ("Flux 4 - Probleme chantier", [
+        ("Vocal WA", ""), ("IA redaction", "g"), ("Email client", "e"),
+    ]),
+    ("Flux 5 - Relances devis", [
+        ("Delai depasse", ""), ("Floxia detecte", "g"), ("SMS + Email", "e"),
+    ]),
 ]
+
 def flux_html(lbl, nodes):
     inner = ""
-    for i,(txt,kind) in enumerate(nodes):
-        inner += f'<span class=\"fn {kind}\">{txt}</span>'
-        if i < len(nodes)-1: inner += '<span class=\"fa\">→</span>'
-    return f'<div class=\"fblock\"><div class=\"flbl\">{lbl}</div><div class=\"fwrap\"><div class=\"frow\">{inner}</div></div></div>'
+    for i, (txt, kind) in enumerate(nodes):
+        inner += f'<span class="fn {kind}">{txt}</span>'
+        if i < len(nodes) - 1:
+            inner += '<span class="fa">&#8594;</span>'
+    return (
+        '<div class="fblock">'
+        f'<div class="flbl">{lbl}</div>'
+        '<div class="fwrap"><div class="frow">'
+        + inner +
+        '</div></div>'
+        '</div>'
+    )
 
-ECO_HTML = f"""
-<div id=\"ecosystem\"></div>
-<div class=\"eco-grid\">
-  <div class=\"reveal-left\">
-    <div class=\"sec-lbl\">Comment ça marche</div>
-    <h2 class=\"sec-title\">WhatsApp comme<br>centre de commandes.</h2>
-    <p class=\"sec-sub\" style=\"margin-bottom:2.6rem;\">Tout part de votre téléphone. Aucun logiciel à apprendre.</p>
-""" + "".join([f'<div style="display:flex;gap:1rem;margin-bottom:1.3rem;"><div class="stepn">{n}</div><div><div class="steptitle">{t}</div><div class="stepdesc">{d}</div></div></div>' for n,t,d in [
-    ("1", "Une fois connecté", "WhatsApp Business, Gmail, Google Drive — on s'occupe de tout."),
-    ("2", "Parlez ou photographiez", "Vocal ou photo sur WhatsApp. Floxia agit instantanément."),
-    ("3", "L'IA travaille pour vous", "Devis envoyé, PV généré, facture émise. Automatiquement."),
-    ("4", "Pilotez depuis l'ERP", "Tableau de bord temps réel sur mobile."),
-]]) + """
-  </div>
-  <div class=\"reveal-right\">
-""" + "".join([flux_html(l,n) for l,n in ECO_FLUX]) + """
-  </div>
-</div>
-<div class=\"div-line\"></div>
-"""
+steps_html = "".join(
+    '<div style="display:flex;gap:1rem;margin-bottom:1.3rem;">'
+    f'<div class="stepn">{n}</div>'
+    '<div>'
+    f'<div class="steptitle">{t}</div>'
+    f'<div class="stepdesc">{d}</div>'
+    '</div>'
+    '</div>'
+    for n, t, d in [
+        ("1", "Une fois connecte", "WhatsApp Business, Gmail, Google Drive — on s\'occupe de tout."),
+        ("2", "Parlez ou photographiez", "Vocal ou photo sur WhatsApp. Floxia agit instantanement."),
+        ("3", "L\'IA travaille pour vous", "Devis envoye, PV genere, facture emise. Automatiquement."),
+        ("4", "Pilotez depuis l\'ERP", "Tableau de bord temps reel sur mobile."),
+    ]
+)
 
+flux_blocks = "".join(flux_html(l, n) for l, n in ECO_FLUX)
+
+ECO_HTML = (
+    '<div id="ecosystem"></div>'
+    '<div class="eco-grid">'
+    '  <div class="reveal-left">'
+    '    <div class="sec-lbl">Comment ca marche</div>'
+    '    <h2 class="sec-title">WhatsApp comme<br>centre de commandes.</h2>'
+    '    <p class="sec-sub" style="margin-bottom:2.6rem;">Tout part de votre telephone. Aucun logiciel a apprendre.</p>'
+    + steps_html +
+    '  </div>'
+    '  <div class="reveal-right">'
+    + flux_blocks +
+    '  </div>'
+    '</div>'
+    '<div class="div-line"></div>'
+)
+
+# ─── PROFILES ────────────────────────────────────────────────────────────────
 PROFILES = [
-    ("🔧", "Plombier-chauffagiste", "Ce que Floxia change pour un plombier",
-     ["Devis vocal depuis la camionnette, envoyé avant d'arriver chez le client suivant.",
-      "Factures d'acompte + PV + facture finale générés sans ouvrir un ordinateur.",
-      "Tickets fournisseur scannés direct depuis WhatsApp, compta à jour en temps réel."],
-     "Temps libéré", "~14h / mois"),
-    ("⚡", "Électricien indépendant", "Ce que Floxia change pour un électricien",
-     ["Devis signé plus vite : PDF envoyé en 3 min, plus en 2 jours.",
-      "Relances automatiques J+3/J+7/J+14 sur les devis non signés.",
-      "Fini les e-mails le soir : Floxia rédige les imprévus chantier depuis un vocal."],
-     "Taux de signature", "+30% devis signés"),
-    ("🎨", "Peintre / Carreleur", "Ce que Floxia change pour un peintre ou carreleur",
-     ["Rapport photo de fin de chantier en 2 clics, envoyé au client.",
-      "Demande d'avis Google auto à la clôture de facture → réputation boostée.",
-      "Planning équipe visible en temps réel, feuille de route sur WhatsApp."],
-     "Admin supprimée", "−80% de saisie"),
+    ("&#128295;", "Plombier-chauffagiste", "Ce que Floxia change pour un plombier",
+     [
+         "Devis vocal depuis la camionnette, envoye avant d'arriver chez le client suivant.",
+         "Factures d'acompte + PV + facture finale generes sans ouvrir un ordinateur.",
+         "Tickets fournisseur scannes direct depuis WhatsApp, compta a jour en temps reel.",
+     ],
+     "Temps libere", "~14h / mois"),
+    ("&#9889;", "Electricien independant", "Ce que Floxia change pour un electricien",
+     [
+         "Devis signe plus vite : PDF envoye en 3 min, plus en 2 jours.",
+         "Relances automatiques J+3/J+7/J+14 sur les devis non signes.",
+         "Fini les e-mails le soir : Floxia redige les imprevus chantier depuis un vocal.",
+     ],
+     "Taux de signature", "+30% devis signes"),
+    ("&#127912;", "Peintre / Carreleur", "Ce que Floxia change pour un peintre ou carreleur",
+     [
+         "Rapport photo de fin de chantier en 2 clics, envoye au client.",
+         "Demande d'avis Google auto a la cloture de facture : reputation boostee.",
+         "Planning equipe visible en temps reel, feuille de route sur WhatsApp.",
+     ],
+     "Admin supprimee", "-80% de saisie"),
 ]
 
-def profile_card(av,metier,title,bullets,gl,gv):
-    bl = "".join([f'<li><span class="profile-check">→</span><span>{b}</span></li>' for b in bullets])
-    return f"""<div class=\"profile-card\">
-      <div class=\"profile-header\">
-        <div class=\"profile-avatar\">{av}</div>
-        <div><div class=\"profile-metier\">{metier}</div><div class=\"profile-tag\">Profil type</div></div>
-      </div>
-      <div class=\"profile-title\">{title}</div>
-      <ul class=\"profile-bullets\">{bl}</ul>
-      <div class=\"profile-gain\"><span>{gl}</span><span class=\"profile-gain-val\">{gv}</span></div>
-    </div>"""
+def profile_card(av, metier, title, bullets, gl, gv):
+    bl = "".join(
+        f'<li><span class="profile-check">&#8594;</span><span>{b}</span></li>'
+        for b in bullets
+    )
+    return (
+        '<div class="profile-card">'
+        '  <div class="profile-header">'
+        f'    <div class="profile-avatar">{av}</div>'
+        '    <div>'
+        f'      <div class="profile-metier">{metier}</div>'
+        '      <div class="profile-tag">Profil type</div>'
+        '    </div>'
+        '  </div>'
+        f'  <div class="profile-title">{title}</div>'
+        f'  <ul class="profile-bullets">{bl}</ul>'
+        '  <div class="profile-gain">'
+        f'    <span>{gl}</span>'
+        f'    <span class="profile-gain-val">{gv}</span>'
+        '  </div>'
+        '</div>'
+    )
 
-PROFILES_HTML = f"""
-<div class=\"proof-section\">
-  <div class=\"reveal\">
-    <div class=\"sec-lbl\">Profils types</div>
-    <h2 class=\"sec-title\">Ce que Floxia change<br>selon votre métier.</h2>
-    <p class=\"sec-sub\">Pas de faux témoignages. Voici concrètement les bénéfices que nous construisons avec chaque profil d'artisan — basés sur les flux réels que Floxia automatise.</p>
-  </div>
-  <div class=\"reveal-scale proof-stat-row\">
-    <div><div class=\"proof-stat-val\">+30%</div><div class=\"proof-stat-lbl\">de devis signés visés<br>grâce aux relances automatiques</div></div>
-    <div><div class=\"proof-stat-val\">16h</div><div class=\"proof-stat-lbl\">libérées par mois<br>en cible sur cycle admin complet</div></div>
-    <div><div class=\"proof-stat-val\">−80%</div><div class=\"proof-stat-lbl\">de saisie administrative<br>dès le premier mois d'usage</div></div>
-  </div>
-  <div class=\"proof-disclaimer\">Objectifs mesurés sur les flux automatisés — Floxia est en phase Beta 2026.</div>
-  <div class=\"reveal-stagger proof-grid\" style=\"margin-top:2.5rem;\">
-    {"".join([profile_card(*p) for p in PROFILES])}
-  </div>
-</div>
-<div class=\"div-line\"></div>
+profile_cards = "".join(profile_card(*p) for p in PROFILES)
 
-<div id=\"roi\"></div>
-<div class=\"sec\" style=\"padding-bottom:2rem;\">
-  <div class=\"reveal\">
-    <div class=\"sec-lbl\">Simulateur ROI</div>
-    <h2 class=\"sec-title\">Calculez votre<br>temps libéré.</h2>
-    <p class=\"sec-sub\">Bougez le curseur — voyez ce que Floxia vous rapporte chaque mois.</p>
-  </div>
-</div>
-"""
+PROFILES_HTML = (
+    '<div class="proof-section">'
+    '  <div class="reveal">'
+    '    <div class="sec-lbl">Profils types</div>'
+    '    <h2 class="sec-title">Ce que Floxia change<br>selon votre metier.</h2>'
+    '    <p class="sec-sub">Pas de faux temoignages. Voici concretement les benefices que nous construisons avec chaque profil d\'artisan — bases sur les flux reels que Floxia automatise.</p>'
+    '  </div>'
+    '  <div class="reveal-scale proof-stat-row">'
+    '    <div><div class="proof-stat-val">+30%</div><div class="proof-stat-lbl">de devis signes vises<br>grace aux relances automatiques</div></div>'
+    '    <div><div class="proof-stat-val">16h</div><div class="proof-stat-lbl">liberees par mois<br>en cible sur cycle admin complet</div></div>'
+    '    <div><div class="proof-stat-val">-80%</div><div class="proof-stat-lbl">de saisie administrative<br>des le premier mois d\'usage</div></div>'
+    '  </div>'
+    '  <div class="proof-disclaimer">Objectifs mesures sur les flux automatises — Floxia est en phase Beta 2026.</div>'
+    '  <div class="reveal-stagger proof-grid" style="margin-top:2.5rem;">'
+    + profile_cards +
+    '  </div>'
+    '</div>'
+    '<div class="div-line"></div>'
 
-PRICING_HTML = f"""
-<div class=\"div-line\"></div>
-<div id=\"tarifs\"></div>
-<div class=\"sec\">
-  <div class=\"reveal\">
-    <div class=\"sec-lbl\">Tarifs</div>
-    <h2 class=\"sec-title\">Un prix adapté<br>à votre activité.</h2>
-    <p class=\"sec-sub\">Chaque tarif est personnalisé selon votre volume de devis et vos besoins.</p>
-  </div>
-  <div class=\"reveal-stagger pgrid\">
-    <div class=\"pcard\">
-      <div class=\"pbadge\">Offre 1</div>
-      <div class=\"pplan\">Essentiel</div>
-      <div class=\"psub\">Numérisation administrative · WhatsApp</div>
-      <div class=\"phighlight\">Idéal pour démarrer : base de données, documents automatiques et conformité 2026.</div>
-      <div class=\"pprice-custom\">Prix personnalisé</div>
-      <div class=\"pprice-note\">Calculé selon votre volume de devis.<br>Sans engagement.</div>
-      <div class=\"pfeats\">
-""" + "".join([f'<div class="pfeat"><span class="pcheck bright">✦</span>{f}</div>' for f in [
-    "Base de données Google Sheets dédiée", "Création automatique de Devis PDF",
-    "Factures & Factures d'acompte auto", "PV de réception automatisé",
-    "Archivage structuré Google Drive", "Envoi via API WhatsApp Business",
-    "Signature électronique intégrée", "Conforme réforme facturation 2026"
-]]) + f"""
-      </div>
-      <a class=\"pcta pcta-o\" href=\"{INSTA}\" target=\"_blank\">Obtenir mon tarif →</a>
-      <div class=\"pnote\">Pour se lancer sans risque</div>
-    </div>
+    '<div id="roi"></div>'
+    '<div class="sec" style="padding-bottom:2rem;">'
+    '  <div class="reveal">'
+    '    <div class="sec-lbl">Simulateur ROI</div>'
+    '    <h2 class="sec-title">Calculez votre<br>temps libere.</h2>'
+    '    <p class="sec-sub">Bougez le curseur — voyez ce que Floxia vous rapporte chaque mois.</p>'
+    '  </div>'
+    '</div>'
+)
 
-    <div class=\"pcard feat\">
-      <div class=\"pbadge\">⚡ Le plus populaire · Offre 2</div>
-      <div class=\"pplan\">L'Artisan Autonome</div>
-      <div class=\"psub\">Inclus Offre 1 · WhatsApp & ERP Web</div>
-      <div class=\"phighlight\">Tout l'Essentiel + votre ERP dédié pour piloter votre activité en autonomie complète.</div>
-      <div class=\"pprice-custom\">Prix personnalisé</div>
-      <div class=\"pprice-note\">Sans engagement · résiliable à tout moment.</div>
-      <div class=\"pfeats\">
-        <div class=\"pfeat incl\"><span class=\"pcheck\">⬆</span>Tout de l'Offre Essentiel</div>
-        <div class=\"pfeat\"><span class=\"pcheck bright\">✦</span>ERP dédié sur votre mobile</div>
-        <div class=\"pfeat\"><span class=\"pcheck bright\">✦</span>Gestion des retards & avenants</div>
-      </div>
-      <div class=\"onglets-tag\">
-""" + "".join([f'<span class="otag">{o}</span>' for o in [
-    "Vue générale", "Créer un devis", "Devis", "Facture & Paiements", "Export compta", "Chantier", "Planning", "Notifications", "Espace Clients", "Tous les dossiers", "Google Sheet", "Retards & Avenants", "RGPD"
-]]) + f"""
-      </div>
-      <a class=\"pcta pcta-s\" href=\"{INSTA}\" target=\"_blank\">Obtenir mon tarif →</a>
-      <div class=\"pnote\">Le meilleur rapport qualité/valeur</div>
-    </div>
+# ─── PRICING ─────────────────────────────────────────────────────────────────
+feats_offre1 = "".join(
+    f'<div class="pfeat"><span class="pcheck bright">&#10022;</span>{f}</div>'
+    for f in [
+        "Base de donnees Google Sheets dediee",
+        "Creation automatique de Devis PDF",
+        "Factures et Factures d'acompte auto",
+        "PV de reception automatise",
+        "Archivage structure Google Drive",
+        "Envoi via API WhatsApp Business",
+        "Signature electronique integree",
+        "Conforme reforme facturation 2026",
+    ]
+)
 
-    <div class=\"pcard\">
-      <div class=\"pbadge\">Offre 3</div>
-      <div class=\"pplan\">Premium</div>
-      <div class=\"psub\">Inclus Offre 1 + 2 · Équipe & IA avancée</div>
-      <div class=\"phighlight\">Gestion d'équipe, IA vocale, rentabilité réelle — la puissance complète.</div>
-      <div class=\"pprice-custom\">Prix personnalisé</div>
-      <div class=\"pprice-note\">Accompagnement dédié inclus.</div>
-      <div class=\"pfeats\">
-        <div class=\"pfeat incl\"><span class=\"pcheck\">⬆</span>Tout de l'Offre Artisan Autonome</div>
-""" + "".join([f'<div class="pfeat"><span class="pcheck bright">✦</span>{f}</div>' for f in [
-    "Saisie vocale IA via WhatsApp", "Collecte photos fin de chantier", "Suivi heures collaborateurs",
-    "Rentabilité réelle IA", "Scan tickets caisse → compta auto", "Email pro depuis vocal",
-    "Relances J+3 / J+7 / J+14", "Demande d'avis Google auto"
-]]) + f"""
-      </div>
-      <a class=\"pcta pcta-o\" href=\"{INSTA}\" target=\"_blank\">Nous contacter →</a>
-      <div class=\"pnote\">Pour les équipes & PME</div>
-    </div>
-  </div>
-</div>
+onglets = "".join(
+    f'<span class="otag">{o}</span>'
+    for o in [
+        "Vue generale", "Creer un devis", "Devis", "Facture et Paiements",
+        "Export compta", "Chantier", "Planning", "Notifications",
+        "Espace Clients", "Tous les dossiers", "Google Sheet",
+        "Retards et Avenants", "RGPD",
+    ]
+)
 
-<div class=\"cta-band\">
-  <div class=\"reveal-scale\">
-    <h2>Prêt à récupérer<br>votre temps ?</h2>
-    <a class=\"ibtn\" href=\"{INSTA}\" target=\"_blank\">⚡ Réserver une démo — Instagram</a>
-    <div style=\"margin-top:1rem;font-size:.7rem;color:rgba(8,8,8,.45);\">@floxia.pro · Réponse sous 24h</div>
-  </div>
-</div>
+feats_offre3 = "".join(
+    f'<div class="pfeat"><span class="pcheck bright">&#10022;</span>{f}</div>'
+    for f in [
+        "Saisie vocale IA via WhatsApp",
+        "Collecte photos fin de chantier",
+        "Suivi heures collaborateurs",
+        "Rentabilite reelle IA",
+        "Scan tickets caisse vers compta auto",
+        "Email pro depuis vocal",
+        "Relances J+3 / J+7 / J+14",
+        "Demande d'avis Google auto",
+    ]
+)
 
-<footer class=\"ft\">
-  <div>
-    <div class=\"ft-logo\"><div class=\"bolt\" style=\"width:20px;height:20px;\"></div>Floxia Service ERP</div>
-    <div class=\"ft-tag\">L'IA qui travaille à votre place.</div>
-  </div>
-  <div class=\"ft-links\">
-    <a href=\"#\">Mentions légales</a><a href=\"#\">Confidentialité</a>
-    <a href=\"{INSTA}\" target=\"_blank\">Instagram</a>
-  </div>
-  <div class=\"ft-badge\">⚡ Propulsé par l'IA</div>
-</footer>
-
+SCRIPT = """
 <script>
-(function(){{
-  function init(){{
-    var els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger');
-    if(!('IntersectionObserver' in window)){{ els.forEach(function(e){{ e.classList.add('in'); }}); return; }}
-    var obs = new IntersectionObserver(function(entries){{
-      entries.forEach(function(entry){{
-        if(entry.isIntersecting){{ entry.target.classList.add('in'); obs.unobserve(entry.target); }}
-      }});
-    }}, {{ threshold: 0.15, rootMargin: '0px 0px -60px 0px' }});
-    els.forEach(function(e){{ obs.observe(e); }});
-  }}
-  if(document.readyState !== 'loading') init();
-  else document.addEventListener('DOMContentLoaded', init);
-  setTimeout(init, 500);
-}})();
+(function(){
+  function init(){
+    var els=document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-stagger');
+    if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){entry.target.classList.add('in');obs.unobserve(entry.target);}
+      });
+    },{threshold:0.15,rootMargin:'0px 0px -60px 0px'});
+    els.forEach(function(e){obs.observe(e);});
+  }
+  if(document.readyState!=='loading') init();
+  else document.addEventListener('DOMContentLoaded',init);
+  setTimeout(init,500);
+})();
 </script>
 """
 
-# ═══ RENDER ═══
-st.markdown(textwrap.dedent(CSS), unsafe_allow_html=True)
-st.markdown(textwrap.dedent(HTML_TOP), unsafe_allow_html=True)
-st.markdown(textwrap.dedent(SERVICES_HTML), unsafe_allow_html=True)
-st.markdown(textwrap.dedent(ECO_HTML), unsafe_allow_html=True)
-st.markdown(textwrap.dedent(PROFILES_HTML), unsafe_allow_html=True)
+PRICING_HTML = (
+    '<div class="div-line"></div>'
+    '<div id="tarifs"></div>'
+    '<div class="sec">'
+    '  <div class="reveal">'
+    '    <div class="sec-lbl">Tarifs</div>'
+    '    <h2 class="sec-title">Un prix adapte<br>a votre activite.</h2>'
+    '    <p class="sec-sub">Chaque tarif est personnalise selon votre volume de devis et vos besoins.</p>'
+    '  </div>'
+    '  <div class="reveal-stagger pgrid">'
 
-# ═══ ROI SLIDER (interactif Streamlit) ═══
+    # OFFRE 1
+    '    <div class="pcard">'
+    '      <div class="pbadge">Offre 1</div>'
+    '      <div class="pplan">Essentiel</div>'
+    '      <div class="psub">Numerisation administrative · WhatsApp</div>'
+    '      <div class="phighlight">Ideal pour demarrer : base de donnees, documents automatiques et conformite 2026.</div>'
+    '      <div class="pprice-custom">Prix personnalise</div>'
+    '      <div class="pprice-note">Calcule selon votre volume de devis.<br>Sans engagement.</div>'
+    '      <div class="pfeats">'
+    + feats_offre1 +
+    '      </div>'
+    '      <a class="pcta pcta-o" href="' + INSTA + '" target="_blank">Obtenir mon tarif</a>'
+    '      <div class="pnote">Pour se lancer sans risque</div>'
+    '    </div>'
+
+    # OFFRE 2
+    '    <div class="pcard feat">'
+    '      <div class="pbadge">Le plus populaire · Offre 2</div>'
+    '      <div class="pplan">L\'Artisan Autonome</div>'
+    '      <div class="psub">Inclus Offre 1 · WhatsApp et ERP Web</div>'
+    '      <div class="phighlight">Tout l\'Essentiel + votre ERP dedie pour piloter votre activite en autonomie complete.</div>'
+    '      <div class="pprice-custom">Prix personnalise</div>'
+    '      <div class="pprice-note">Sans engagement · resiliable a tout moment.</div>'
+    '      <div class="pfeats">'
+    '        <div class="pfeat incl"><span class="pcheck">&#11014;</span>Tout de l\'Offre Essentiel</div>'
+    '        <div class="pfeat"><span class="pcheck bright">&#10022;</span>ERP dedie sur votre mobile</div>'
+    '        <div class="pfeat"><span class="pcheck bright">&#10022;</span>Gestion des retards et avenants</div>'
+    '      </div>'
+    '      <div class="onglets-tag">'
+    + onglets +
+    '      </div>'
+    '      <a class="pcta pcta-s" href="' + INSTA + '" target="_blank">Obtenir mon tarif</a>'
+    '      <div class="pnote">Le meilleur rapport qualite/valeur</div>'
+    '    </div>'
+
+    # OFFRE 3
+    '    <div class="pcard">'
+    '      <div class="pbadge">Offre 3</div>'
+    '      <div class="pplan">Premium</div>'
+    '      <div class="psub">Inclus Offre 1 + 2 · Equipe et IA avancee</div>'
+    '      <div class="phighlight">Gestion d\'equipe, IA vocale, rentabilite reelle — la puissance complete.</div>'
+    '      <div class="pprice-custom">Prix personnalise</div>'
+    '      <div class="pprice-note">Accompagnement dedie inclus.</div>'
+    '      <div class="pfeats">'
+    '        <div class="pfeat incl"><span class="pcheck">&#11014;</span>Tout de l\'Offre Artisan Autonome</div>'
+    + feats_offre3 +
+    '      </div>'
+    '      <a class="pcta pcta-o" href="' + INSTA + '" target="_blank">Nous contacter</a>'
+    '      <div class="pnote">Pour les equipes et PME</div>'
+    '    </div>'
+
+    '  </div>'
+    '</div>'
+
+    # CTA BAND
+    '<div class="cta-band">'
+    '  <div class="reveal-scale">'
+    '    <h2>Pret a recuperer<br>votre temps ?</h2>'
+    '    <a class="ibtn" href="' + INSTA + '" target="_blank">Reserver une demo — Instagram</a>'
+    '    <div style="margin-top:1rem;font-size:.7rem;color:rgba(8,8,8,.45);">@floxia.pro · Reponse sous 24h</div>'
+    '  </div>'
+    '</div>'
+
+    # FOOTER
+    '<footer class="ft">'
+    '  <div>'
+    '    <div class="ft-logo"><div class="bolt" style="width:20px;height:20px;"></div>Floxia Service ERP</div>'
+    '    <div class="ft-tag">L\'IA qui travaille a votre place.</div>'
+    '  </div>'
+    '  <div class="ft-links">'
+    '    <a href="#">Mentions legales</a>'
+    '    <a href="#">Confidentialite</a>'
+    '    <a href="' + INSTA + '" target="_blank">Instagram</a>'
+    '  </div>'
+    '  <div class="ft-badge">Propulse par l\'IA</div>'
+    '</footer>'
+    + SCRIPT
+)
+
+# ═══ RENDER ═══════════════════════════════════════════════════════════════════
+st.markdown(textwrap.dedent(CSS), unsafe_allow_html=True)
+st.markdown(HTML_TOP, unsafe_allow_html=True)
+st.markdown(SERVICES_HTML, unsafe_allow_html=True)
+st.markdown(ECO_HTML, unsafe_allow_html=True)
+st.markdown(PROFILES_HTML, unsafe_allow_html=True)
+
+# ─── ROI SLIDER ───────────────────────────────────────────────────────────────
 nb = st.slider("Nombre de devis par mois", 1, 80, 15, 1)
 
-h_devis = round((45+12)*nb/60, 1)
-h = round(h_devis + 8 + 4 + round(18*nb/60,1), 1)
-cycle_h = round((60-3)*nb/60, 1)
+h_devis = round((45 + 12) * nb / 60, 1)
+h = round(h_devis + 8 + 4 + round(18 * nb / 60, 1), 1)
+cycle_h = round((60 - 3) * nb / 60, 1)
 gain = round(h * 55)
-abo = 49 if nb<=10 else (99 if nb<=30 else 149)
-roi = round((gain/abo)*100)
+abo = 49 if nb <= 10 else (99 if nb <= 30 else 149)
+roi = round((gain / abo) * 100)
 
-st.markdown(f"""
-<div class=\"roi-grid-outer\">
-  <div class=\"roi-box\">
-    <div class=\"roi-slbl\">Résultats pour {nb} devis / mois</div>
-    <div class=\"roi-res\">
-      <div class=\"roi-nums\">
-        <div><div class=\"roi-val\">{h}h</div><div class=\"roi-lbl\">temps libéré</div></div>
-        <div><div class=\"roi-val\">{gain}€</div><div class=\"roi-lbl\">valeur récupérée</div></div>
-        <div><div class=\"roi-val\">{roi}%</div><div class=\"roi-lbl\">ROI estimé</div></div>
-      </div>
-    </div>
-    <div style=\"margin-top:1rem;background:rgba(255,215,0,.04);border:1px solid rgba(255,215,0,.09);border-radius:9px;padding:.85rem 1rem;\">
-      <div style=\"font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,215,0,.55);margin-bottom:.55rem;\">⚡ Cycle devis → facture finale</div>
-      <div style=\"display:flex;gap:1.5rem;flex-wrap:wrap;\">
-        <div><div style=\"font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:#FFD700;\">{cycle_h}h</div><div style=\"font-size:.62rem;color:rgba(240,237,230,.35);\">économisées / mois</div></div>
-        <div><div style=\"font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:#FFD700;\">3 min</div><div style=\"font-size:.62rem;color:rgba(240,237,230,.35);\">au lieu de 60 min</div></div>
-        <div><div style=\"font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:#FFD700;\">−95%</div><div style=\"font-size:.62rem;color:rgba(240,237,230,.35);\">de temps admin</div></div>
-      </div>
-    </div>
-    <div style=\"font-size:.6rem;color:rgba(240,237,230,.2);margin-top:.75rem;\">*55€/h artisan · estimation mensuelle.</div>
-  </div>
-  <div>
-    <div class=\"sec-lbl\" style=\"margin-bottom:1rem;\">Ce que vous ne faites plus</div>
-""" + "".join([f'<div class="task-item"><div class="task-name">{n}</div><div class="task-gain">{g}</div></div>' for n,g in [
-    ("Cycle devis → PV → facture finale", f"{cycle_h}h économisées / mois"),
-    ("Taper des devis le soir", "45 min évitées / devis"),
-    ("Ressaisir les tickets de caisse", "2h / semaine récupérées"),
-    ("Rédiger des e-mails clients", "30 min / incident"),
+TASK_ITEMS = [
+    ("Cycle devis - PV - facture finale", f"{cycle_h}h economisees / mois"),
+    ("Taper des devis le soir", "45 min evitees / devis"),
+    ("Ressaisir les tickets de caisse", "2h / semaine recuperees"),
+    ("Rediger des e-mails clients", "30 min / incident"),
     ("Relancer les devis manuellement", "+30% de conversion"),
-    ("Faire le planning à la main", "1h / semaine gagnée"),
+    ("Faire le planning a la main", "1h / semaine gagnee"),
     ("Exporter votre compta", "Export 1 clic"),
-    ("Rédiger les rapports chantier", "18 min / chantier"),
+    ("Rediger les rapports chantier", "18 min / chantier"),
     ("Demander des avis Google", "Automatique"),
-    ("Générer un PV de réception", "Auto après signature"),
-]]) + """
-  </div>
-</div>
-""", unsafe_allow_html=True)
+    ("Generer un PV de reception", "Auto apres signature"),
+]
 
-st.markdown(textwrap.dedent(PRICING_HTML), unsafe_allow_html=True)
+task_html = "".join(
+    '<div class="task-item">'
+    f'<div class="task-name">{name}</div>'
+    f'<div class="task-gain">{g}</div>'
+    '</div>'
+    for name, g in TASK_ITEMS
+)
+
+roi_html = (
+    '<div class="roi-grid-outer">'
+    '  <div class="roi-box">'
+    f'    <div class="roi-slbl">Resultats pour {nb} devis / mois</div>'
+    '    <div class="roi-res">'
+    '      <div class="roi-nums">'
+    f'        <div><div class="roi-val">{h}h</div><div class="roi-lbl">temps libere</div></div>'
+    f'        <div><div class="roi-val">{gain}&#8364;</div><div class="roi-lbl">valeur recuperee</div></div>'
+    f'        <div><div class="roi-val">{roi}%</div><div class="roi-lbl">ROI estime</div></div>'
+    '      </div>'
+    '    </div>'
+    '    <div style="margin-top:1rem;background:rgba(255,215,0,.04);border:1px solid rgba(255,215,0,.09);border-radius:9px;padding:.85rem 1rem;">'
+    '      <div style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,215,0,.55);margin-bottom:.55rem;">Cycle devis vers facture finale</div>'
+    '      <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">'
+    f'        <div><div style="font-family:\'Syne\',sans-serif;font-size:1.3rem;font-weight:800;color:#FFD700;">{cycle_h}h</div><div style="font-size:.62rem;color:rgba(240,237,230,.35);">economisees / mois</div></div>'
+    '        <div><div style="font-family:\'Syne\',sans-serif;font-size:1.3rem;font-weight:800;color:#FFD700;">3 min</div><div style="font-size:.62rem;color:rgba(240,237,230,.35);">au lieu de 60 min</div></div>'
+    '        <div><div style="font-family:\'Syne\',sans-serif;font-size:1.3rem;font-weight:800;color:#FFD700;">-95%</div><div style="font-size:.62rem;color:rgba(240,237,230,.35);">de temps admin</div></div>'
+    '      </div>'
+    '    </div>'
+    '    <div style="font-size:.6rem;color:rgba(240,237,230,.2);margin-top:.75rem;">*55&#8364;/h artisan · estimation mensuelle.</div>'
+    '  </div>'
+    '  <div>'
+    '    <div class="sec-lbl" style="margin-bottom:1rem;">Ce que vous ne faites plus</div>'
+    + task_html +
+    '  </div>'
+    '</div>'
+)
+
+st.markdown(roi_html, unsafe_allow_html=True)
+st.markdown(PRICING_HTML, unsafe_allow_html=True)
