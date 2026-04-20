@@ -226,6 +226,11 @@ div[data-testid="stSlider"] [data-baseweb="slider"]>div:first-child>div:nth-chil
 div[data-testid="stSlider"] [data-baseweb="slider"]>div:first-child>div:first-child{background:rgba(255,255,255,.08)!important;}
 div[data-testid="stSlider"] label p{color:rgba(232,237,244,.4)!important;font-size:.6rem!important;letter-spacing:.2em!important;text-transform:uppercase!important;}
 
+/* =============================================
+   COMPARATIF — desktop : tableau normal
+   mobile    : cartes empilees (plus robuste
+               que overflow-x dans Streamlit)
+   ============================================= */
 .cmp-section{max-width:1280px;margin:0 auto;padding:6.5rem 5vw;}
 .cmp-table-wrap{margin-top:3rem;border:1px solid rgba(255,255,255,.06);border-radius:20px;overflow:hidden;}
 .cmp-table{width:100%;border-collapse:collapse;}
@@ -246,7 +251,16 @@ div[data-testid="stSlider"] label p{color:rgba(232,237,244,.4)!important;font-si
 .cmp-floxia-dot{width:8px;height:8px;background:#F5C842;border-radius:50%;}
 .cmp-note{margin-top:1.2rem;font-size:.62rem;color:rgba(232,237,244,.2);font-style:italic;text-align:center;}
 
-/* Comparatif mobile : garde uniquement Fonctionnalite + Floxia */
+/* Cartes mobiles comparatif */
+.cmp-mobile-cards{display:none;flex-direction:column;gap:.55rem;margin-top:2rem;}
+.cmp-mcard{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);
+  border-radius:12px;padding:.9rem 1.1rem;display:flex;justify-content:space-between;align-items:center;gap:.8rem;}
+.cmp-mcard-feat{font-size:.78rem;color:rgba(232,237,244,.55);flex:1;line-height:1.4;}
+.cmp-mcard-yes{font-size:.72rem;font-weight:800;color:#F5C842;background:rgba(245,200,66,.07);
+  border:1px solid rgba(245,200,66,.18);padding:.22rem .65rem;border-radius:50px;white-space:nowrap;flex-shrink:0;}
+.cmp-mcard-partial{font-size:.7rem;font-weight:600;color:rgba(232,237,244,.4);background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);padding:.22rem .65rem;border-radius:50px;white-space:nowrap;flex-shrink:0;font-style:italic;}
+.cmp-mcard-no{font-size:1rem;color:rgba(232,237,244,.18);flex-shrink:0;}
 .cmp-mobile-note{display:none;margin-top:1rem;text-align:center;font-size:.65rem;
   color:rgba(232,237,244,.25);font-style:italic;}
 
@@ -306,13 +320,13 @@ div[data-testid="stSlider"] label p{color:rgba(232,237,244,.4)!important;font-si
   .ft{flex-direction:column;align-items:flex-start;}
   .roi-cta-box{flex-direction:column;align-items:flex-start;}
 
-  /* Comparatif mobile : scroll horizontal + masque colonnes concurrentes */
-  .cmp-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px;}
-  .cmp-table th,.cmp-table td{padding:.65rem .75rem;font-size:.7rem;}
-  .cmp-table th:not(:first-child):not(.floxia-col),
-  .cmp-table td:not(:first-child):not(.floxia-col){display:none;}
-  .cmp-table .floxia-col{display:table-cell!important;}
+  /* Comparatif mobile : on cache le tableau, on affiche les cartes */
+  .cmp-table-wrap{display:none!important;}
+  .cmp-mobile-cards{display:flex!important;}
   .cmp-mobile-note{display:block;}
+}
+@media(min-width:769px){
+  .cmp-mobile-cards{display:none!important;}
 }
 @media(min-width:768px) and (max-width:1024px){
   .cgrid,.pgrid,.proof-grid{grid-template-columns:repeat(2,1fr);}
@@ -592,7 +606,9 @@ PROFILES_HTML = (
     '</div>'
 )
 
+# ==============================
 # Comparatif
+# ==============================
 COMP_ROWS = [
     ("Devis depuis WhatsApp vocal",           "Oui — natif",  "Non",      "Non",      "Non",      "Non"),
     ("Cycle devis complet en 3 min",           "Oui",          "Partiel",  "Partiel",  "Partiel",  "Non"),
@@ -635,6 +651,25 @@ cmp_rows_html = "".join(
     for row in COMP_ROWS
 )
 
+# Cartes mobiles : fonctionnalite + statut Floxia uniquement
+def cmp_mobile_card(feat, floxia_val):
+    if floxia_val.startswith("Oui"):
+        badge = '<span class="cmp-mcard-yes">&#10003; ' + floxia_val + '</span>'
+    elif floxia_val == "Non":
+        badge = '<span class="cmp-mcard-no">&#215;</span>'
+    else:
+        badge = '<span class="cmp-mcard-partial">' + floxia_val + '</span>'
+    return (
+        '<div class="cmp-mcard">'
+        '<div class="cmp-mcard-feat">' + feat + '</div>'
+        + badge +
+        '</div>'
+    )
+
+mobile_cards_html = "".join(
+    cmp_mobile_card(row[0], row[1]) for row in COMP_ROWS
+)
+
 COMPARATIF_HTML = (
     '<div class="div-line"></div>'
     '<div id="comparatif"></div>'
@@ -644,6 +679,8 @@ COMPARATIF_HTML = (
     '<h2 class="sec-title">Floxia vs les autres<br>solutions du marche.</h2>'
     '<p class="sec-sub">Les ERP du batiment existants sont puissants — mais aucun ne parle WhatsApp. Floxia comble ce que les autres ont laisse de cote.</p>'
     '</div>'
+
+    # Tableau desktop
     '<div class="reveal-scale cmp-table-wrap">'
     '<table class="cmp-table">'
     '<thead><tr>'
@@ -657,7 +694,18 @@ COMPARATIF_HTML = (
     '<tbody>' + cmp_rows_html + '</tbody>'
     '</table>'
     '</div>'
-    '<div class="cmp-mobile-note">&#128196; Comparatif complet visible sur desktop</div>'
+
+    # Cartes mobiles (cachees sur desktop via CSS)
+    '<div class="cmp-mobile-cards">'
+    '<div style="font-size:.62rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;'
+    'color:rgba(245,200,66,.55);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem;">'
+    '<span style="width:14px;height:1px;background:rgba(245,200,66,.4);display:inline-block;"></span>'
+    'Floxia — toutes les fonctionnalites'
+    '</div>'
+    + mobile_cards_html +
+    '</div>'
+
+    '<div class="cmp-mobile-note">Comparatif complet disponible sur desktop</div>'
     '<div class="cmp-note">Comparatif etabli sur les fonctionnalites publiquement documentees — Floxia est en phase Beta 2026.</div>'
     '</div>'
     '<div class="div-line"></div>'
