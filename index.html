@@ -283,6 +283,16 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;background:#F5C842;bo
 .onglets-tag{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.2rem;}
 .otag{font-size:.58rem;font-weight:600;background:rgba(255,255,255,.04);color:rgba(232,237,244,.4);padding:.18rem .52rem;border-radius:4px;border:1px solid rgba(255,255,255,.07);}
 
+/* PRICING TABLE */
+.pt-cat{background:#111D29;padding:.6rem 1.8rem;font-size:.55rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,200,66,.55);border-top:1px solid rgba(255,255,255,.05);}
+.pt-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;border-top:1px solid rgba(255,255,255,.04);}
+.pt-row:hover{background:rgba(255,255,255,.015);}
+.pt-feat{padding:.7rem 1.8rem;font-size:.78rem;color:rgba(232,237,244,.45);display:flex;align-items:center;}
+.pt-cell{padding:.7rem 1.4rem;display:flex;align-items:center;justify-content:center;border-left:1px solid rgba(255,255,255,.04);}
+.pt-cell.pro{border-left:1px solid rgba(245,200,66,.1);background:rgba(245,200,66,.015);}
+.pt-yes{color:#F5C842;font-size:1rem;}
+.pt-no{color:rgba(232,237,244,.15);font-size:1rem;}
+
 /* FAQ */
 .faq-seo{max-width:1280px;margin:0 auto;padding:4rem 5vw 2rem;}
 .faq-seo-title{font-family:'Nunito',sans-serif;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;color:#E8EDF4;margin-bottom:2rem;letter-spacing:-.02em;}
@@ -336,6 +346,12 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;background:#F5C842;bo
   .img-band{height:260px;}
   /* ERP OS section masqué sur mobile */
   .erp-os-section{display:none;}
+  /* Pricing table mobile */
+  .pt-grid{grid-template-columns:1fr!important;}
+  .pt-grid>div:not(:first-child){border-left:none!important;border-top:1px solid rgba(255,255,255,.05);}
+  .pt-row{grid-template-columns:1.5fr 1fr 1fr 1fr;}
+  .pt-feat{font-size:.68rem;padding:.6rem 1rem;}
+  .pt-cell{padding:.6rem .5rem;}
 }
 @media(min-width:769px){.cmp-mobile-cards{display:none!important;}}
 @media(min-width:768px) and (max-width:1024px){
@@ -560,55 +576,50 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;background:#F5C842;bo
 
 <!-- TARIFS -->
 <div id="tarifs"></div>
-<section class="sec" aria-label="Tarifs Floxia">
+<section class="sec" style="max-width:1280px;" aria-label="Tarifs Floxia">
   <div class="reveal">
     <div class="sec-lbl">Tarifs</div>
-    <h2 class="sec-title">Un prix adapté<br>à votre activité.</h2>
-    <p class="sec-sub">Chaque tarif est personnalisé selon votre volume de devis et vos besoins. Toujours hébergé en France.</p>
+    <h2 class="sec-title">Un prix clair,<br>des résultats concrets.</h2>
+    <p class="sec-sub">Sans engagement. Hébergé en France. Résiliable à tout moment.</p>
   </div>
-  <div class="reveal-stagger pgrid">
-    <div class="pcard">
-      <div class="pbadge">Offre 1</div>
-      <div class="pplan">Essentiel</div>
-      <div class="psub">Numérisation administrative · WhatsApp</div>
-      <div class="phighlight">Idéal pour démarrer : base de données, documents automatiques et conformité 2026.</div>
-      <div class="pprice-custom">Prix personnalisé</div>
-      <div class="pprice-note">Calculé selon votre volume de devis.<br>Sans engagement.</div>
-      <div class="pfeats" id="pfeats1"></div>
-      <a class="pcta pcta-o" href="https://calendly.com/afele1845/30min" target="_blank" rel="noopener">Obtenir mon tarif</a>
-      <div class="pnote">Pour se lancer sans risque</div>
+
+  <!-- HEADER CARDS -->
+  <div class="pt-grid reveal-stagger" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:1px;margin-top:3rem;border:1px solid rgba(255,255,255,.06);border-radius:20px 20px 0 0;overflow:hidden;background:rgba(255,255,255,.04);">
+    <div style="background:#0F1923;padding:1.5rem 1.8rem;display:flex;align-items:center;">
+      <span style="font-size:.65rem;font-weight:700;color:rgba(232,237,244,.3);letter-spacing:.1em;text-transform:uppercase;">Fonctionnalités</span>
     </div>
-    <div class="pcard feat">
-      <div class="pbadge">Le plus populaire · Offre 2</div>
-      <div class="pplan">L'Artisan Autonome</div>
-      <div class="psub">Inclus Offre 1 · WhatsApp et ERP Web</div>
-      <div class="phighlight">Tout l'Essentiel + ERP OS dédié + Agent réceptionniste IA + Avenants/Avoirs automatisés.</div>
-      <div class="pprice-custom">Prix personnalisé</div>
-      <div class="pprice-note">Sans engagement · résiliable à tout moment.</div>
-      <div class="pfeats">
-        <div class="pfeat incl"><span class="pcheck">↑</span>Tout de l'Offre Essentiel</div>
-        <div class="pfeat"><span class="pcheck bright">✦</span>ERP OS dédié sur mobile</div>
-        <div class="pfeat"><span class="pcheck bright">✦</span>Agent réceptionniste IA WA + appel</div>
-        <div class="pfeat"><span class="pcheck bright">✦</span>Booking auto + optimisation distance</div>
-        <div class="pfeat"><span class="pcheck bright">✦</span>Gestion avenants & avoirs auto</div>
-        <div class="pfeat"><span class="pcheck bright">✦</span>Assistant vocal technique IA</div>
-      </div>
-      <div class="onglets-tag" id="ongletsTags"></div>
-      <a class="pcta pcta-s" href="https://calendly.com/afele1845/30min" target="_blank" rel="noopener">Obtenir mon tarif</a>
-      <div class="pnote">Le meilleur rapport qualité/valeur</div>
+    <!-- Essentiel -->
+    <div style="background:#0F1923;padding:1.5rem 1.4rem;border-left:1px solid rgba(255,255,255,.05);">
+      <div style="font-size:.55rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,237,244,.35);margin-bottom:.5rem;">Essentiel</div>
+      <div style="font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:#E8EDF4;line-height:1;">99€<span style="font-size:.75rem;font-weight:500;color:rgba(232,237,244,.4);">/mois</span></div>
+      <div style="font-size:.62rem;color:rgba(232,237,244,.3);margin-top:.3rem;">Setup 299€</div>
+      <a class="pcta pcta-o" href="https://calendly.com/afele1845/30min" target="_blank" rel="noopener" style="display:block;text-align:center;margin-top:1rem;padding:.55rem .9rem;border-radius:50px;font-size:.75rem;">Démarrer</a>
     </div>
-    <div class="pcard">
-      <div class="pbadge">Offre 3</div>
-      <div class="pplan">Premium</div>
-      <div class="psub">Inclus Offre 1 + 2 · Équipe et IA avancée</div>
-      <div class="phighlight">Gestion d'équipe, IA vocale avancée, CRM intelligent — la puissance complète.</div>
-      <div class="pprice-custom">Prix personnalisé</div>
-      <div class="pprice-note">Accompagnement dédié inclus.</div>
-      <div class="pfeats" id="pfeats3"><div class="pfeat incl"><span class="pcheck">↑</span>Tout de l'Offre Artisan Autonome</div></div>
-      <a class="pcta pcta-o" href="https://calendly.com/afele1845/30min" target="_blank" rel="noopener">Nous contacter</a>
-      <div class="pnote">Pour les équipes et PME</div>
+    <!-- Artisan Pro -->
+    <div style="background:rgba(245,200,66,.03);padding:1.5rem 1.4rem;border-left:1px solid rgba(245,200,66,.15);position:relative;">
+      <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:#F5C842;color:#1E2B45;font-size:.5rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;padding:.2rem .7rem;border-radius:0 0 6px 6px;white-space:nowrap;">Le plus vendu</div>
+      <div style="font-size:.55rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,200,66,.7);margin-bottom:.5rem;">Artisan Pro</div>
+      <div style="font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:#F5C842;line-height:1;">179€<span style="font-size:.75rem;font-weight:500;color:rgba(245,200,66,.6);">/mois</span></div>
+      <div style="font-size:.62rem;color:rgba(232,237,244,.3);margin-top:.3rem;">Setup 349€</div>
+      <a class="pcta pcta-s" href="https://calendly.com/afele1845/30min" target="_blank" rel="noopener" style="display:block;text-align:center;margin-top:1rem;padding:.55rem .9rem;border-radius:50px;font-size:.75rem;">Choisir ce plan</a>
+    </div>
+    <!-- PME Premium -->
+    <div style="background:#0F1923;padding:1.5rem 1.4rem;border-left:1px solid rgba(255,255,255,.05);">
+      <div style="font-size:.55rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,237,244,.35);margin-bottom:.5rem;">PME Premium</div>
+      <div style="font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:#E8EDF4;line-height:1;">349€<span style="font-size:.75rem;font-weight:500;color:rgba(232,237,244,.4);">/mois</span></div>
+      <div style="font-size:.62rem;color:rgba(232,237,244,.3);margin-top:.3rem;">Setup 499€</div>
+      <a class="pcta pcta-o" href="https://calendly.com/afele1845/30min" target="_blank" rel="noopener" style="display:block;text-align:center;margin-top:1rem;padding:.55rem .9rem;border-radius:50px;font-size:.75rem;">Nous contacter</a>
     </div>
   </div>
+
+  <!-- FEATURE TABLE -->
+  <div class="reveal-scale" style="border:1px solid rgba(255,255,255,.06);border-top:none;border-radius:0 0 20px 20px;overflow:hidden;">
+    <table style="width:100%;border-collapse:collapse;" aria-label="Comparatif fonctionnalités">
+      <tbody id="pricingTableBody"></tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:1.2rem;text-align:center;font-size:.62rem;color:rgba(232,237,244,.2);">Sans engagement · résiliable à tout moment · 🇫🇷 hébergé en France</div>
 </section>
 
 <!-- FAQ -->
@@ -758,13 +769,55 @@ document.getElementById('cmpTableBody').innerHTML=COMP_ROWS.map(r=>`<tr><td clas
 const COLS=['Floxia','Batiprix','Onaya','EBP/Sage','Excel'];
 document.getElementById('cmpMobileCards').innerHTML=COMP_ROWS.map(r=>{const cols=COLS.map((lbl,i)=>{const val=r[i+1];const isF=i===0;let badge=val.startsWith('Oui')?'<span class="cmp-mcard-yes">✓</span>':val==='Non'?'<span class="cmp-mcard-no">✕</span>':'<span class="cmp-mcard-partial">~</span>';return `<div class="cmp-mcard-col"><div class="cmp-mcard-col-lbl${isF?' floxia':''}">${lbl}</div>${badge}</div>`;}).join('');return `<div class="cmp-mcard"><div class="cmp-mcard-feat">${r[0]}</div><div class="cmp-mcard-cols">${cols}</div></div>`;}).join('');
 
-// TARIFS
-const FEATS1=['Base de données Google Sheets dédiée','Création automatique de Devis PDF','Factures et Factures d\'acompte auto','PV de réception automatisé','Archivage structuré Google Drive','Envoi via API WhatsApp Business','Signature électronique intégrée','Conforme réforme facturation 2026','Données hébergées en France'];
-const FEATS3=['Saisie vocale IA avancée','Collecte photos fin de chantier','Suivi heures collaborateurs','Rentabilité réelle IA','Scan tickets caisse vers compta auto','Email pro depuis vocal','CRM intelligent historique client','Rapports chantier PDF auto'];
-const ONGLETS=['Vue générale','Créer un devis','Devis','Facture et Paiements','Export compta','Chantier','Planning','Notifications','Espace Clients','Tous les dossiers','Google Sheet','Retards et Avenants','Avoirs','Agent IA','RGPD'];
-document.getElementById('pfeats1').innerHTML=FEATS1.map(f=>`<div class="pfeat"><span class="pcheck bright" aria-hidden="true">✦</span>${f}</div>`).join('');
-document.getElementById('pfeats3').innerHTML+=FEATS3.map(f=>`<div class="pfeat"><span class="pcheck bright" aria-hidden="true">✦</span>${f}</div>`).join('');
-document.getElementById('ongletsTags').innerHTML=ONGLETS.map(o=>`<span class="otag">${o}</span>`).join('');
+// TARIFS — tableau comparatif
+// [label, essentiel, artisanPro, pmePremium]
+// true = ✓, false = —, string = texte
+const PT_ROWS = [
+  {cat:'Devis & Facturation'},
+  ['Création de devis depuis le site (simple et rapide)',true,true,true],
+  ['Devis PDF par WhatsApp (3 min)',true,true,true],
+  ['Factures acomptes & bons typés',true,true,true],
+  ['PV de réception + Facture finale (1 clic)',true,true,true],
+  ['Email automatique des factures',true,true,true],
+  ['Conformité facturation 2026 (e-reporting/EN)',true,true,true],
+  ['Numérotation automatique Devis & Factures',true,true,true],
+  ['Bibliothèque de prix (catalogue)',true,true,true],
+  ['Gestion TVA multiples (5,5% / 10% / 20%)',true,true,true],
+  ['Gestion avenants & avoirs automatiques',true,true,true],
+  ['Modèles de devis personnalisables',true,true,true],
+  {cat:'Relances & Suivi'},
+  ['Notifications devis signé',true,true,true],
+  ['Dashboard actif (CA, chantiers, devis)',true,true,true],
+  ['Relances devis non signés (J+3/J+7/J+14)',true,true,true],
+  ['Relances automatiques avoirs & avenants',false,true,true],
+  ['Alerte chantier (e-mail pro depuis vocal)',false,true,true],
+  ['Relance garantie 1 an (J+365)',false,true,true],
+  {cat:'Agent IA & Booking'},
+  ['Agent réceptionniste IA (WhatsApp)',false,true,true],
+  ['Booking automatique de RDV (WhatsApp)',false,true,true],
+  ['Agent réceptionniste IA (Téléphone)',false,false,true],
+  {cat:'Assistant Vocal IA'},
+  ['Vocal devis via WhatsApp (3 min)',true,true,true],
+  ['Assistant vocal technique (artisan, admin, juridique)',false,true,true],
+  ['Assistant vocal IA avancé (agenda, disponibilités)',false,false,true],
+  {cat:'Conformité & Opérations'},
+  ['Scan OCR tickets de caisse via WhatsApp',false,true,true],
+  ['Dashboard dépenses & TVA récupérable',false,true,true],
+  ['Export comptabilité en 1 clic',false,true,true],
+  {cat:'Avis & Réputation'},
+  ['Demande automatique d\'avis Google Maps',false,true,true],
+  {cat:'Gestion Équipe & Chantiers'},
+  ['Collecte photos fin de chantier',false,true,true],
+  ['Gestion équipe & planning chantiers',false,false,true],
+  ['Suivi des heures collaborateurs',false,false,true],
+];
+const yes='<span class="pt-yes">✓</span>';
+const no='<span class="pt-no">—</span>';
+function ptCell(v,isPro){return `<td class="pt-cell${isPro?' pro':''}">${v===true?yes:no}</td>`;}
+document.getElementById('pricingTableBody').innerHTML=PT_ROWS.map(r=>{
+  if(r.cat!==undefined) return `<tr><td colspan="4" class="pt-cat">${r.cat}</td></tr>`;
+  return `<tr class="pt-row"><td class="pt-feat">${r[0]}</td>${ptCell(r[1],false)}${ptCell(r[2],true)}${ptCell(r[3],false)}</tr>`;
+}).join('');
 
 // FAQ
 const FAQ=[
