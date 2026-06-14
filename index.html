@@ -26,7 +26,6 @@ a,button,input[type=range],[onclick]{cursor:none;}
 
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
-@keyframes scanline{0%{top:-10%}100%{top:110%}}
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes glowPulse{0%,100%{box-shadow:0 0 20px rgba(245,200,66,.15)}50%{box-shadow:0 0 40px rgba(245,200,66,.35)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
@@ -71,7 +70,7 @@ a,button,input[type=range],[onclick]{cursor:none;}
 .nav-cta:hover{transform:scale(1.06);box-shadow:0 4px 28px rgba(245,200,66,.5);}
 .nav-cta::after{display:none!important;}
 
-/* ═══════════ HERO — IMAGE.PNG ═══════════ */
+/* ═══════════ HERO ═══════════ */
 .hero{
   min-height:100vh;
   display:flex;
@@ -94,22 +93,32 @@ a,button,input[type=range],[onclick]{cursor:none;}
 #particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1;}
 .particle{position:absolute;border-radius:50%;background:#F5C842;animation:particleDrift var(--dur,4s) ease-out var(--delay,0s) infinite;}
 
-.hero-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.64rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,200,66,.8);margin-bottom:1.5rem;animation:fadeUp .7s ease .1s both;background:rgba(0,0,0,.3);backdrop-filter:blur(8px);padding:.4rem .9rem;border-radius:50px;border:1px solid rgba(245,200,66,.2);}
-.hero-badge-dot{width:4px;height:4px;background:#F5C842;border-radius:50%;animation:pulseDot 2s infinite;}
 .hero-title{font-family:'Nunito',sans-serif;font-weight:900;line-height:.96;letter-spacing:-.04em;color:#E8EDF4;font-size:clamp(3rem,8vw,7.5rem);margin-bottom:1.5rem;animation:fadeUp .7s ease .2s both;text-shadow:0 2px 30px rgba(0,0,0,.5);}
 .hero-title .brand{color:#F5C842;}
+/* OS badge inline dans le titre */
+.hero-os-badge{
+  display:inline-flex;
+  align-items:center;
+  background:#F5C842;
+  color:#1E2B45;
+  font-family:'Nunito',sans-serif;
+  font-weight:900;
+  font-size:clamp(1rem,2vw,1.8rem);
+  letter-spacing:.08em;
+  padding:.1em .4em;
+  border-radius:.25em;
+  vertical-align:middle;
+  margin-left:.25em;
+  position:relative;
+  top:-.1em;
+  box-shadow:0 4px 20px rgba(245,200,66,.4);
+}
 .morph-word{display:inline-block;color:#F5C842;transition:filter .4s ease,opacity .4s ease;position:relative;}
 .morph-word.morphing{filter:blur(8px);opacity:.3;}
 .hero-sub{font-size:clamp(1rem,2.2vw,1.25rem);color:rgba(232,237,244,.75);font-weight:400;max-width:520px;margin:0 0 2.2rem;line-height:1.7;animation:fadeUp .7s ease .35s both;text-shadow:0 1px 8px rgba(0,0,0,.4);}
 .typed-line{display:block;min-height:1.7em;}
 .typed-cursor{display:inline-block;width:2px;height:1em;background:#F5C842;margin-left:2px;vertical-align:middle;animation:pulseDot 0.8s infinite;}
-.hero-info{display:flex;align-items:center;justify-content:flex-start;gap:2.5rem;margin-bottom:2.5rem;flex-wrap:wrap;animation:fadeUp .7s ease .5s both;}
-.hero-info-item{display:flex;flex-direction:column;gap:.18rem;align-items:flex-start;}
-.hero-info-label{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(232,237,244,.4);}
-.hero-info-val{font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:800;color:#E8EDF4;}
-.counter-num{font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:800;color:#F5C842;display:inline-block;}
-.hero-sep{width:1px;height:36px;background:rgba(255,255,255,.15);}
-.hero-cta-row{display:flex;gap:1rem;justify-content:flex-start;flex-wrap:wrap;animation:fadeUp .7s ease .7s both;}
+.hero-cta-row{display:flex;gap:1rem;justify-content:flex-start;flex-wrap:wrap;animation:fadeUp .7s ease .5s both;}
 .btn-y{background:#F5C842;color:#1E2B45;padding:.82rem 2rem;border-radius:50px;font-weight:800;font-size:.88rem;text-decoration:none;display:inline-block;transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;}
 .btn-y::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.25) 50%,transparent 100%);background-size:200% 100%;transform:translateX(-100%);transition:none;}
 .btn-y:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(245,200,66,.45);}
@@ -117,14 +126,11 @@ a,button,input[type=range],[onclick]{cursor:none;}
 .btn-ghost{border:1px solid rgba(245,200,66,.5);color:rgba(245,200,66,.9);padding:.82rem 2rem;border-radius:50px;font-weight:700;font-size:.88rem;text-decoration:none;display:inline-block;transition:all .25s;backdrop-filter:blur(8px);background:rgba(0,0,0,.2);}
 .btn-ghost:hover{border-color:#F5C842;color:#F5C842;box-shadow:0 0 20px rgba(245,200,66,.2);}
 
-/* ═══════════ IMAGE PARALLAX BANDS ═══════════ */
+/* ═══════════ IMAGE PARALLAX BANDS — fond pur, zéro texte ═══════════ */
 .img-band{
   position:relative;
-  height:480px;
+  height:420px;
   overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 .img-band-bg{
   position:absolute;
@@ -141,43 +147,26 @@ a,button,input[type=range],[onclick]{cursor:none;}
   z-index:1;
   pointer-events:none;
 }
-.img-band-content{
-  position:relative;
-  z-index:2;
-  text-align:center;
-  padding:0 5vw;
-  max-width:900px;
-}
-/* Bande image3.png — chantier nuit (entre services et nouveautés) */
 .band-chantier-nuit .img-band-bg{background-image:url('image3.png');}
 .band-chantier-nuit .img-band-overlay{
   background:linear-gradient(
     to bottom,
-    rgba(15,25,35,0.75) 0%,
-    rgba(15,25,35,0.45) 40%,
-    rgba(15,25,35,0.45) 60%,
-    rgba(15,25,35,0.75) 100%
+    rgba(15,25,35,0.55) 0%,
+    rgba(15,25,35,0.15) 40%,
+    rgba(15,25,35,0.15) 60%,
+    rgba(15,25,35,0.55) 100%
   );
 }
-/* Bande image2.png — immeubles finis (avant CTA final) */
 .band-immeuble-fini .img-band-bg{background-image:url('image2.png');}
 .band-immeuble-fini .img-band-overlay{
   background:linear-gradient(
     to bottom,
-    rgba(15,25,35,0.80) 0%,
-    rgba(15,25,35,0.40) 40%,
-    rgba(15,25,35,0.40) 60%,
-    rgba(15,25,35,0.80) 100%
+    rgba(15,25,35,0.60) 0%,
+    rgba(15,25,35,0.15) 40%,
+    rgba(15,25,35,0.15) 60%,
+    rgba(15,25,35,0.60) 100%
   );
 }
-.band-label{font-size:.6rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,200,66,.7);display:flex;align-items:center;justify-content:center;gap:.6rem;margin-bottom:.85rem;}
-.band-label::before,.band-label::after{content:'';width:28px;height:1px;background:rgba(245,200,66,.4);}
-.band-title{font-family:'Nunito',sans-serif;font-size:clamp(1.8rem,4vw,3.2rem);font-weight:900;color:#E8EDF4;letter-spacing:-.03em;line-height:1.1;margin-bottom:1rem;text-shadow:0 2px 24px rgba(0,0,0,.6);}
-.band-title span{color:#F5C842;}
-.band-sub{font-size:.92rem;color:rgba(232,237,244,.65);line-height:1.7;max-width:600px;margin:0 auto 1.5rem;}
-.band-stats{display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;margin-top:1.2rem;}
-.band-stat-val{font-family:'Nunito',sans-serif;font-size:2rem;font-weight:900;color:#F5C842;}
-.band-stat-lbl{font-size:.62rem;color:rgba(232,237,244,.45);margin-top:.2rem;letter-spacing:.08em;text-transform:uppercase;}
 
 /* ═══════════ MARQUEE ═══════════ */
 .mq-wrap{overflow:hidden;padding:.85rem 0;border-top:1px solid rgba(245,200,66,.07);border-bottom:1px solid rgba(245,200,66,.07);background:#111D29;}
@@ -191,29 +180,6 @@ a,button,input[type=range],[onclick]{cursor:none;}
 .souv-item{display:flex;align-items:center;gap:.55rem;font-size:.72rem;font-weight:700;color:rgba(245,200,66,.75);transition:color .2s;}
 .souv-item:hover{color:#F5C842;}
 .souv-dot{width:6px;height:6px;background:#F5C842;border-radius:50%;animation:pulseDot 2s infinite;}
-
-/* ═══════════ ROBOT ═══════════ */
-.robot-section{background:#0F1923;padding:5rem 5vw;max-width:1280px;margin:0 auto;}
-.robot-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
-.robot-visual{position:relative;display:flex;justify-content:center;}
-.robot-body{width:220px;height:260px;background:linear-gradient(145deg,#1A2838,#131E2B);border:1px solid rgba(245,200,66,.15);border-radius:24px;position:relative;animation:floatY 3s ease-in-out infinite;box-shadow:0 0 60px rgba(30,43,69,.4);transition:box-shadow .3s;}
-.robot-body:hover{box-shadow:0 0 80px rgba(245,200,66,.12);}
-.robot-head{width:120px;height:80px;background:linear-gradient(145deg,#1A2838,#131E2B);border:1px solid rgba(245,200,66,.15);border-radius:16px;position:absolute;top:-50px;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:12px;}
-.robot-eye{width:18px;height:18px;background:#F5C842;border-radius:50%;box-shadow:0 0 12px rgba(245,200,66,.8);animation:pulseDot 1.8s infinite;}
-.robot-eye.r{animation-delay:.4s;}
-.robot-screen{width:160px;height:130px;background:rgba(245,200,66,.03);border:1px solid rgba(245,200,66,.08);border-radius:12px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;gap:6px;padding:12px;}
-.robot-line{height:6px;background:rgba(245,200,66,.1);border-radius:3px;animation:lineExpand .8s ease both;}
-.robot-line:nth-child(1){animation-delay:.2s;}.robot-line:nth-child(2){animation-delay:.35s;}.robot-line:nth-child(3){animation-delay:.5s;}.robot-line:nth-child(4){animation-delay:.65s;}.robot-line:nth-child(5){animation-delay:.8s;}.robot-line:nth-child(6){animation-delay:.95s;}
-.robot-line.short{width:60%;}.robot-line.gold{background:rgba(245,200,66,.35);width:80%;}.robot-line.tiny{width:40%;}
-.robot-badge-erp{position:absolute;top:-8px;right:-8px;background:#F5C842;color:#1E2B45;font-family:'Nunito',sans-serif;font-weight:900;font-size:.55rem;letter-spacing:.05em;padding:.25rem .5rem;border-radius:50px;}
-.robot-tag{font-size:.6rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,200,66,.55);margin-bottom:.5rem;display:flex;align-items:center;gap:.55rem;}
-.robot-tag::before{content:'';width:18px;height:1px;background:rgba(245,200,66,.45);}
-.robot-feat{display:flex;align-items:flex-start;gap:.85rem;padding:.9rem;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:12px;margin-top:.75rem;transition:border-color .25s,background .25s,transform .25s;}
-.robot-feat:hover{border-color:rgba(245,200,66,.2);background:rgba(245,200,66,.03);transform:translateX(4px);}
-.robot-feat-icon{width:36px;height:36px;background:rgba(245,200,66,.07);border:1px solid rgba(245,200,66,.15);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;transition:background .25s,transform .25s;}
-.robot-feat:hover .robot-feat-icon{background:rgba(245,200,66,.12);transform:scale(1.1);}
-.robot-feat-title{font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:800;color:#E8EDF4;margin-bottom:.2rem;}
-.robot-feat-desc{font-size:.75rem;color:rgba(232,237,244,.35);line-height:1.6;}
 
 /* ═══════════ SECTIONS ═══════════ */
 .sec{padding:6.5rem 5vw;max-width:1280px;margin:0 auto;}
@@ -464,13 +430,11 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;background:#F5C842;bo
   .hero{padding:7rem 5vw 4rem;text-align:left;align-items:flex-start;background-attachment:scroll;}
   .hero-overlay{background:linear-gradient(to bottom,rgba(10,15,20,0.85) 0%,rgba(10,15,20,0.6) 60%,rgba(10,15,20,0.85) 100%);}
   .hero-title{font-size:clamp(2.4rem,11vw,4rem);}
-  .hero-info{gap:1.2rem;}
-  .hero-sep{display:none;}
-  .robot-wrap,.eco-grid,.roi-grid-outer,.souv-grid,.erp-os-body{grid-template-columns:1fr;gap:2.5rem;}
+  .eco-grid,.roi-grid-outer,.souv-grid,.erp-os-body{grid-template-columns:1fr;gap:2.5rem;}
   .cgrid,.pgrid,.proof-grid,.newfeat-grid{grid-template-columns:1fr;border-radius:14px;}
   .eco-grid{padding:4rem 5vw;}
   .proof-stat-row{grid-template-columns:1fr;text-align:center;}
-  .sec,.robot-section,.proof-section,.cmp-section,.erp-os-section,.newfeat-section{padding:4rem 5vw;}
+  .sec,.proof-section,.cmp-section,.erp-os-section,.newfeat-section{padding:4rem 5vw;}
   .ft{flex-direction:column;align-items:flex-start;}
   .roi-cta-box{flex-direction:column;align-items:flex-start;}
   .cmp-table-wrap{display:none!important;}
@@ -479,9 +443,8 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;background:#F5C842;bo
   .erp-os-stats{grid-template-columns:repeat(2,1fr);}
   .erp-os-sidebar{display:none;}
   .souv-banner{gap:1rem;}
-  .img-band{height:320px;background-attachment:scroll;}
+  .img-band{height:260px;background-attachment:scroll;}
   .img-band-bg{background-attachment:scroll;}
-  .band-stats{gap:1.5rem;}
 }
 @media(min-width:769px){.cmp-mobile-cards{display:none!important;}}
 @media(min-width:768px) and (max-width:1024px){
@@ -510,16 +473,14 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;background:#F5C842;bo
   </div>
 </nav>
 
-<!-- ═══════ HERO — image.png ═══════ -->
+<!-- ═══════ HERO ═══════ -->
 <section class="hero" aria-label="Présentation Floxia ERP IA bâtiment">
   <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-overlay-bottom" aria-hidden="true"></div>
   <div id="particles" aria-hidden="true"></div>
 
-  <div class="hero-badge"><div class="hero-badge-dot" aria-hidden="true"></div>ERP IA nouvelle génération · 100% hébergé en France</div>
-
   <h1 class="hero-title">
-    <span class="brand">Floxia</span><br>
+    <span class="brand">Floxia</span><span class="hero-os-badge">OS</span><br>
     <span class="morph-word" id="morphWord">Automatisée</span>.<br>
     <span style="font-size:clamp(1.8rem,4vw,3.5rem);color:rgba(232,237,244,.7);">Votre temps. Rendu.</span>
   </h1>
@@ -528,28 +489,6 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;background:#F5C842;bo
     <span class="typed-line" id="typedLine"></span><span class="typed-cursor" id="typedCursor"></span>
     <br>Un vocal suffit — Floxia s'occupe du reste.
   </p>
-
-  <div class="hero-info">
-    <div class="hero-info-item">
-      <span class="hero-info-label">Temps libéré</span>
-      <span class="hero-info-val"><span class="counter-num" data-target="16" data-suffix="h / mois">0h / mois</span></span>
-    </div>
-    <div class="hero-sep" aria-hidden="true"></div>
-    <div class="hero-info-item">
-      <span class="hero-info-label">Saisie admin</span>
-      <span class="hero-info-val"><span class="counter-num" data-target="80" data-prefix="-" data-suffix="%">-0%</span></span>
-    </div>
-    <div class="hero-sep" aria-hidden="true"></div>
-    <div class="hero-info-item">
-      <span class="hero-info-label">Devis vers Facture</span>
-      <span class="hero-info-val"><span class="counter-num" data-target="3" data-suffix=" minutes">0 minutes</span></span>
-    </div>
-    <div class="hero-sep" aria-hidden="true"></div>
-    <div class="hero-info-item">
-      <span class="hero-info-label">Hébergement</span>
-      <span class="hero-info-val">🇫🇷 France</span>
-    </div>
-  </div>
 
   <div class="hero-cta-row">
     <a class="btn-y" href="https://calendly.com/afele1845/30min" target="_blank" rel="noopener">Réserver une démo — 30 min</a>
@@ -570,35 +509,6 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;background:#F5C842;bo
   <div class="souv-item"><div class="souv-dot"></div>🏗️ Infrastructure 100% indépendante</div>
 </div>
 
-<!-- ROBOT -->
-<section class="robot-section" aria-label="Votre robot ERP IA">
-  <div class="robot-wrap">
-    <div class="reveal-left robot-visual" aria-hidden="true">
-      <div style="position:relative;">
-        <div class="robot-body">
-          <div class="robot-head"><div class="robot-eye"></div><div class="robot-eye r"></div></div>
-          <div class="robot-screen">
-            <div class="robot-line gold"></div>
-            <div class="robot-line short"></div>
-            <div class="robot-line"></div>
-            <div class="robot-line tiny"></div>
-            <div class="robot-line gold short"></div>
-            <div class="robot-line"></div>
-          </div>
-          <div class="robot-badge-erp">ERP IA</div>
-        </div>
-      </div>
-    </div>
-    <div class="reveal-right">
-      <div class="robot-tag">Votre robot ERP</div>
-      <h2 style="font-family:'Nunito',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;color:#E8EDF4;margin-bottom:.6rem;">Un robot IA qui travaille<br>à votre place. 24h/24.</h2>
-      <p style="font-size:.88rem;color:rgba(232,237,244,.4);line-height:1.8;margin-bottom:1.8rem;">Floxia c'est votre ERP intelligent connecté à WhatsApp. Il reçoit vos messages vocaux, comprend ce que vous demandez, et exécute : devis, PV, facture, relance, rapport, booking client. Sans que vous ayez rien à taper.</p>
-      <div class="robot-feat"><div class="robot-feat-icon" aria-hidden="true">💬</div><div><div class="robot-feat-title">Parlez, il génère</div><div class="robot-feat-desc">Un message vocal WhatsApp : devis PDF en 3 minutes, envoyé automatiquement.</div></div></div>
-      <div class="robot-feat"><div class="robot-feat-icon" aria-hidden="true">📋</div><div><div class="robot-feat-title">ERP complet comme un OS</div><div class="robot-feat-desc">Interface moderne, tout centralisé — devis, chantiers, planning, équipe, dépenses.</div></div></div>
-      <div class="robot-feat"><div class="robot-feat-icon" aria-hidden="true">🤖</div><div><div class="robot-feat-title">Agent IA qui ne dort jamais</div><div class="robot-feat-desc">Répond aux clients, booke les RDV, optimise les trajets, relance les devis non signés.</div></div></div>
-    </div>
-  </div>
-</section>
 <div class="div-line"></div>
 
 <!-- SERVICES -->
@@ -612,20 +522,10 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;background:#F5C842;bo
   <div class="reveal-stagger cgrid" id="servicesGrid"></div>
 </section>
 
-<!-- ═══════ IMAGE BAND 1 — image3.png (chantier de nuit) ═══════ -->
+<!-- ═══════ IMAGE BAND 1 — fond pur, zéro texte ═══════ -->
 <div class="img-band band-chantier-nuit" role="presentation">
   <div class="img-band-bg" aria-hidden="true"></div>
   <div class="img-band-overlay" aria-hidden="true"></div>
-  <div class="img-band-content reveal-scale">
-    <div class="band-label">Floxia au travail · 24h/24</div>
-    <h2 class="band-title">Pendant que vous dormez,<br><span>Floxia ne s'arrête jamais.</span></h2>
-    <p class="band-sub">Relances automatiques, réponses clients, booking de rendez-vous — votre agent IA tourne sans interruption.</p>
-    <div class="band-stats">
-      <div><div class="band-stat-val">24/7</div><div class="band-stat-lbl">Agent actif</div></div>
-      <div><div class="band-stat-val">3 min</div><div class="band-stat-lbl">Devis généré</div></div>
-      <div><div class="band-stat-val">-80%</div><div class="band-stat-lbl">Saisie admin</div></div>
-    </div>
-  </div>
 </div>
 
 <div class="div-line"></div>
@@ -801,7 +701,16 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;background:#F5C842;bo
           <div><div style="font-family:'Nunito',sans-serif;font-size:1.3rem;font-weight:900;color:#F5C842;">-95%</div><div style="font-size:.62rem;color:rgba(232,237,244,.35);">de temps admin</div></div>
         </div>
       </div>
-      <div style="font-size:.6rem;color:rgba(232,237,244,.2);margin-top:.75rem;">*55€/h artisan · estimation mensuelle.</div>
+      <!-- Booking auto impact -->
+      <div style="margin-top:.75rem;background:rgba(39,155,64,.04);border:1px solid rgba(39,155,64,.15);border-radius:9px;padding:.85rem 1rem;">
+        <div style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(39,200,100,.7);margin-bottom:.55rem;">📅 Booking automatique — clients gagnés</div>
+        <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+          <div><div style="font-family:'Nunito',sans-serif;font-size:1.3rem;font-weight:900;color:#27C840;" id="roiBookingClients">—</div><div style="font-size:.62rem;color:rgba(232,237,244,.35);">nouveaux clients / mois</div></div>
+          <div><div style="font-family:'Nunito',sans-serif;font-size:1.3rem;font-weight:900;color:#27C840;" id="roiBookingCA">—</div><div style="font-size:.62rem;color:rgba(232,237,244,.35);">CA additionnel estimé</div></div>
+          <div><div style="font-family:'Nunito',sans-serif;font-size:1.3rem;font-weight:900;color:#27C840;">24/7</div><div style="font-size:.62rem;color:rgba(232,237,244,.35);">réception sans interruption</div></div>
+        </div>
+      </div>
+      <div style="font-size:.6rem;color:rgba(232,237,244,.2);margin-top:.75rem;">*55€/h artisan · CA additionnel estimé à 1 200€/client moyen · estimation mensuelle.</div>
     </div>
     <div>
       <div class="sec-lbl" style="margin-bottom:1rem;">Ce que vous ne faites plus</div>
@@ -844,18 +753,10 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;background:#F5C842;bo
 </section>
 <div class="div-line"></div>
 
-<!-- ═══════ IMAGE BAND 2 — image2.png (immeubles finis, nuit) ═══════ -->
+<!-- ═══════ IMAGE BAND 2 — fond pur, zéro texte ═══════ -->
 <div class="img-band band-immeuble-fini" role="presentation">
   <div class="img-band-bg" aria-hidden="true"></div>
   <div class="img-band-overlay" aria-hidden="true"></div>
-  <div class="img-band-content reveal-scale">
-    <div class="band-label">Résultat final · Vos chantiers livrés</div>
-    <h2 class="band-title">De la grue au bâtiment livré —<br><span>Floxia accompagne tout le cycle.</span></h2>
-    <p class="band-sub">Devis, suivi de chantier, PV de réception, facturation finale. Chaque étape automatisée, chaque document généré, chaque client satisfait.</p>
-    <div style="margin-top:1.5rem;">
-      <a class="btn-y" href="https://calendly.com/afele1845/30min" target="_blank" rel="noopener">Réserver une démo gratuite →</a>
-    </div>
-  </div>
 </div>
 
 <div class="div-line"></div>
@@ -955,7 +856,7 @@ let mx=0,my=0,rx=0,ry=0,gx=0,gy=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
 function animCursor(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;gx+=(mx-gx)*0.06;gy+=(my-gy)*0.06;ring.style.left=rx+'px';ring.style.top=ry+'px';glow.style.left=gx+'px';glow.style.top=gy+'px';requestAnimationFrame(animCursor);}
 animCursor();
-document.querySelectorAll('a,button,input,.scard,.nfcard,.profile-card,.robot-feat,.souv-card').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));});
+document.querySelectorAll('a,button,input,.scard,.nfcard,.profile-card,.souv-card').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));});
 
 // ═══ PARTICLES ═══
 const pContainer=document.getElementById('particles');
@@ -1004,9 +905,34 @@ document.getElementById('ecoFlux').innerHTML=ECO_FLUX.map(([lbl,nodes])=>`<div c
 const PROFILES=[{av:'🔧',metier:'Plombier-chauffagiste',title:'Ce que Floxia change pour un plombier',bullets:['Devis vocal depuis la camionnette, envoyé avant d\'arriver chez le client suivant.','Agent IA répond aux appels entrants et boooke les RDV sans l\'interrompre sur chantier.','Tickets fournisseur scannés direct depuis WhatsApp, compta à jour en temps réel.'],gl:'Temps libéré',gv:'~14h / mois'},{av:'⚡',metier:'Électricien indépendant',title:'Ce que Floxia change pour un électricien',bullets:['Devis signé plus vite : PDF envoyé en 3 min, plus en 2 jours.','Avenants générés et relancés automatiquement si pas signés.','Assistant vocal répond à ses questions techniques directement sur WhatsApp.'],gl:'Taux de signature',gv:'+30% devis signés'},{av:'🎨',metier:'Peintre / Carreleur',title:'Ce que Floxia change pour un peintre ou carreleur',bullets:['Rapport photo de fin de chantier en 2 clics, envoyé au client.','Demande d\'avis Google auto à la clôture de facture.','ERP OS : toute son activité pilotée depuis son téléphone.'],gl:'Admin supprimée',gv:'-80% de saisie'}];
 document.getElementById('profilesGrid').innerHTML=PROFILES.map(p=>`<article class="profile-card"><div class="profile-header"><div class="profile-avatar" aria-hidden="true">${p.av}</div><div><div class="profile-metier">${p.metier}</div><div class="profile-tag">Profil type</div></div></div><div class="profile-title">${p.title}</div><ul class="profile-bullets">${p.bullets.map(b=>`<li><span class="profile-check" aria-hidden="true">→</span><span>${b}</span></li>`).join('')}</ul><div class="profile-gain"><span>${p.gl}</span><span class="profile-gain-val">${p.gv}</span></div></article>`).join('');
 
-// ═══ ROI ═══
-const TASKS=[['Cycle devis - PV - facture finale','{{cycle_h}}h économisées / mois'],['Taper des devis le soir','45 min évitées / devis'],['Ressaisir les tickets de caisse','2h / semaine récupérées'],['Rédiger des e-mails clients','30 min / incident'],['Relancer les devis manuellement','+30% de conversion'],['Répondre aux appels entrants','Agent IA s\'en charge'],['Gérer les avenants & avoirs','Automatisé complet'],['Poser des questions techniques','Assistant vocal IA'],['Exporter votre compta','Export 1 clic'],['Rédiger les rapports chantier','18 min / chantier'],['Demander des avis Google','Automatique'],['Générer un PV de réception','Auto après signature']];
-function updateROI(nb){const cycleH=Math.round((60-3)*nb/60*10)/10;const h=Math.round((cycleH+8+4+Math.round(18*nb/60*10)/10)*10)/10;const gain=Math.round(h*55);const abo=nb<=10?49:nb<=30?99:149;const roi=Math.round((gain/abo)*100);const offre=nb<=10?'Essentiel':nb<=30?'Artisan Autonome':'Premium';const pct=((nb-1)/(80-1)*100).toFixed(1);document.getElementById('sliderProgress').style.width=pct+'%';document.getElementById('sliderVal').textContent=nb;document.getElementById('roiTitle').textContent=`Résultats pour ${nb} devis / mois`;document.getElementById('roiH').textContent=h+'h';document.getElementById('roiGain').textContent=gain+'€';document.getElementById('roiRoi').textContent=roi+'%';document.getElementById('roiCycleH').textContent=cycleH+'h';document.getElementById('taskList').innerHTML=TASKS.map(([n,g])=>`<div class="task-item"><div class="task-name">${n}</div><div class="task-gain">${g.replace('{{cycle_h}}',cycleH)}</div></div>`).join('');document.getElementById('roiCtaText').innerHTML=`Pour <span>${nb} devis/mois</span> — offre conseillée : <span>${offre}</span><br>Valeur récupérée estimée : <span>${gain}€ / mois</span> · ROI <span>${roi}%</span>`;}
+// ═══ ROI (avec booking auto) ═══
+const TASKS=[['Cycle devis - PV - facture finale','{{cycle_h}}h économisées / mois'],['Taper des devis le soir','45 min évitées / devis'],['Ressaisir les tickets de caisse','2h / semaine récupérées'],['Rédiger des e-mails clients','30 min / incident'],['Relancer les devis manuellement','+30% de conversion'],['Répondre aux appels entrants','Agent IA s\'en charge'],['Gérer les avenants & avoirs','Automatisé complet'],['Poser des questions techniques','Assistant vocal IA'],['Exporter votre compta','Export 1 clic'],['Rédiger les rapports chantier','18 min / chantier'],['Demander des avis Google','Automatique'],['Générer un PV de réception','Auto après signature'],['Booker les RDV clients','Booking auto 24/7'],['Rappeler les clients sans réponse','Agent IA relance']];
+
+function updateROI(nb){
+  const cycleH=Math.round((60-3)*nb/60*10)/10;
+  const h=Math.round((cycleH+8+4+Math.round(18*nb/60*10)/10)*10)/10;
+  const gain=Math.round(h*55);
+  const abo=nb<=10?49:nb<=30?99:149;
+  // Booking: on estime 15% des devis viennent d'appels capturés par l'agent IA qui auraient sinon été manqués
+  const bookingClients=Math.round(nb*0.15*10)/10;
+  const bookingCA=Math.round(bookingClients*1200);
+  const totalGain=gain+bookingCA;
+  const roi=Math.round((totalGain/abo)*100);
+  const offre=nb<=10?'Essentiel':nb<=30?'Artisan Autonome':'Premium';
+  const pct=((nb-1)/(80-1)*100).toFixed(1);
+
+  document.getElementById('sliderProgress').style.width=pct+'%';
+  document.getElementById('sliderVal').textContent=nb;
+  document.getElementById('roiTitle').textContent=`Résultats pour ${nb} devis / mois`;
+  document.getElementById('roiH').textContent=h+'h';
+  document.getElementById('roiGain').textContent=totalGain+'€';
+  document.getElementById('roiRoi').textContent=roi+'%';
+  document.getElementById('roiCycleH').textContent=cycleH+'h';
+  document.getElementById('roiBookingClients').textContent='~'+bookingClients;
+  document.getElementById('roiBookingCA').textContent='+'+bookingCA+'€';
+  document.getElementById('taskList').innerHTML=TASKS.map(([n,g])=>`<div class="task-item"><div class="task-name">${n}</div><div class="task-gain">${g.replace('{{cycle_h}}',cycleH)}</div></div>`).join('');
+  document.getElementById('roiCtaText').innerHTML=`Pour <span>${nb} devis/mois</span> — offre conseillée : <span>${offre}</span><br>Valeur récupérée estimée : <span>${totalGain}€ / mois</span> · ROI <span>${roi}%</span>`;
+}
 const slider=document.getElementById('roiSlider');
 slider.addEventListener('input',()=>updateROI(parseInt(slider.value)));
 updateROI(15);
