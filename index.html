@@ -71,10 +71,11 @@ a,button,input[type=range],[onclick]{cursor:none;}
 .nav-cta::after{display:none!important;}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:8rem 6vw 6rem;position:relative;overflow:hidden;text-align:left;background-image:url('image.png');background-size:cover;background-position:center center;background-repeat:no-repeat;background-attachment:fixed;}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:8rem 6vw 6rem;position:relative;overflow:hidden;text-align:left;background:#0F1923;}
+.hero-bg{position:absolute;inset:0;background-image:url('image.png');background-size:cover;background-position:center center;background-repeat:no-repeat;z-index:0;}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,15,20,0.88) 0%,rgba(10,15,20,0.65) 45%,rgba(10,15,20,0.20) 100%);z-index:1;pointer-events:none;}
 .hero-overlay-bottom{position:absolute;bottom:0;left:0;right:0;height:220px;background:linear-gradient(to top,rgba(10,15,20,0.7) 0%,transparent 100%);z-index:1;pointer-events:none;}
-.hero>*:not(.hero-overlay):not(.hero-overlay-bottom){position:relative;z-index:2;}
+.hero>*:not(.hero-bg):not(.hero-overlay):not(.hero-overlay-bottom){position:relative;z-index:2;}
 #particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1;}
 .particle{position:absolute;border-radius:50%;background:#F5C842;animation:particleDrift var(--dur,4s) ease-out var(--delay,0s) infinite;}
 
@@ -96,8 +97,8 @@ a,button,input[type=range],[onclick]{cursor:none;}
 
 /* IMAGE BANDS */
 .img-band{position:relative;height:420px;overflow:hidden;isolation:isolate;background:#0F1923;}
-.img-band-bg{position:fixed;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;z-index:-1;pointer-events:none;}
-.img-band-overlay{position:absolute;inset:0;z-index:0;pointer-events:none;}
+.img-band-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;z-index:0;pointer-events:none;}
+.img-band-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;}
 .band-chantier-nuit .img-band-bg{background-image:url('image3.png');}
 .band-chantier-nuit .img-band-overlay{background:linear-gradient(to bottom,rgba(15,25,35,0.45) 0%,rgba(15,25,35,0.05) 40%,rgba(15,25,35,0.05) 60%,rgba(15,25,35,0.45) 100%);}
 .band-immeuble-fini .img-band-bg{background-image:url('image2.png');}
@@ -313,7 +314,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;background:#F5C842;bo
   .nav-links{display:none;}
   body{cursor:auto;}
   #cursor-dot,#cursor-ring,#cursor-glow{display:none;}
-  .hero{padding:7rem 5vw 4rem;text-align:left;align-items:flex-start;background-attachment:scroll;}
+  .hero{padding:7rem 5vw 4rem;text-align:left;align-items:flex-start;}
   .hero-overlay{background:linear-gradient(to bottom,rgba(10,15,20,0.85) 0%,rgba(10,15,20,0.6) 60%,rgba(10,15,20,0.85) 100%);}
   .hero-title{font-size:clamp(2.4rem,11vw,4rem);}
   .eco-grid,.roi-grid-outer,.erp-os-body{grid-template-columns:1fr;gap:2.5rem;}
@@ -329,7 +330,6 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;background:#F5C842;bo
   .erp-os-sidebar{display:none;}
   .souv-banner{gap:1rem;}
   .img-band{height:260px;}
-  .img-band-bg{background-attachment:scroll;position:absolute;inset:0;}
 }
 @media(min-width:769px){.cmp-mobile-cards{display:none!important;}}
 @media(min-width:768px) and (max-width:1024px){
@@ -358,6 +358,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;background:#F5C842;bo
 
 <!-- HERO -->
 <section class="hero" aria-label="Présentation Floxia ERP IA bâtiment">
+  <div class="hero-bg" aria-hidden="true"></div>
   <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-overlay-bottom" aria-hidden="true"></div>
   <div id="particles" aria-hidden="true"></div>
