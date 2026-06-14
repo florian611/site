@@ -95,9 +95,9 @@ a,button,input[type=range],[onclick]{cursor:none;}
 .btn-ghost:hover{border-color:#F5C842;color:#F5C842;box-shadow:0 0 20px rgba(245,200,66,.2);}
 
 /* IMAGE BANDS */
-.img-band{position:relative;height:420px;overflow:hidden;}
-.img-band-bg{position:absolute;inset:-60px 0;background-size:cover;background-position:center;background-attachment:fixed;background-repeat:no-repeat;will-change:transform;}
-.img-band-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;}
+.img-band{position:relative;height:420px;overflow:hidden;isolation:isolate;}
+.img-band-bg{position:absolute;inset:-60px 0;background-size:cover;background-position:center;background-attachment:fixed;background-repeat:no-repeat;z-index:-1;}
+.img-band-overlay{position:absolute;inset:0;z-index:0;pointer-events:none;}
 .band-chantier-nuit .img-band-bg{background-image:url('image3.png');}
 .band-chantier-nuit .img-band-overlay{background:linear-gradient(to bottom,rgba(15,25,35,0.55) 0%,rgba(15,25,35,0.15) 40%,rgba(15,25,35,0.15) 60%,rgba(15,25,35,0.55) 100%);}
 .band-immeuble-fini .img-band-bg{background-image:url('image2.png');}
@@ -328,7 +328,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;background:#F5C842;bo
   .erp-os-stats{grid-template-columns:repeat(2,1fr);}
   .erp-os-sidebar{display:none;}
   .souv-banner{gap:1rem;}
-  .img-band{height:260px;background-attachment:scroll;}
+  .img-band{height:260px;}
   .img-band-bg{background-attachment:scroll;}
 }
 @media(min-width:769px){.cmp-mobile-cards{display:none!important;}}
